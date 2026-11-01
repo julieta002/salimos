@@ -111,6 +111,11 @@ details[open] > summary{margin-bottom:10px}
 .ht .d{display:flex;align-items:center;gap:4px}
 .ht .d svg{width:16px;height:16px}
 .st{font-family:var(--f-body);font-size:13px;font-weight:600}
+.mtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.mtab{font:600 13px var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.mtab i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.mtab[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.mtab:focus-visible{outline:2px solid var(--level);outline-offset:2px}
 .st-ok{color:var(--ok)} .st-limite{color:var(--lim)} .st-no{color:var(--no)} .st-flojo,.st-noche{color:var(--flojo)}
 /* modelos */
 .mtable{width:100%;border-collapse:collapse;font-size:14px}
@@ -429,7 +434,7 @@ function dayAlerts(hours, need){
 
 /* ---------- datos ---------- */
 const getJSON = u => fetch(u).then(r => r.ok ? r.json() : Promise.reject(r.status));
-const VARS = ["wind_speed_10m","wind_gusts_10m","wind_direction_10m","precipitation","weather_code","visibility","pressure_msl"];
+const VARS = ["wind_speed_10m","wind_gusts_10m","wind_direction_10m","precipitation","weather_code","visibility","pressure_msl","temperature_2m"];
 async function fetchData(s){
   const q = `latitude=${s.lat}&longitude=${s.lon}&timezone=auto&forecast_days=7`;
   const fc = `https://api.open-meteo.com/v1/forecast?${q}&hourly=${VARS.join(",")}&wind_speed_unit=kn&models=${MODELS.map(m => m.id).join(",")}`;
@@ -463,7 +468,8 @@ function build(data, s){
     const per = MODELS.map(m => {
       const raw = g("wind_speed_10m", m.id, i); if(raw == null) return null;
       const off = corr ? -REF[m.id].bias : 0, gr = g("wind_gusts_10m", m.id, i);
-      return {id:m.id, raw, ws:raw + off, wg: gr == null ? null : gr + off, wd:g("wind_direction_10m", m.id, i), w: s.rdp ? REF[m.id].acc : 1};
+      return {id:m.id, raw, ws:raw + off, wg: gr == null ? null : gr + off, wd:g("wind_direction_10m", m.id, i), w: s.rdp ? REF[m.id].acc : 1,
+        pr:g("precipitation", m.id, i), wc:g("weather_code", m.id, i), vis:g("visibility", m.id, i), p:g("pressure_msl", m.id, i), temp:g("temperature_2m", m.id, i)};
     }).filter(Boolean);
     const pick = cfg.model === "combo" ? blend(per) : (per.find(p => p.id === cfg.model) || blend(per));
     if(!pick) return null;
@@ -473,7 +479,7 @@ function build(data, s){
       day: sd ? (mid >= mins(sd.rise) - 30 && mid <= mins(sd.set) + 30) : true,
       ws:pick.ws, wg:pick.wg, wd:pick.wd,
       lo: per.length > 1 ? Math.min(...per.map(p => p.ws)) : null, hi: per.length > 1 ? Math.max(...per.map(p => p.ws)) : null,
-      pr:other("precipitation", i), wc:other("weather_code", i), vis:other("visibility", i), p:other("pressure_msl", i),
+      pr:other("precipitation", i), wc:other("weather_code", i), temp:other("temperature_2m", i), vis:other("visibility", i), p:other("pressure_msl", i),
       wave: M && j != null ? M.wave_height[j] : null, wper: M && j != null ? M.wave_period[j] : null,
       lvl: sl == null ? null : (s.cero != null ? sl + s.cero : sl)};
     h.c = classify(h, need);
@@ -518,6 +524,28 @@ function chartSVG(hours, B, isToday){
 }
 
 /* ---------- tabla hora por hora ---------- */
+const SKY = c => c == null ? "—" : c === 0 ? "Despejado" : c <= 2 ? "Algo nublado" : c === 3 ? "Nublado" : c <= 48 ? "Niebla" : c <= 57 ? "Llovizna" : c <= 67 ? "Lluvia" : c <= 77 ? "Nieve" : c <= 82 ? "Chaparrones" : c <= 86 ? "Nieve" : "Tormenta";
+function modelTable(hrs, B, mid){
+  const need = B.need;
+  const rows = hrs.map(h => {
+    const p = h.per.find(x => x.id === mid);
+    if(!p) return `<tr class="${h.day ? "" : "night"}"><td class="h">${hh(h.h)}</td><td colspan="7" class="muted">Este modelo no tiene dato para esta hora</td></tr>`;
+    const c = classify({day:h.day, ws:p.ws, wg:p.wg, wc:p.wc, vis:p.vis, wave:h.wave, lvl:h.lvl}, need);
+    return `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
+      <td class="h">${hh(h.h)}</td>
+      <td><b>${fmt(p.ws,0)}</b> / ${fmt(p.wg,0)}${B.corr ? `<div class="sub">sin corregir ${fmt(p.raw,0)}</div>` : ""}</td>
+      <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(p.wd, "var(--muted)")}</svg>${card(p.wd)}</span></td>
+      <td>${fmt(p.pr,1)}</td><td>${fmt(p.temp,0)}°</td><td>${fmt(p.p,0)}</td>
+      <td style="font-family:var(--f-body)">${SKY(p.wc)}</td>
+      <td><span class="st st-${c.k}">${stLabel(c)}</span></td></tr>`;
+  }).join("");
+  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga (kt)</th><th>Viene del</th><th>Lluvia (mm)</th><th>Temp.</th><th>Presión (hPa)</th><th>Cielo</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function tabsFor(date){
+  return `<div class="mtabs" role="group" aria-label="Elegí el modelo">` +
+    `<button type="button" class="mtab" data-date="${date}" data-m="combo" aria-pressed="true">${cfg.model === "combo" ? "Combinado" : "El que usás"}</button>` +
+    MODELS.map(m => `<button type="button" class="mtab" data-date="${date}" data-m="${m.id}" aria-pressed="false"><i style="background:${m.col}"></i>${m.name}</button>`).join("") + `</div>`;
+}
 function hourTable(hrs, B){
   const rows = hrs.map(h => `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
     <td class="h">${hh(h.h)}</td>
@@ -589,7 +617,7 @@ function dayCard(date, hrs, B, opts){
     </dl>
     ${al.length ? `<div class="alerts">${al.map(([k,t]) => `<div class="alert ${k}">${t}</div>`).join("")}</div>` : ""}
     <div class="chart">${chartSVG(hrs, B, opts.today)}</div>
-    <details${opts.today ? " open" : ""}><summary>Hora por hora</summary>${hourTable(hrs, B)}</details>
+    <details${opts.today ? " open" : ""}><summary>Hora por hora</summary>${tabsFor(date)}<div class="htbox" data-date="${date}">${hourTable(hrs, B)}</div><p class="note" style="margin-top:8px">Tocá un modelo para ver todo lo que pronostica él solo: viento, lluvia, temperatura, presión y cielo.</p></details>
     <p class="note">${reliab(opts.idx)}</p>
   </article>`;
 }
@@ -683,7 +711,9 @@ function levelBlock(B){
 }
 
 /* ---------- armado ---------- */
+let lastB = null;
 function render(B){
+  lastB = B;
   const dates = Object.keys(B.days).sort(), today = B.nowStr.slice(0,10);
   const todayHrs = B.days[today] || [];
   $("#todaySec").innerHTML = (todayHrs.length ? dayCard(today, todayHrs, B, {today:true, idx:0}) : "") + `<div style="margin-top:12px">${LEGEND}</div>`;
@@ -746,6 +776,13 @@ $("#addSave").addEventListener("click", e => {
   custom.push(sp); save("salimos.spots", custom); spotId = sp.id; save("salimos.spot", spotId); fillSpots(); refresh();
 });
 
+document.addEventListener("click", e => {
+  const b = e.target.closest(".mtab"); if(!b || !lastB) return;
+  const date = b.dataset.date, mid = b.dataset.m, hrs = lastB.days[date]; if(!hrs) return;
+  document.querySelectorAll(`.mtab[data-date="${date}"]`).forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  const box = document.querySelector(`.htbox[data-date="${date}"]`);
+  if(box) box.innerHTML = mid === "combo" ? hourTable(hrs, lastB) : modelTable(hrs, lastB, mid);
+});
 let last = Date.now();
 document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - last > 15*60*1000){ last = Date.now(); refresh(); } });
 fillSpots(); refresh();
