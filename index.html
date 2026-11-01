@@ -249,8 +249,13 @@ label.check input{width:auto;margin-top:4px}
       <div><dt>De dónde viene el viento</dt><dd>El viento se nombra por el lado de donde sopla: viento "del E" viene del este. En los gráficos la flechita apunta hacia donde va.</dd></div>
       <div><dt>Sudestada</dt><dd>Viento fuerte y sostenido del sudeste. Empuja el agua del mar hacia el río: el río sube mucho y se forma ola corta y dura.</dd></div>
       <div><dt>Pampero</dt><dd>Viento del sudoeste que entra de golpe después de un frente frío, con rachas fuertes. Saca agua del río y el nivel baja: cuidado al volver a puerto.</dd></div>
+      <div><dt>Escala Beaufort</dt><dd>La escala que usan los navegantes para el viento, de fuerza 0 (calma) a 12 (huracán). Fuerza 3 y 4 (7 a 16 kt) es buen viento para navegar; fuerza 6 (22 a 27 kt) ya es fresco y fuerza 7 en adelante es para quedarse en puerto.</dd></div>
+      <div><dt>Sondaje</dt><dd>La profundidad que marca la carta náutica en cada punto, medida desde el plano de reducción. Agua total = sondaje + altura de la marea.</dd></div>
+      <div><dt>Resguardo bajo la quilla</dt><dd>El agua que querés que quede entre la quilla y el fondo, por seguridad. Cubre la ola, el error de la tabla y lo que se hunde el barco al moverse.</dd></div>
+      <div><dt>Altura significativa de ola</dt><dd>La altura promedio del tercio de olas más grandes. Es la que dan los pronósticos; de vez en cuando viene alguna bastante más grande.</dd></div>
+      <div><dt>Milla náutica (mn)</dt><dd>La unidad de distancia en el agua: 1,852 km. Un nudo es una milla náutica por hora.</dd></div>
       <div><dt>Calado</dt><dd>Lo que el barco se hunde bajo el agua, desde la superficie hasta la punta de la quilla. Si el agua es menos profunda que el calado, el barco toca fondo.</dd></div>
-      <div><dt>Cero de la carta</dt><dd>El nivel de referencia de las cartas náuticas. La profundidad que marca la carta se mide desde ese cero, y la altura del río dice cuánta agua hay por encima. Agua total = profundidad de la carta + altura del río.</dd></div>
+      <div><dt>Plano de reducción (cero de la carta)</dt><dd>El nivel de referencia de las cartas náuticas y de las tablas de marea. La profundidad que marca la carta se mide desde ese cero, y la altura del río dice cuánta agua hay por encima. Agua total = profundidad de la carta + altura del río.</dd></div>
       <div><dt>Marea astronómica</dt><dd>La subida y bajada del agua que causan la Luna y el Sol. Se calcula con años de anticipación: es lo que dicen las tablas de marea.</dd></div>
       <div><dt>Marea meteorológica</dt><dd>Lo que el viento y la presión le agregan o le sacan a la marea astronómica. En el Río de la Plata puede pasar el metro, por eso el SHN avisa "tantos centímetros por encima o por debajo de las tablas".</dd></div>
       <div><dt>Modelo</dt><dd>Un programa de computadora que calcula el tiempo que va a hacer. Cada servicio meteorológico tiene el suyo.</dd></div>
@@ -261,7 +266,7 @@ label.check input{width:auto;margin-top:4px}
 
   <footer>
     <p>Pronóstico: Open-Meteo, con los modelos GDPS, GFS, ICON y ECMWF. Olas y nivel del agua: Open-Meteo Marine. Acierto de los modelos en Pilote Norden: medición de OlvidataSoft, del 1 de septiembre al 31 de octubre de 2026.</p>
-    <p>Antes de salir, confirmá la altura del río con el <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. El pronóstico es orientativo: la decisión de salir es del patrón.</p>
+    <p>Antes de salir, confirmá la altura del río con el <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. Con alerta meteorológica, Prefectura Naval puede suspender la navegación de embarcaciones deportivas: consultá antes de zarpar. El pronóstico es orientativo: la decisión de salir es del patrón.</p>
   </footer>
 </main>
 
@@ -279,10 +284,10 @@ label.check input{width:auto;margin-top:4px}
   <fieldset><legend>Calado</legend>
     <div class="grid2">
       <label for="draft">Calado del barco (m)<input id="draft" type="text" inputmode="decimal" autocomplete="off"></label>
-      <label for="ukc">Margen bajo la quilla (m)<input id="ukc" type="text" inputmode="decimal" autocomplete="off"></label>
+      <label for="ukc">Resguardo bajo la quilla (m)<input id="ukc" type="text" inputmode="decimal" autocomplete="off"></label>
     </div>
-    <label for="sond"><span id="sondLbl">Profundidad del lugar menos hondo de la salida, según la carta (m)</span><input id="sond" type="text" inputmode="decimal" autocomplete="off" placeholder="Preguntalo en el club"></label>
-    <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el cero de la carta. La sabe el club o figura en la carta náutica del canal.</p>
+    <label for="sond"><span id="sondLbl">Sondaje del punto menos profundo de la salida, según la carta (m)</span><input id="sond" type="text" inputmode="decimal" autocomplete="off" placeholder="Preguntalo en el club"></label>
+    <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el plano de reducción (el cero de la carta). La sabe el club o figura en la carta náutica del canal.</p>
   </fieldset>
   <fieldset><legend>Pronóstico</legend>
     <label for="model">Pronóstico para decidir
@@ -359,7 +364,7 @@ function distKm(a, b){ const R = 6371, r = Math.PI/180, dLa = (b.lat-a.lat)*r, d
 function renderStations(s){
   const near = STATIONS.map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 350).sort((a,b) => a.km - b.km).slice(0, 6);
   const list = near.map(({st, km}) => `<div class="sta">
-      <div class="sta-top"><span class="sta-name">${esc(st.name)}</span><span class="sta-km">${km < 1 ? "acá" : "a " + fmt(km, 0) + " km"}</span></div>
+      <div class="sta-top"><span class="sta-name">${esc(st.name)}</span><span class="sta-km">${km < 1 ? "acá" : "a " + fmt(km, 0) + " km · " + fmt(nm(km), 0) + " mn"}</span></div>
       <div class="sta-meta"><span class="chip">${esc(st.who)}</span><span class="chip${st.water ? " water" : ""}">${st.water ? "En el agua" : "En tierra"}</span><span class="chip">${esc(st.what)}</span></div>
       <p class="note">${esc(st.how)}</p>
       <a href="${st.url}" target="_blank" rel="noopener">Ver la medición ↗</a></div>`).join("");
@@ -389,13 +394,16 @@ async function loadLive(s, B){
         : `Mide ${fmt(-d)} kt <b>menos</b> que el pronóstico de esta hora (${fmt(h.ws)} kt).`;
     }
     box().innerHTML = head + `<div class="row1"><span class="val">${fmt(o.wspd,0)} kt</span><span>${o.wgst ? `ráfagas de ${fmt(o.wgst,0)} kt · ` : ""}${dirOk ? `viene del ${card(o.wdir)} (${o.wdir}°)` : "dirección variable"}</span></div>
-      <p class="note"><b>${esc(pick.st.name)}</b>, a ${fmt(pick.km,0)} km · medido hace ${ago < 60 ? ago + " min" : Math.round(ago/60) + " h"}${o.altim ? ` · presión ${fmt(o.altim,0)} hPa` : ""}</p>
+      <p class="note"><b>${esc(pick.st.name)}</b>, a ${fmt(pick.km,0)} km (${fmt(nm(pick.km),0)} mn) · medido hace ${ago < 60 ? ago + " min" : Math.round(ago/60) + " h"}${o.altim ? ` · presión ${fmt(o.altim,0)} hPa` : ""}</p>
       ${cmp ? `<p style="margin:0;font-size:14px">${cmp}</p>` : ""}
       <p class="note">Es una estación en tierra: sobre el agua suele haber un poco más de viento.</p>` + carp;
   }catch(e){
     if(box()) box().innerHTML = head + `<p class="note">No se pudo traer la medición en vivo en este momento.</p>` + carp;
   }
 }
+const BFT = [[1,"Calma"],[4,"Ventolina"],[7,"Flojito"],[11,"Flojo"],[17,"Bonancible"],[22,"Fresquito"],[28,"Fresco"],[34,"Frescachón"],[41,"Duro"],[48,"Muy duro"],[56,"Temporal"],[64,"Borrasca"],[999,"Huracán"]];
+const bft = kt => { const i = BFT.findIndex(([lim]) => kt < lim); return {f:i, name:BFT[i][1]}; };
+const nm = km => km / 1.852;
 const OTHER_ORDER = ["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
 const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sondBy:{}, night:false, model:"combo", corr:true};
 
@@ -464,7 +472,7 @@ function dayAlerts(hours, need){
   const st = hours.filter(h => h.wc >= 95).length;
   if(st) a.push(["no", `<b>Tormenta eléctrica</b> en ${st} h del día. Con rayos no se navega.`]);
   const fog = hours.filter(h => h.vis != null && h.vis < 1000).length;
-  if(fog) a.push(["lim", `<b>Niebla:</b> se ve a menos de 1 km durante ${fog} h.`]);
+  if(fog) a.push(["lim", `<b>Niebla:</b> visibilidad menor a 1 km (media milla) durante ${fog} h.`]);
   const ps = hours.map(h => h.p).filter(v => v != null);
   if(ps.length > 2){ const dp = ps[ps.length-1] - ps[0]; if(dp <= -4) a.push(["lim", `<b>La presión baja ${fmt(-dp,1)} hPa en el día.</b> Suele anunciar un cambio de tiempo, como la llegada de un frente.`]); }
   const rain = hours.filter(h => h.day && h.pr >= 1).length;
@@ -538,31 +546,63 @@ function build(data, s){
 /* ---------- gráfico de un día ---------- */
 const COL = {ok:"var(--ok)", limite:"var(--lim)", no:"var(--no)", flojo:"var(--flojo)", noche:"var(--flojo)"};
 function chartSVG(hours, B, isToday){
-  const bw = 26, pad = 30, top = 18, hb = 110, n = hours.length;
-  const W = pad + n*bw + 8, lvlTop = top + hb + 52, lvlH = 40;
+  const bw = 32, padL = 44, padR = 56, top = 30, hb = 170, n = hours.length;
+  const W = padL + n*bw + padR, x0 = padL, x1 = padL + n*bw;
   const lv = hours.map(h => h.lvl).filter(v => v != null);
-  const H = lv.length ? lvlTop + lvlH + 16 : top + hb + 40;
-  const maxK = Math.max(cfg.wMax + 4, ...hours.map(h => h.wg || h.ws)) + 2;
+  const hrsY = top + hb + 16, dirY = hrsY + 10, cardY = dirY + 30;
+  const lvlTop = cardY + 44, lvlH = 90;
+  const H = lv.length ? lvlTop + lvlH + 22 : cardY + 14;
+  const maxK = Math.max(10, Math.ceil(Math.max(cfg.wMax + 4, ...hours.map(h => h.wg ?? h.ws)) / 5) * 5);
   const y = v => top + hb - (v / maxK) * hb;
-  let s = `<svg width="${W}" height="${H}" role="img" aria-label="Viento y nivel hora por hora">`;
-  hours.forEach((h,i) => { if(!h.day) s += `<rect x="${pad + i*bw}" y="${top-6}" width="${bw}" height="${H-top}" fill="var(--night)"/>`; });
-  [cfg.wMin, cfg.wMax].forEach(v => { s += `<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--muted)" stroke-dasharray="3 4" opacity=".6"/><text x="${pad-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; });
-  s += `<line x1="${pad}" x2="${W-8}" y1="${top+hb}" y2="${top+hb}" stroke="var(--line)"/>`;
-  hours.forEach((h,i) => {
-    const x = pad + i*bw + 4, w = bw - 8, c = COL[h.c.k] || "var(--flojo)", op = h.c.k === "noche" ? .45 : 1;
-    s += `<rect x="${x}" y="${y(h.ws)}" width="${w}" height="${Math.max(1, top+hb-y(h.ws))}" rx="3" fill="${c}" opacity="${op}"/>`;
-    if(h.wg != null) s += `<line x1="${x}" x2="${x+w}" y1="${y(h.wg)}" y2="${y(h.wg)}" stroke="var(--ink)" stroke-width="2" opacity="${.55*op}"/>`;
-    if(h.h % 3 === 0) s += `<text x="${x + w/2}" y="${top+hb+15}" text-anchor="middle">${hh(h.h)}</text>`;
-    s += `<g transform="translate(${x + w/2 - 7} ${top+hb+22}) scale(.58)">${arrowPath(h.wd, "var(--muted)")}</g>`;
-    if(isToday && h.t === B.nowStr) s += `<rect x="${pad + i*bw + 1}" y="${top-6}" width="${bw-2}" height="${hb+8}" fill="none" stroke="var(--red)" stroke-width="2" rx="4"/>`;
+  const cx = i => padL + i*bw + bw/2;
+  let s = `<svg width="${W}" height="${H}" role="img" aria-label="Viento, ráfagas, dirección y nivel del agua hora por hora">`;
+  // noche
+  hours.forEach((h,i) => { if(!h.day) s += `<rect x="${padL + i*bw}" y="${top}" width="${bw}" height="${H - top - 8}" fill="var(--night)"/>`; });
+  // tu rango
+  s += `<rect x="${x0}" y="${y(cfg.wMax)}" width="${x1-x0}" height="${y(cfg.wMin) - y(cfg.wMax)}" fill="var(--ok)" opacity=".08"/>`;
+  // escala de nudos cada 5
+  for(let v = 0; v <= maxK; v += 5){
+    s += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>`;
+    s += `<text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+  }
+  s += `<text x="${x0-8}" y="${top-14}" text-anchor="end" font-weight="600">nudos</text>`;
+  [[cfg.wMin,"tu mínimo"],[cfg.wMax,"tu máximo"]].forEach(([v,l]) => {
+    s += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--ok)" stroke-dasharray="5 4" stroke-width="1.4"/>`;
+    s += `<text x="${x1+6}" y="${y(v)-2}" style="fill:var(--ok)">${l}</text><text x="${x1+6}" y="${y(v)+11}" style="fill:var(--ok)">${v} kt</text>`;
   });
+  // barras
+  hours.forEach((h,i) => {
+    const x = padL + i*bw + 5, w = bw - 10, c = COL[h.c.k] || "var(--flojo)", op = h.c.k === "noche" ? .5 : 1;
+    s += `<rect x="${x}" y="${y(h.ws)}" width="${w}" height="${Math.max(1, top+hb-y(h.ws))}" rx="3" fill="${c}" opacity="${op}"/>`;
+    if(h.wg != null){
+      s += `<line x1="${x-2}" x2="${x+w+2}" y1="${y(h.wg)}" y2="${y(h.wg)}" stroke="var(--ink)" stroke-width="2.4" opacity="${.7*op}"/>`;
+      s += `<line x1="${cx(i)}" x2="${cx(i)}" y1="${y(h.wg)}" y2="${y(h.ws)}" stroke="var(--ink)" stroke-width="1" opacity="${.35*op}"/>`;
+    }
+    s += `<text x="${cx(i)}" y="${y(h.wg ?? h.ws) - 6}" text-anchor="middle" style="fill:var(--ink)" font-weight="600">${fmt(h.ws,0)}</text>`;
+    s += `<text x="${cx(i)}" y="${hrsY}" text-anchor="middle"${h.t === B.nowStr && isToday ? ' style="fill:var(--red)" font-weight="700"' : ""}>${hh(h.h)}</text>`;
+    s += `<g transform="translate(${cx(i) - 8} ${dirY}) scale(.66)">${arrowPath(h.wd, "var(--muted)")}</g>`;
+    if(h.h % 2 === 0) s += `<text x="${cx(i)}" y="${cardY}" text-anchor="middle">${card(h.wd)}</text>`;
+    if(isToday && h.t === B.nowStr) s += `<rect x="${padL + i*bw + 1}" y="${top-4}" width="${bw-2}" height="${hb+26}" fill="none" stroke="var(--red)" stroke-width="2" rx="4"/><text x="${cx(i)}" y="${top-8}" text-anchor="middle" style="fill:var(--red)" font-weight="700">ahora</text>`;
+  });
+  s += `<text x="${x0-8}" y="${hrsY}" text-anchor="end" font-weight="600">hora</text>`;
+  s += `<text x="${x0-8}" y="${cardY}" text-anchor="end" font-weight="600">viene</text>`;
+  // nivel del agua con su propia escala
   if(lv.length){
-    const lo = Math.min(...lv, B.need ?? Infinity) - .1, hi = Math.max(...lv, B.need ?? -Infinity) + .1;
+    let lo = Math.min(...lv, B.need ?? Infinity), hi = Math.max(...lv, B.need ?? -Infinity);
+    lo = Math.floor(lo * 5) / 5 - .2; hi = Math.ceil(hi * 5) / 5 + .2;
+    const step = (hi - lo) > 2 ? .5 : .2;
     const ly = v => lvlTop + lvlH - (v - lo) / (hi - lo) * lvlH;
-    let d = ""; hours.forEach((h,i) => { if(h.lvl != null) d += (d ? "L" : "M") + (pad + i*bw + bw/2) + " " + ly(h.lvl).toFixed(1); });
-    s += `<text x="${pad}" y="${lvlTop-8}">nivel del agua (m)</text>`;
-    if(B.need != null) s += `<line x1="${pad}" x2="${W-8}" y1="${ly(B.need)}" y2="${ly(B.need)}" stroke="var(--no)" stroke-dasharray="4 3"/><text x="${pad-6}" y="${ly(B.need)+4}" text-anchor="end">${fmt(B.need,1)}</text>`;
-    s += `<path d="${d}" fill="none" stroke="var(--level)" stroke-width="2.2" stroke-linejoin="round"/>`;
+    s += `<text x="${x0-8}" y="${lvlTop-14}" text-anchor="end" font-weight="600">m</text><text x="${x0}" y="${lvlTop-14}" font-weight="600" style="fill:var(--level)">altura del agua</text>`;
+    for(let v = Math.ceil(lo/step)*step; v <= hi + 1e-9; v += step){
+      s += `<line x1="${x0}" x2="${x1}" y1="${ly(v)}" y2="${ly(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${ly(v)+4}" text-anchor="end">${fmt(v,1)}</text>`;
+    }
+    if(B.need != null){
+      s += `<line x1="${x0}" x2="${x1}" y1="${ly(B.need)}" y2="${ly(B.need)}" stroke="var(--no)" stroke-dasharray="5 4" stroke-width="1.6"/>`;
+      s += `<text x="${x1+6}" y="${ly(B.need)-2}" style="fill:var(--no)">mínimo</text><text x="${x1+6}" y="${ly(B.need)+11}" style="fill:var(--no)">${fmt(B.need,2)} m</text>`;
+    }
+    let d = ""; hours.forEach((h,i) => { if(h.lvl != null) d += (d ? "L" : "M") + cx(i) + " " + ly(h.lvl).toFixed(1); });
+    s += `<path d="${d}" fill="none" stroke="var(--level)" stroke-width="2.6" stroke-linejoin="round"/>`;
+    hours.forEach((h,i) => { if(h.lvl != null && h.h % 3 === 0) s += `<circle cx="${cx(i)}" cy="${ly(h.lvl)}" r="3" fill="var(--level)"/><text x="${cx(i)}" y="${ly(h.lvl)-7}" text-anchor="middle" style="fill:var(--level)">${fmt(h.lvl,2)}</text>`; });
   }
   return s + `</svg>`;
 }
@@ -593,7 +633,7 @@ function tabsFor(date){
 function hourTable(hrs, B){
   const rows = hrs.map(h => `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
     <td class="h">${hh(h.h)}</td>
-    <td><b>${fmt(h.ws,0)}</b> / ${fmt(h.wg,0)}${h.lo != null ? `<div class="sub">modelos ${fmt(h.lo,0)}–${fmt(h.hi,0)}</div>` : ""}</td>
+    <td><b>${fmt(h.ws,0)}</b> / ${fmt(h.wg,0)} <span class="sub">F${bft(h.ws).f}</span>${h.lo != null ? `<div class="sub">modelos ${fmt(h.lo,0)}–${fmt(h.hi,0)}</div>` : ""}</td>
     <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wd, "var(--muted)")}</svg>${card(h.wd)}</span></td>
     ${B.hasWave ? `<td>${fmt(h.wave)}</td>` : ""}
     ${B.hasLevel ? `<td>${fmt(h.lvl,2)}</td>` : ""}
@@ -639,12 +679,12 @@ function dayCard(date, hrs, B, opts){
   let top = "";
   if(opts.today){
     const h = hrs.find(x => x.t === B.nowStr) || hrs[hrs.length-1];
-    top = `<div class="verdict v-${vc}"><div class="word">${vt === "Sí" ? "Sí, salimos" : vt === "Poco" ? "Poco tiempo" : "Hoy no"}</div><p>${reasonText(hrs, ws)}</p></div>
+    top = `<div class="verdict v-${vc}"><div class="word">${vt === "Sí" ? "Sí, salimos" : vt === "Poco" ? "Poco tiempo" : "Hoy no"}</div><p>${reasonText(hrs, ws)}</p>${vt !== "No" ? `<p class="note">Antes de zarpar, confirmá que Prefectura no haya suspendido la navegación deportiva por mal tiempo.</p>` : ""}</div>
     <div><div class="eyebrow">Pronóstico para las ${hh(h.h)} h</div><p class="note">Es lo que calcula ${srcName()} para esta hora, no una medición de una estación.</p></div>
     <div class="now">
-      <div><div class="big">${fmt(h.ws)}<small>nudos</small></div><div class="muted">ráfagas de ${fmt(h.wg)} kt</div></div>
+      <div><div class="big">${fmt(h.ws)}<small>nudos</small></div><div class="muted">ráfagas de ${fmt(h.wg)} kt</div><div class="muted">Fuerza ${bft(h.ws).f} Beaufort · ${bft(h.ws).name}</div></div>
       <div class="dir">${arrow(h.wd, "var(--red)")}<div class="kv"><b>${card(h.wd)} ${Math.round(h.wd)}°</b><span>viene del ${card(h.wd)}</span></div></div>
-      ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola${h.wper ? ` cada ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
+      ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola significativa${h.wper ? ` · período ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
       ${B.hasLevel ? `<div class="kv"><b>${fmt(h.lvl,2)} m</b><span>${s.cero != null ? "altura del río" : "nivel vs. medio"}</span></div>` : ""}
     </div>
     <div class="live" id="live" aria-live="polite"><div class="eyebrow" style="color:var(--level)">Medición real, ahora</div><p class="note">Buscando la estación más cercana…</p></div>
@@ -679,17 +719,25 @@ function modelsBlock(B){
   const i0 = Math.max(0, B.hours.findIndex(h => h.t === B.nowStr)), seg = B.hours.slice(i0, i0 + 36);
   let chart = "", agree = "";
   if(seg.length){
-    const bw = 18, pad = 30, top = 12, hb = 130, N = seg.length, W = pad + N*bw + 10, H = top + hb + 26;
+    const bw = 22, padL = 44, padR = 16, top = 26, hb = 170, N = seg.length, W = padL + N*bw + padR, H = top + hb + 44;
     const all = seg.flatMap(h => h.per.map(p => p.ws)).concat(seg.map(h => h.ws));
-    const maxK = Math.max(cfg.wMax, ...all) + 3, y = v => top + hb - v / maxK * hb;
+    const maxK = Math.max(10, Math.ceil((Math.max(cfg.wMax, ...all) + 2) / 5) * 5), y = v => top + hb - v / maxK * hb;
+    const x0 = padL, x1 = padL + N*bw;
     let s2 = `<svg width="${W}" height="${H}" role="img" aria-label="Viento según cada modelo, próximas 36 horas">`;
-    seg.forEach((h,k) => { if(!h.day) s2 += `<rect x="${pad + k*bw}" y="${top}" width="${bw}" height="${hb}" fill="var(--night)"/>`; });
-    [0, cfg.wMin, cfg.wMax].forEach(v => { s2 += `<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" ${v ? 'stroke-dasharray="3 4"' : ""}/><text x="${pad-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; });
-    seg.forEach((h,k) => { if(h.h % 6 === 0) s2 += `<text x="${pad + k*bw + bw/2}" y="${top+hb+18}" text-anchor="middle">${hh(h.h)}h</text>`; });
-    const line = (vals, col, w, dash) => { let d = ""; vals.forEach((v,k) => { if(v != null) d += (d ? "L" : "M") + (pad + k*bw + bw/2) + " " + y(v).toFixed(1); }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" ${dash ? 'stroke-dasharray="5 4"' : ""} stroke-linejoin="round" stroke-linecap="round"/>`; };
-    MODELS.forEach(m => { s2 += line(seg.map(h => { const p = h.per.find(x => x.id === m.id); return p ? p.ws : null; }), m.col, 1.6, false); });
-    s2 += line(seg.map(h => h.ws), "var(--ink)", 3.2, false);
-    chart = `<div class="chart">${s2}</svg></div>`;
+    seg.forEach((h,k) => { if(!h.day) s2 += `<rect x="${padL + k*bw}" y="${top}" width="${bw}" height="${hb}" fill="var(--night)"/>`; });
+    s2 += `<rect x="${x0}" y="${y(cfg.wMax)}" width="${x1-x0}" height="${y(cfg.wMin) - y(cfg.wMax)}" fill="var(--ok)" opacity=".08"/>`;
+    for(let v = 0; v <= maxK; v += 5) s2 += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+    s2 += `<text x="${x0-8}" y="${top-12}" text-anchor="end" font-weight="600">nudos</text>`;
+    seg.forEach((h,k) => {
+      const xc = padL + k*bw + bw/2;
+      if(h.h % 3 === 0) s2 += `<text x="${xc}" y="${top+hb+16}" text-anchor="middle">${hh(h.h)}</text>`;
+      if(h.h === 0 || k === 0){ const L = dateLbl(h.date); s2 += `<line x1="${padL + k*bw}" x2="${padL + k*bw}" y1="${top}" y2="${top+hb+22}" stroke="var(--muted)" opacity=".5"/><text x="${padL + k*bw + 4}" y="${top+hb+34}" font-weight="600">${k === 0 ? "ahora" : L.dow.slice(0,3) + " " + L.txt.split(" ")[0]}</text>`; }
+    });
+    const line = (vals, col, w) => { let d = ""; vals.forEach((v,k) => { if(v != null) d += (d ? "L" : "M") + (padL + k*bw + bw/2) + " " + y(v).toFixed(1); }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`; };
+    MODELS.forEach(m => { s2 += line(seg.map(h => { const p = h.per.find(x => x.id === m.id); return p ? p.ws : null; }), m.col, 1.8); });
+    s2 += line(seg.map(h => h.ws), "var(--ink)", 3.4);
+    seg.forEach((h,k) => { if(k % 3 === 0) s2 += `<text x="${padL + k*bw + bw/2}" y="${y(h.ws) - 8}" text-anchor="middle" style="fill:var(--ink)" font-weight="600">${fmt(h.ws,0)}</text>`; });
+    chart = `<div class="chart">${s2}</svg></div><p class="note">La franja verde es tu rango de viento. Las zonas sombreadas son de noche. Los números son el pronóstico que decide, cada 3 horas.</p>`;
     const sp = seg.slice(0, 12).filter(h => h.hi != null).map(h => h.hi - h.lo);
     const avg = sp.length ? sp.reduce((a,b) => a+b, 0) / sp.length : null;
     if(avg != null) agree = avg <= 3 ? `<div class="alert info"><b>Los modelos coinciden</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. El pronóstico es confiable.</div>`
@@ -728,12 +776,12 @@ function levelBlock(B){
   const today = B.days[B.nowStr.slice(0,10)] || [];
   let calc;
   if(sond == null){
-    calc = `<div class="calc"><div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div><div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div><div class="row tot"><span>Agua que necesitás</span><span>${fmt(cfg.draft + cfg.ukc,2)} m</span></div></div>
+    calc = `<div class="calc"><div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div><div class="row"><span>+ resguardo bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div><div class="row tot"><span>Agua que necesitás</span><span>${fmt(cfg.draft + cfg.ukc,2)} m</span></div></div>
     <div class="alert lim"><b>Falta un dato de ${esc(s.name)}.</b> Para saber si hay agua, cargá en <b>Mi barco</b> la profundidad del lugar menos hondo de la entrada o salida, según la carta de este puerto. Cada puerto tiene la suya.</div>`;
   } else {
     calc = `<div class="calc">
       <div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div>
-      <div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div>
+      <div class="row"><span>+ resguardo bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div>
       <div class="row"><span>− profundidad en la carta</span><span>${fmt(sond,2)} m</span></div>
       <div class="row tot"><span>Altura mínima de ${agua}</span><span>${fmt(need,2)} m</span></div></div>
       <p class="note">En ${esc(s.name)}, si ${agua} está por encima de ${fmt(need,2)} m según la tabla, hay agua para pasar con ${fmt(cfg.ukc,2)} m de margen.${need <= 0 ? " Con esa profundidad pasás casi siempre, salvo una bajante muy fuerte." : ""}</p>`;
@@ -808,7 +856,7 @@ $("#spotSel").addEventListener("change", e => { spotId = e.target.value; save("s
 $("#btnCfg").addEventListener("click", () => {
   ["wMin","wMax","gMax"].forEach(k => $("#" + k).value = cfg[k]);
   ["waveMax","draft","ukc"].forEach(k => $("#" + k).value = String(cfg[k]).replace(".", ","));
-  $("#sond").value = sondOf(spot()) == null ? "" : String(sondOf(spot())).replace(".", ","); $("#sondLbl").textContent = `Profundidad del lugar menos hondo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
+  $("#sond").value = sondOf(spot()) == null ? "" : String(sondOf(spot())).replace(".", ","); $("#sondLbl").textContent = `Sondaje del punto menos profundo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
