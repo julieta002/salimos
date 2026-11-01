@@ -272,16 +272,16 @@ label.check input{width:auto;margin-top:4px}
       <label for="wMin">Mínimo para ir a vela (kt)<input id="wMin" type="number" min="0" max="40" step="1" inputmode="numeric"></label>
       <label for="wMax">Máximo cómodo (kt)<input id="wMax" type="number" min="5" max="60" step="1" inputmode="numeric"></label>
       <label for="gMax">Ráfaga máxima (kt)<input id="gMax" type="number" min="5" max="70" step="1" inputmode="numeric"></label>
-      <label for="waveMax">Ola máxima (m)<input id="waveMax" type="number" min="0" max="8" step="0.1" inputmode="decimal"></label>
+      <label for="waveMax">Ola máxima (m)<input id="waveMax" type="text" inputmode="decimal" autocomplete="off"></label>
     </div>
     <p class="hint">Debajo del mínimo se sale a motor. Arriba del máximo, o con ráfagas más fuertes, la página marca que no conviene.</p>
   </fieldset>
   <fieldset><legend>Calado</legend>
     <div class="grid2">
-      <label for="draft">Calado del barco (m)<input id="draft" type="number" min="0" max="6" step="0.05" inputmode="decimal"></label>
-      <label for="ukc">Margen bajo la quilla (m)<input id="ukc" type="number" min="0" max="2" step="0.05" inputmode="decimal"></label>
+      <label for="draft">Calado del barco (m)<input id="draft" type="text" inputmode="decimal" autocomplete="off"></label>
+      <label for="ukc">Margen bajo la quilla (m)<input id="ukc" type="text" inputmode="decimal" autocomplete="off"></label>
     </div>
-    <label for="sond"><span id="sondLbl">Profundidad del lugar menos hondo de la salida, según la carta (m)</span><input id="sond" type="number" min="0" max="20" step="0.05" inputmode="decimal" placeholder="Preguntalo en el club"></label>
+    <label for="sond"><span id="sondLbl">Profundidad del lugar menos hondo de la salida, según la carta (m)</span><input id="sond" type="text" inputmode="decimal" autocomplete="off" placeholder="Preguntalo en el club"></label>
     <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el cero de la carta. La sabe el club o figura en la carta náutica del canal.</p>
   </fieldset>
   <fieldset><legend>Pronóstico</legend>
@@ -746,14 +746,15 @@ function levelBlock(B){
   } else if(s.cero == null){
     status = `<div class="alert info">Acá el modelo de nivel no está llevado al cero de la carta del puerto, así que la página no puede decirte la altura sola. Usá la calculadora de abajo con la tabla de marea de ${esc(T.port)}.</div>`;
   }
-  const saved = load("salimos.shn." + s.id, {tabla:"", aviso:""});
+  const saved = load("salimos.shn." + s.id, {tabla:"", aviso:"", sign:"0"});
   const isShn = /SHN/.test(T.who);
   const calcCard = `<article class="card">
     <h3>Calculá con la tabla de marea</h3>
-    <p class="note">Buscá en la tabla de mareas de <b>${esc(T.who)}</b> la altura de <b>${esc(T.port)}</b> para la hora en que querés entrar o salir. ${isShn ? "Si el SHN emitió un aviso de crecida o bajante, poné cuántos centímetros dice" : "Si hay un aviso de que el viento sube o baja el agua, poné cuántos centímetros"}: positivo si va a estar por encima de la tabla, negativo si va a estar por debajo. Si no hay aviso, dejalo en 0.</p>
+    <p class="note">Buscá en la tabla de mareas de <b>${esc(T.who)}</b> la altura de <b>${esc(T.port)}</b> para la hora en que querés entrar o salir. ${isShn ? "Si el SHN emitió un aviso de crecida o bajante, poné cuántos centímetros dice" : "Si hay un aviso de que el viento sube o baja el agua, poné cuántos centímetros"} y elegí si dice por encima o por debajo de la tabla.</p>
     <div class="shn-in">
-      <label for="shnTabla">Altura según la tabla (m)<input id="shnTabla" type="number" step="0.01" inputmode="decimal" placeholder="Ej.: 0,85" value="${esc(saved.tabla)}"></label>
-      <label for="shnAviso">Aviso por viento (cm)<input id="shnAviso" type="number" step="1" inputmode="numeric" placeholder="0" value="${esc(saved.aviso)}"></label>
+      <label for="shnTabla">Altura según la tabla (m)<input id="shnTabla" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej.: 0,85" value="${esc(saved.tabla)}"></label>
+      <label for="shnSign">Aviso por viento<select id="shnSign"><option value="0"${saved.sign === "0" || !saved.sign ? " selected" : ""}>No hay aviso</option><option value="1"${saved.sign === "1" ? " selected" : ""}>Por encima de la tabla</option><option value="-1"${saved.sign === "-1" ? " selected" : ""}>Por debajo de la tabla</option></select></label>
+      <label for="shnAviso">Cuántos centímetros<input id="shnAviso" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${esc(saved.aviso)}"></label>
     </div>
     <div id="shnRes"></div>
     <p class="note">La profundidad de la carta y la tabla de marea de un mismo país se miden desde el mismo cero, así que se pueden sumar. No mezcles la tabla de un país con la carta de otro.</p>
@@ -805,8 +806,9 @@ function fillSpots(){ $("#spotSel").innerHTML = allSpots().map(s => `<option val
 $("#spotSel").addEventListener("change", e => { spotId = e.target.value; save("salimos.spot", spotId); refresh(); });
 
 $("#btnCfg").addEventListener("click", () => {
-  ["wMin","wMax","gMax","waveMax","draft","ukc"].forEach(k => $("#" + k).value = cfg[k]);
-  $("#sond").value = sondOf(spot()) ?? ""; $("#sondLbl").textContent = `Profundidad del lugar menos hondo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
+  ["wMin","wMax","gMax"].forEach(k => $("#" + k).value = cfg[k]);
+  ["waveMax","draft","ukc"].forEach(k => $("#" + k).value = String(cfg[k]).replace(".", ","));
+  $("#sond").value = sondOf(spot()) == null ? "" : String(sondOf(spot())).replace(".", ","); $("#sondLbl").textContent = `Profundidad del lugar menos hondo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
@@ -848,8 +850,9 @@ document.addEventListener("click", e => {
 function shnCalc(){
   const res = document.getElementById("shnRes"); if(!res) return;
   const num = id => { const v = parseFloat(String(document.getElementById(id).value).replace(",", ".")); return isNaN(v) ? null : v; };
-  const tabla = num("shnTabla"), aviso = num("shnAviso") ?? 0;
-  save("salimos.shn." + spot().id, {tabla: document.getElementById("shnTabla").value, aviso: document.getElementById("shnAviso").value});
+  const sign = +document.getElementById("shnSign").value;
+  const tabla = num("shnTabla"), aviso = sign === 0 ? 0 : Math.abs(num("shnAviso") ?? 0) * sign;
+  save("salimos.shn." + spot().id, {tabla: document.getElementById("shnTabla").value, aviso: document.getElementById("shnAviso").value, sign: document.getElementById("shnSign").value});
   if(tabla == null){ res.innerHTML = `<div class="shn-res wait"><p class="note">Cargá la altura de la tabla para ver el resultado.</p></div>`; return; }
   const alt = tabla + aviso/100;
   const lines = `<div class="calc"><div class="row"><span>Tabla de marea</span><span>${fmt(tabla,2)} m</span></div><div class="row"><span>${aviso >= 0 ? "+" : "−"} aviso</span><span>${fmt(Math.abs(aviso)/100,2)} m</span></div><div class="row tot"><span>Altura corregida</span><span>${fmt(alt,2)} m</span></div>${sondOf(spot()) != null ? `<div class="row"><span>+ profundidad en la carta</span><span>${fmt(sondOf(spot()),2)} m</span></div><div class="row tot"><span>Agua total</span><span>${fmt(alt + sondOf(spot()),2)} m</span></div>` : ""}</div>`;
@@ -864,7 +867,9 @@ function shnCalc(){
       ? `<div class="shn-res no"><div class="word">Muy justo</div><p style="margin:0">Pasa, pero con solo ${fmt(extra,2)} m bajo la quilla, menos del margen de ${fmt(cfg.ukc,2)} m que pusiste.</p></div>`
       : `<div class="shn-res no"><div class="word">No hay agua</div><p style="margin:0">Faltan ${fmt(-extra,2)} m: el barco tocaría fondo.</p></div>`);
 }
-document.addEventListener("input", e => { if(e.target.id === "shnTabla" || e.target.id === "shnAviso") shnCalc(); });
+const shnIds = ["shnTabla","shnAviso","shnSign"];
+document.addEventListener("input", e => { if(shnIds.includes(e.target.id)) shnCalc(); });
+document.addEventListener("change", e => { if(shnIds.includes(e.target.id)) shnCalc(); });
 let last = Date.now();
 document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - last > 15*60*1000){ last = Date.now(); refresh(); } });
 fillSpots(); refresh();
