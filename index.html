@@ -4,114 +4,161 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>¿Salimos hoy?</title>
-<meta name="description" content="Pronóstico para navegar a vela: viento, ráfagas, olas y nivel del río hora por hora, con ventanas navegables según tu barco.">
-<meta name="theme-color" content="#0E2230">
-<link rel="icon" href="data:image/png;base64,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">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="description" content="Pronóstico para navegar a vela: viento, ráfagas, olas y nivel del río hora por hora, combinando cuatro modelos, con cálculo de calado.">
+<meta name="theme-color" content="#0B2545">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Salimos">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-/* Carta náutica: fondo de carta, tinta azul marino, amarillo de boya como acento. Una columna, tarjetas por día. */
+/* Banderas de señales: azul marino, rojo y blanco. Una columna; cada sección responde una pregunta de quien sale a navegar. */
 :root{
-  --bg:#ECF1EF; --paper:#F8FAF9; --ink:#0E2230; --muted:#4F6470; --line:#CBD6D3;
-  --accent:#C99400; --accent-ink:#0E2230; --head:#0E2230; --head-ink:#F3F6F5;
-  --ok:#1F8A5B; --ok-bg:#DDF0E6; --lim:#C77A0A; --lim-bg:#FBEBCF; --no:#B8452F; --no-bg:#F6DED7;
-  --flojo:#7F97A6; --night:rgba(14,34,48,.07); --level:#2B6CB0;
+  --bg:#F4F6F9; --paper:#FFFFFF; --ink:#0B2545; --muted:#55657A; --line:#D7DEE8;
+  --blue:#13315C; --red:#C8102E; --red-ink:#FFFFFF; --head:#0B2545; --head-ink:#FFFFFF;
+  --ok:#17824F; --ok-bg:#E1F2E9; --lim:#B06A00; --lim-bg:#FDF0D8; --no:#C8102E; --no-bg:#FBE3E6;
+  --flojo:#8A9BB0; --night:rgba(11,37,69,.06); --level:#1F6FD1;
+  --m1:#C8102E; --m2:#1F6FD1; --m3:#17824F; --m4:#B06A00;
   --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#08131B; --paper:#0F1E29; --ink:#E4ECEA; --muted:#93A8B1; --line:#21384A;
-  --accent:#F2C230; --accent-ink:#0E2230; --head:#050D13; --head-ink:#E4ECEA;
-  --ok:#4CC28C; --ok-bg:#103426; --lim:#F0A63A; --lim-bg:#3A2A0F; --no:#EE7B62; --no-bg:#3B1A14;
-  --flojo:#6F8796; --night:rgba(0,0,0,.28); --level:#6FA8E8; color-scheme:dark;
+  --bg:#061528; --paper:#0C2038; --ink:#EEF3F9; --muted:#9DB0C7; --line:#1F3858;
+  --blue:#8FB4E8; --red:#FF4D63; --red-ink:#FFFFFF; --head:#030D1A; --head-ink:#FFFFFF;
+  --ok:#4CC88A; --ok-bg:#0E3324; --lim:#F2A93B; --lim-bg:#3A2A0C; --no:#FF6B7D; --no-bg:#3D1219;
+  --flojo:#6E819A; --night:rgba(0,0,0,.28); --level:#6FA8F0;
+  --m1:#FF6B7D; --m2:#6FA8F0; --m3:#4CC88A; --m4:#F2A93B; color-scheme:dark;
 }}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--head);z-index:20}
 .wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--head);color:var(--head-ink)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--head);color:var(--head-ink);border-bottom:4px solid var(--red)}
 header.top .wrap{display:flex;align-items:center;gap:10px;padding-block:10px}
-.mark{display:flex;align-items:center;gap:8px;font:700 20px/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
-.mark svg{width:26px;height:26px}
+.mark{display:flex;align-items:center;gap:8px;font:700 21px/1 var(--f-display);letter-spacing:.03em;text-transform:uppercase}
+.mark svg{width:28px;height:28px}
 .spacer{flex:1}
-.btn{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer}
-header .btn{background:transparent;color:var(--head-ink);border-color:rgba(255,255,255,.25)}
-.btn:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
-select,input{font:15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
-.hero{padding-block:22px 6px}
+.btn{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:8px 13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;justify-self:start}
+header .btn,.btn.primary{background:var(--red);color:var(--red-ink);border-color:var(--red);font-weight:600}
+.btn:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--level);outline-offset:2px}
+select,input{font:15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+.hero{padding-block:20px 4px}
 .place{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.place select{width:auto;max-width:100%;font-weight:500}
-h1{font:700 clamp(44px,12vw,68px)/.95 var(--f-display);margin:14px 0 6px;letter-spacing:-.01em;text-wrap:balance;text-transform:uppercase}
-h1 em{font-style:normal;color:var(--accent)}
-.lede{color:var(--muted);margin:0;max-width:52ch}
-.eyebrow{font:600 12px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h2{font:700 30px/1.05 var(--f-display);text-transform:uppercase;margin:4px 0 8px;text-wrap:balance}
-section{padding-block:18px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:14px}
-.card.today{border-width:2px}
+.place select{width:auto;max-width:100%;font-weight:600}
+h1{font:700 clamp(46px,13vw,72px)/.92 var(--f-display);margin:16px 0 8px;text-transform:uppercase;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red)}
+.lede{color:var(--muted);margin:0;max-width:56ch}
+.eyebrow{font:600 12px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+h2{font:700 32px/1.02 var(--f-display);text-transform:uppercase;margin:4px 0 8px;text-wrap:balance}
+h3{font:600 16px var(--f-body);margin:0}
+section{padding-block:20px}
+.intro{color:var(--muted);margin:0 0 14px;max-width:62ch}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:14px;min-width:0}
+.card.today{border:2px solid var(--blue)}
+.verdict{display:grid;gap:6px;padding:14px 16px;border-radius:10px}
+.verdict.v-si{background:var(--ok-bg);color:var(--ok)} .verdict.v-poco{background:var(--lim-bg);color:var(--lim)} .verdict.v-no{background:var(--no-bg);color:var(--no)}
+.verdict .word{font:700 38px/1 var(--f-display);text-transform:uppercase}
+.verdict p{margin:0;color:var(--ink)}
 .dayhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.dayname{font:700 24px/1 var(--f-display);text-transform:uppercase}
+.dayname{font:700 26px/1 var(--f-display);text-transform:uppercase}
 .date{color:var(--muted);font-size:14px}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-weight:600;font-size:14px;white-space:nowrap}
 .pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.v-si{background:var(--ok-bg);color:var(--ok)} .v-poco{background:var(--lim-bg);color:var(--lim)} .v-no{background:var(--no-bg);color:var(--no)}
-.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px 18px}
-.big{font:700 54px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.p-si{background:var(--ok-bg);color:var(--ok)} .p-poco{background:var(--lim-bg);color:var(--lim)} .p-no{background:var(--no-bg);color:var(--no)}
+.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px 18px}
+.big{font:700 56px/1 var(--f-display);font-variant-numeric:tabular-nums}
 .big small{font:500 16px var(--f-body);color:var(--muted);margin-left:4px}
 .kv{display:grid;gap:2px}
 .kv b{font:600 20px var(--f-mono);font-variant-numeric:tabular-nums}
-.kv span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kv span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .dir{display:flex;align-items:center;gap:8px}
-.dir svg{width:30px;height:30px}
+.dir svg{width:32px;height:32px;flex:none}
+.note{font-size:13px;color:var(--muted);margin:0}
 .windows{display:flex;flex-direction:column;gap:6px}
-.win{font-weight:600;color:var(--ok)}
-.win.lim{color:var(--lim)}
-.win .muted{font-weight:400}
+.win{font-weight:600;color:var(--ok)} .win.lim{color:var(--lim)} .win .muted{font-weight:400}
 .muted{color:var(--muted)}
-.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:14px;margin:0}
 .facts dt{color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px}
-.facts dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.facts dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:0}
 .alerts{display:grid;gap:8px}
-.alert{border-radius:10px;padding:9px 12px;font-size:14px;border:1px solid}
-.alert.no{background:var(--no-bg);color:var(--no);border-color:color-mix(in srgb,var(--no) 35%,transparent)}
-.alert.lim{background:var(--lim-bg);color:var(--lim);border-color:color-mix(in srgb,var(--lim) 35%,transparent)}
-.alert.info{background:transparent;color:var(--muted);border-color:var(--line)}
-.alert b{font-weight:600}
+.alert{border-radius:8px;padding:10px 12px;font-size:14px;border-left:4px solid}
+.alert.no{background:var(--no-bg);border-color:var(--no)} .alert.lim{background:var(--lim-bg);border-color:var(--lim)} .alert.info{background:var(--bg);border-color:var(--line)}
 .chart{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:-6px}
 .chart svg{display:block}
 .chart text{font:11px var(--f-mono);fill:var(--muted)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
-details summary{cursor:pointer;color:var(--muted);font-size:14px}
-.week{display:grid;gap:14px}
+details{min-width:0}
+details summary{cursor:pointer;color:var(--level);font-size:14px;font-weight:600}
+details[open] > summary{margin-bottom:10px}
+.stack{display:grid;gap:14px}
 .status{padding:30px 0;color:var(--muted)}
 .err{color:var(--no)}
-footer{padding-block:26px 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:10px}
+/* tabla hora por hora */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:-4px}
+.ht{width:100%;border-collapse:collapse;font-size:14px}
+.ht th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
+.ht td{padding:7px 6px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
+.ht td.h{font-weight:600}
+.ht .sub{font-size:11px;color:var(--muted)}
+.ht tr.night td{background:var(--night);color:var(--muted)}
+.ht tr.nowrow td{box-shadow:inset 0 2px 0 var(--red),inset 0 -2px 0 var(--red)}
+.ht .d{display:flex;align-items:center;gap:4px}
+.ht .d svg{width:16px;height:16px}
+.st{font-family:var(--f-body);font-size:13px;font-weight:600}
+.st-ok{color:var(--ok)} .st-limite{color:var(--lim)} .st-no{color:var(--no)} .st-flojo,.st-noche{color:var(--flojo)}
+/* modelos */
+.mtable{width:100%;border-collapse:collapse;font-size:14px}
+.mtable th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.mtable td{padding:9px 8px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mtable td:first-child{font-family:var(--f-body);font-weight:600}
+.mtable tr.use td{background:color-mix(in srgb,var(--level) 10%,transparent)}
+.swatch{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}
+.bar{height:6px;border-radius:3px;background:var(--line);width:60px;display:inline-block;vertical-align:middle;margin-right:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue)}
+/* calado */
+.calc{display:grid;gap:6px;font-family:var(--f-mono);font-size:15px;font-variant-numeric:tabular-nums;background:var(--bg);border-radius:8px;padding:12px 14px}
+.calc .row{display:flex;justify-content:space-between;gap:12px}
+.calc .tot{border-top:1px solid var(--line);padding-top:6px;font-weight:600}
+.windy{width:100%;height:380px;border:0;border-radius:10px;background:var(--bg);display:block}
+.gloss dl{display:grid;gap:12px;margin:0}
+.gloss dt{font-weight:600}
+.gloss dd{margin:2px 0 0;color:var(--muted)}
+.src p{margin:0}
+.sta{display:grid;gap:4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sta:last-of-type{border-bottom:0;padding-bottom:0}
+.sta-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sta-name{font-weight:600}
+.sta-km{font:600 14px var(--f-mono);color:var(--red);white-space:nowrap}
+.sta-meta{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border-radius:999px;padding:2px 9px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.chip.water{color:var(--level);border-color:color-mix(in srgb,var(--level) 40%,transparent)}
+.sta a{color:var(--level);font-size:14px;font-weight:500}
+footer{padding-block:24px 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:10px}
 footer p{margin:0 0 8px;max-width:65ch}
-dialog{border:1px solid var(--line);border-radius:16px;background:var(--paper);color:var(--ink);padding:0;width:min(520px,calc(100% - 32px));max-height:88vh}
-dialog::backdrop{background:rgba(5,13,19,.55)}
+footer a{color:var(--level)}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);padding:0;width:min(540px,calc(100% - 32px));max-height:90vh}
+dialog::backdrop{background:rgba(3,13,26,.6)}
 .dlg{padding:20px;display:grid;gap:14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:12px;margin:0;min-width:0}
+legend{font-weight:600;padding:0 6px}
 label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
-label.check{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:15px}
-label.check input{width:auto}
-.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+label.check{display:flex;align-items:flex-start;gap:8px;color:var(--ink);font-size:15px}
+label.check input{width:auto;margin-top:4px}
+.drow{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .hint{font-size:13px;color:var(--muted);margin:0}
-@media (prefers-reduced-motion:no-preference){.card{animation:in .3s ease both}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
   <div class="mark" aria-label="Salimos">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15 3 L15 24 L5 24 Z" fill="currentColor"/><path d="M17 7 L27 24 L17 24 Z" fill="#F2C230"/><path d="M3 27 Q16 31 29 27" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15 3 L15 24 L5 24 Z" fill="#FFFFFF"/><path d="M17 7 L27 24 L17 24 Z" fill="#C8102E"/><path d="M3 27 Q16 31 29 27" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
     Salimos
   </div>
   <div class="spacer"></div>
@@ -125,333 +172,582 @@ label.check input{width:auto}
       <button class="btn" id="btnAdd" type="button">+ Lugar</button>
     </div>
     <h1>¿Salimos <em>hoy</em>?</h1>
-    <p class="lede">Viento, ráfagas, olas y nivel del río hora por hora, medidos contra los límites de tu barco.</p>
+    <p class="lede">Viento, ráfagas, olas y nivel del río hora por hora, comparados con los datos de tu barco. Al final está explicado cada término.</p>
   </div>
 
-  <section id="todaySec"><div class="status" id="status">Cargando pronóstico…</div></section>
+  <section id="todaySec"><div class="status">Cargando pronóstico…</div></section>
+
+  <section id="modelSec" hidden>
+    <div class="eyebrow">Los modelos</div>
+    <h2>¿Qué dice cada modelo?</h2>
+    <p class="intro">Un modelo es un programa que calcula el tiempo que va a hacer. Hay uno de Canadá, uno de Estados Unidos, uno de Alemania y uno europeo, y no siempre coinciden. La página los junta en un pronóstico combinado que le da más peso al que mejor le pega.</p>
+    <div class="stack" id="models"></div>
+  </section>
+
+  <section id="levelSec" hidden>
+    <div class="eyebrow">Calado</div>
+    <h2>¿Hay agua para salir del puerto?</h2>
+    <div class="stack" id="level"></div>
+  </section>
 
   <section id="weekSec" hidden>
     <div class="eyebrow">Próximos días</div>
     <h2>Cómo viene la semana</h2>
-    <p class="muted" id="rangeTxt" style="margin:0 0 14px"></p>
-    <div class="week" id="week"></div>
+    <p class="intro" id="rangeTxt"></p>
+    <div class="stack" id="week"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Mapa</div>
+    <h2>El viento en el mapa</h2>
+    <p class="intro">El mapa de Windy muestra cómo se mueve el viento en toda la zona. Sirve para ver de dónde viene un frente y cuándo llega.</p>
+    <div class="card">
+      <iframe class="windy" id="windy" title="Mapa de viento de Windy" loading="lazy"></iframe>
+      <a class="btn" id="windyLink" href="https://www.windy.com" target="_blank" rel="noopener">Abrir en Windy ↗</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Mediciones reales</div>
+    <h2>¿Quién mide de verdad cerca?</h2>
+    <p class="intro">Estas son estaciones que miden el viento o el agua de verdad, no modelos. Tocá cada una para ver lo que está midiendo ahora. Sirven para comparar con el pronóstico: si la estación marca más viento que el modelo, el modelo viene corto.</p>
+    <div class="card" id="stations"></div>
+  </section>
+
+  <section class="src">
+    <div class="eyebrow">Fuentes</div>
+    <h2>¿De dónde salen los datos?</h2>
+    <div class="card">
+      <p><b>Viento, lluvia, presión y tormentas.</b> Los cuatro modelos calculan el tiempo para todo el planeta, dividido en cuadraditos de 11 a 25 km de lado. La página les pide el valor del cuadradito donde están las coordenadas del lugar. Por eso funciona en cualquier parte, también en la Antártida o en Brasil.</p>
+      <p><b>Lo que cambia según el lugar es cuánto confiar.</b> Lo que sale en esta página es un cálculo, no una medición. Cerca de la cordillera, en canales angostos o en la Antártida el viento real puede ser bastante distinto, porque los cuadraditos no ven las montañas chicas ni los efectos de la costa.</p>
+      <p><b>La corrección de sesgo solo existe en el Río de la Plata</b>, porque es donde se comparó cada modelo con una estación real (Pilote Norden). En los demás lugares el combinado es un promedio simple de los cuatro.</p>
+      <p><b>Olas:</b> modelo global de olas. <b>Nivel del agua:</b> modelo de nivel del mar; en Berisso se lleva al cero del mareógrafo de La Plata. Todos vienen de Open-Meteo, un servicio gratuito que junta los modelos oficiales.</p>
+    </div>
+  </section>
+
+  <section class="gloss">
+    <div class="eyebrow">Para empezar</div>
+    <h2>Qué significa cada cosa</h2>
+    <div class="card"><dl>
+      <div><dt>Nudos (kt)</dt><dd>La unidad de velocidad en el agua. 1 nudo es 1,85 km/h. Con 10 kt se navega cómodo; arriba de 20 kt ya es viento fuerte para la mayoría de los barcos.</dd></div>
+      <div><dt>Ráfaga</dt><dd>Un golpe de viento más fuerte que dura unos segundos. Es lo que escora el barco de golpe. Si las ráfagas pasan tu máximo, conviene rizar o no salir.</dd></div>
+      <div><dt>Rizar</dt><dd>Achicar la vela para que el viento empuje menos. Se hace antes de que el viento suba, no cuando ya está fuerte.</dd></div>
+      <div><dt>De dónde viene el viento</dt><dd>El viento se nombra por el lado de donde sopla: viento "del E" viene del este. En los gráficos la flechita apunta hacia donde va.</dd></div>
+      <div><dt>Sudestada</dt><dd>Viento fuerte y sostenido del sudeste. Empuja el agua del mar hacia el río: el río sube mucho y se forma ola corta y dura.</dd></div>
+      <div><dt>Pampero</dt><dd>Viento del sudoeste que entra de golpe después de un frente frío, con rachas fuertes. Saca agua del río y el nivel baja: cuidado al volver a puerto.</dd></div>
+      <div><dt>Calado</dt><dd>Lo que el barco se hunde bajo el agua, desde la superficie hasta la punta de la quilla. Si el agua es menos profunda que el calado, el barco toca fondo.</dd></div>
+      <div><dt>Cero de la carta</dt><dd>El nivel de referencia de las cartas náuticas. La profundidad que marca la carta se mide desde ese cero, y la altura del río dice cuánta agua hay por encima. Agua total = profundidad de la carta + altura del río.</dd></div>
+      <div><dt>Marea astronómica</dt><dd>La subida y bajada del agua que causan la Luna y el Sol. Se calcula con años de anticipación: es lo que dicen las tablas de marea.</dd></div>
+      <div><dt>Marea meteorológica</dt><dd>Lo que el viento y la presión le agregan o le sacan a la marea astronómica. En el Río de la Plata puede pasar el metro, por eso el SHN avisa "tantos centímetros por encima o por debajo de las tablas".</dd></div>
+      <div><dt>Modelo</dt><dd>Un programa de computadora que calcula el tiempo que va a hacer. Cada servicio meteorológico tiene el suyo.</dd></div>
+      <div><dt>Sesgo</dt><dd>Si un modelo se equivoca siempre para el mismo lado. Un sesgo de −2 kt quiere decir que suele marcar 2 nudos menos de lo que hay: hay que sumárselos.</dd></div>
+      <div><dt>Confiabilidad</dt><dd>Cuanto más lejos está el día, menos confiable es el pronóstico. Hoy y mañana sirven para decidir; los días siguientes, para hacerse una idea.</dd></div>
+    </dl></div>
   </section>
 
   <footer>
-    <p>Datos: pronóstico de viento, lluvia, presión y visibilidad de Open-Meteo (modelo <span id="modelTxt"></span>); olas y nivel del agua de Open-Meteo Marine. El nivel del río en Berisso se lleva al cero del mareógrafo de La Plata (0,91 m debajo del nivel medio). En el estuario es un modelo grueso: tomalo como orientación y confirmalo con el SHN antes de salir.</p>
-    <p>El pronóstico es orientativo. La decisión de salir es del patrón.</p>
+    <p>Pronóstico: Open-Meteo, con los modelos GDPS, GFS, ICON y ECMWF. Olas y nivel del agua: Open-Meteo Marine. Acierto de los modelos en Pilote Norden: medición de OlvidataSoft, del 1 de septiembre al 31 de octubre de 2026.</p>
+    <p>Antes de salir, confirmá la altura del río con el <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. El pronóstico es orientativo: la decisión de salir es del patrón.</p>
   </footer>
 </main>
 
-<dialog id="dlgCfg"><form class="dlg" id="cfgForm" method="dialog">
-  <div><div class="eyebrow">Mi barco</div><h2 style="margin:0">Límites para navegar</h2></div>
-  <div class="grid2">
-    <label for="wMin">Viento mínimo (kt)<input id="wMin" type="number" min="0" max="40" step="1" inputmode="numeric"></label>
-    <label for="wMax">Viento máximo (kt)<input id="wMax" type="number" min="5" max="60" step="1" inputmode="numeric"></label>
-    <label for="gMax">Ráfaga máxima (kt)<input id="gMax" type="number" min="5" max="70" step="1" inputmode="numeric"></label>
-    <label for="waveMax">Ola máxima (m)<input id="waveMax" type="number" min="0" max="8" step="0.1" inputmode="decimal"></label>
-  </div>
-  <label for="lvlMin">Nivel mínimo del río para salir y volver (m, escala La Plata)
-    <input id="lvlMin" type="number" min="-2" max="4" step="0.05" inputmode="decimal" placeholder="Sin definir">
-  </label>
-  <p class="hint">Solo para el Náutico de Berisso. Con 1,90 m de calado, poné el nivel a partir del cual pasan tranquilos por el canal y entran al amarre. Preguntalo en el club: depende de la profundidad del canal, no solo del calado.</p>
-  <label class="check" for="night"><input id="night" type="checkbox"> Contar las horas de noche como navegables</label>
-  <label for="model">Modelo de viento
-    <select id="model">
-      <option value="best_match">Automático (el mejor disponible)</option>
-      <option value="gem_global">GDPS (Canadá)</option>
-      <option value="gfs_seamless">GFS (EE. UU.)</option>
-      <option value="icon_seamless">ICON (Alemania)</option>
-      <option value="ecmwf_ifs025">ECMWF</option>
-    </select>
-  </label>
-  <p class="hint">En la zona del Río de la Plata todos los modelos tienden a quedarse cortos con el viento.</p>
-  <div class="row"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" id="cfgSave" value="ok" type="submit">Guardar</button></div>
+<dialog id="dlgCfg"><form class="dlg" method="dialog">
+  <div><div class="eyebrow">Mi barco</div><h2 style="margin:0">Datos del barco</h2></div>
+  <fieldset><legend>Viento y olas</legend>
+    <div class="grid2">
+      <label for="wMin">Mínimo para ir a vela (kt)<input id="wMin" type="number" min="0" max="40" step="1" inputmode="numeric"></label>
+      <label for="wMax">Máximo cómodo (kt)<input id="wMax" type="number" min="5" max="60" step="1" inputmode="numeric"></label>
+      <label for="gMax">Ráfaga máxima (kt)<input id="gMax" type="number" min="5" max="70" step="1" inputmode="numeric"></label>
+      <label for="waveMax">Ola máxima (m)<input id="waveMax" type="number" min="0" max="8" step="0.1" inputmode="decimal"></label>
+    </div>
+    <p class="hint">Debajo del mínimo se sale a motor. Arriba del máximo, o con ráfagas más fuertes, la página marca que no conviene.</p>
+  </fieldset>
+  <fieldset><legend>Calado</legend>
+    <div class="grid2">
+      <label for="draft">Calado del barco (m)<input id="draft" type="number" min="0" max="6" step="0.05" inputmode="decimal"></label>
+      <label for="ukc">Margen bajo la quilla (m)<input id="ukc" type="number" min="0" max="2" step="0.05" inputmode="decimal"></label>
+    </div>
+    <label for="sond">Profundidad del lugar menos hondo de la salida, según la carta (m)<input id="sond" type="number" min="0" max="20" step="0.05" inputmode="decimal" placeholder="Preguntalo en el club"></label>
+    <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el cero de la carta. La sabe el club o figura en la carta náutica del canal.</p>
+  </fieldset>
+  <fieldset><legend>Pronóstico</legend>
+    <label for="model">Pronóstico para decidir
+      <select id="model">
+        <option value="combo">Combinado: lo mejor de los cuatro</option>
+        <option value="gem_global">Solo GDPS (Canadá)</option>
+        <option value="gfs_seamless">Solo GFS (Estados Unidos)</option>
+        <option value="icon_seamless">Solo ICON (Alemania)</option>
+        <option value="ecmwf_ifs025">Solo ECMWF (Europa)</option>
+      </select>
+    </label>
+    <label class="check" for="corr"><input id="corr" type="checkbox"> Corregir el viento con el sesgo medido (solo en el Río de la Plata)</label>
+    <label class="check" for="night"><input id="night" type="checkbox"> Contar las horas de noche como navegables</label>
+  </fieldset>
+  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" value="ok" type="submit">Guardar</button></div>
 </form></dialog>
 
-<dialog id="dlgAdd"><form class="dlg" id="addForm" method="dialog">
+<dialog id="dlgAdd"><form class="dlg" method="dialog">
   <div><div class="eyebrow">Nuevo lugar</div><h2 style="margin:0">Agregar puerto o fondeadero</h2></div>
   <label for="addName">Nombre<input id="addName" type="text" placeholder="Ej.: Puerto Deseado" autocomplete="off"></label>
-  <label for="addCoords">Coordenadas (latitud, longitud)<input id="addCoords" type="text" placeholder="-47.75, -65.90" autocomplete="off" inputmode="text"></label>
+  <label for="addCoords">Coordenadas (latitud, longitud)<input id="addCoords" type="text" placeholder="-47.75, -65.90" autocomplete="off"></label>
   <p class="hint">Copialas de Google Maps manteniendo apretado sobre el agua, justo afuera del puerto. Así el pronóstico es del agua y no de tierra.</p>
   <button class="btn" id="btnGeo" type="button">Usar mi ubicación</button>
   <p class="hint err" id="addErr" hidden></p>
-  <div class="row"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" id="addSave" value="ok" type="submit">Agregar</button></div>
+  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" id="addSave" value="ok" type="submit">Agregar</button></div>
 </form></dialog>
 
 <script>
 "use strict";
+/* ---------- datos fijos ---------- */
 const PRESETS = [
-  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91},
-  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null},
-  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null},
+  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true},
+  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true},
+  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true},
   {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null},
   {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null},
   {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null},
+  {id:"carlini", name:"Caleta Potter, Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null},
   {id:"floripa", name:"Florianópolis (Brasil)", lat:-27.60, lon:-48.45, cero:null}
 ];
-const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, night:false, model:"best_match", lvlMin:{}};
-const MODEL_NAMES = {best_match:"automático", gem_global:"GDPS", gfs_seamless:"GFS", icon_seamless:"ICON", ecmwf_ifs025:"ECMWF"};
+const MODELS = [
+  {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)"},
+  {id:"gfs_seamless", name:"GFS", from:"Estados Unidos", col:"var(--m2)"},
+  {id:"icon_seamless", name:"ICON", from:"Alemania", col:"var(--m3)"},
+  {id:"ecmwf_ifs025", name:"ECMWF", from:"Europa", col:"var(--m4)"}
+];
+/* Acierto medido en Pilote Norden (CARP) por OlvidataSoft, 1/9 al 31/10/2026, 1218 h, margen ±2 kt */
+const REF = {gem_global:{acc:38.9, mae:3.7, bias:-2.1}, gfs_seamless:{acc:37.9, mae:3.5, bias:-1.8}, icon_seamless:{acc:35.3, mae:3.8, bias:-2.0}, ecmwf_ifs025:{acc:10.8, mae:6.1, bias:-5.8}};
+/* Estaciones reales conocidas. Coordenadas aproximadas. */
+const CARP_URL = "https://www.comisionriodelaplata.org/servicios_main.php?sid=VM";
+const SHN_URL = "https://www.hidro.gob.ar/";
+const metar = id => `https://aviationweather.gov/data/metar/?ids=${id}&decoded=yes`;
+const STATIONS = [
+  {name:"Pilote Norden", who:"CARP", what:"Viento y marea", water:true, lat:-34.63, lon:-57.92, url:CARP_URL, how:"Plataforma en medio del río. Es la referencia para Berisso y Punta Lara."},
+  {name:"Puerto de Colonia", who:"CARP", what:"Viento y marea", water:true, lat:-34.47, lon:-57.85, url:CARP_URL, how:"En el puerto de Colonia, del lado uruguayo."},
+  {name:"Puerto de Conchillas", who:"CARP", what:"Viento y marea", water:true, lat:-34.19, lon:-58.06, url:CARP_URL, how:"Costa uruguaya, al oeste de Colonia."},
+  {name:"Puerto de Carmelo", who:"CARP", what:"Viento y marea", water:true, lat:-34.00, lon:-58.29, url:CARP_URL, how:"Costa uruguaya, cerca de la entrada al delta."},
+  {name:"Mareógrafo de La Plata", who:"SHN / Puerto La Plata", what:"Altura del río", water:true, lat:-34.83, lon:-57.88, url:SHN_URL, how:"Es el cero que usa la página para la altura del río en Berisso."},
+  {name:"Puerto de Buenos Aires", who:"SHN", what:"Altura del río", water:true, lat:-34.57, lon:-58.37, url:SHN_URL, how:"Mareógrafo de referencia de los avisos de crecida."},
+  {name:"Aeroparque (SABE)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-34.56, lon:-58.42, url:metar("SABE"), how:"Aeropuerto sobre la costa del río."},
+  {name:"Aeropuerto de Mar del Plata (SAZM)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-37.93, lon:-57.57, url:metar("SAZM"), how:"En tierra, unos 10 km al norte del puerto."},
+  {name:"Puerto de Mar del Plata", who:"SHN", what:"Altura del mar", water:true, lat:-38.04, lon:-57.53, url:SHN_URL, how:"Mareógrafo del puerto."},
+  {name:"Aeropuerto de Puerto Madryn (SAVY)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-42.76, lon:-65.10, url:metar("SAVY"), how:"En tierra, a unos 10 km de la costa."},
+  {name:"Aeropuerto de Ushuaia (SAWH)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-54.84, lon:-68.30, url:metar("SAWH"), how:"Sobre la costa del Canal Beagle."},
+  {name:"Base Carlini", who:"SMN / Instituto Antártico", what:"Viento, presión y temperatura", water:false, lat:-62.24, lon:-58.67, url:"https://www.smn.gob.ar/", how:"Estación automática y oficina meteorológica de la base. No encontré dónde se publican sus datos en vivo."},
+  {name:"Aeródromo Teniente Marsh (SCRM)", who:"Chile", what:"Viento, ráfagas y presión", water:false, lat:-62.19, lon:-58.99, url:metar("SCRM"), how:"En la misma isla (25 de Mayo / Rey Jorge), del lado de la Península Fildes."},
+  {name:"Base Marambio (SAWB)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-64.24, lon:-56.63, url:metar("SAWB"), how:"Centro meteorológico antártico del SMN."},
+  {name:"Aeropuerto de Florianópolis (SBFL)", who:"Brasil", what:"Viento, ráfagas y presión", water:false, lat:-27.67, lon:-48.55, url:metar("SBFL"), how:"En la isla de Santa Catarina, al sur de la ciudad."},
+  {name:"Boyas de la Marina de Brasil (PNBOIA)", who:"Marinha do Brasil", what:"Viento y olas", water:true, lat:-27.6, lon:-47.9, url:"https://www.marinha.mil.br/chm/", how:"La Marina tiene boyas en algunos puntos de la costa. No pude confirmar cuál está más cerca de Florianópolis: revisalo en su página."}
+];
+function distKm(a, b){ const R = 6371, r = Math.PI/180, dLa = (b.lat-a.lat)*r, dLo = (b.lon-a.lon)*r; const x = Math.sin(dLa/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(x)); }
+function renderStations(s){
+  const near = STATIONS.map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 350).sort((a,b) => a.km - b.km).slice(0, 6);
+  const list = near.map(({st, km}) => `<div class="sta">
+      <div class="sta-top"><span class="sta-name">${esc(st.name)}</span><span class="sta-km">${km < 1 ? "acá" : "a " + fmt(km, 0) + " km"}</span></div>
+      <div class="sta-meta"><span class="chip">${esc(st.who)}</span><span class="chip${st.water ? " water" : ""}">${st.water ? "En el agua" : "En tierra"}</span><span class="chip">${esc(st.what)}</span></div>
+      <p class="note">${esc(st.how)}</p>
+      <a href="${st.url}" target="_blank" rel="noopener">Ver la medición ↗</a></div>`).join("");
+  $("#stations").innerHTML = (list || `<p class="note">No conozco estaciones a menos de 350 km de este lugar.</p>`) +
+    `<p class="note">Los aeropuertos publican cada hora su medición en un formato llamado METAR; el link lo muestra traducido, en inglés. Las estaciones en tierra suelen marcar algo menos de viento que sobre el agua. Para cualquier lugar que no esté acá, buscá el aeropuerto o el puerto más cercano.</p>`;
+}
+const OTHER_ORDER =["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
+const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sond:null, night:false, model:"combo", corr:true};
 
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
 function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 
-let cfg = Object.assign({}, DEF, load("salimos.cfg", {}));
+let cfg = Object.assign({}, DEF, load("salimos.cfg3", {}));
 let custom = load("salimos.spots", []);
 let spotId = load("salimos.spot", "berisso");
 
 const $ = s => document.querySelector(s);
 const allSpots = () => PRESETS.concat(custom);
 const spot = () => allSpots().find(s => s.id === spotId) || PRESETS[0];
+const modelOf = id => MODELS.find(m => m.id === id);
+const corrOn = s => !!(s.rdp && cfg.corr);
+const lvlNeeded = () => cfg.sond == null ? null : +(cfg.draft + cfg.ukc - cfg.sond).toFixed(2);
 
 const CARD = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
 const card = d => CARD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
 const fmt = (n, d=1) => n == null || isNaN(n) ? "—" : n.toLocaleString("es-AR", {minimumFractionDigits:d, maximumFractionDigits:d});
+const hh = h => String(h).padStart(2, "0");
 const DOW = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const MON = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
 const mins = t => +t.slice(11,13) * 60 + +t.slice(14,16);
 const inArc = (d, a, b) => d >= a && d <= b;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
-function arrow(deg, color){
-  // apunta hacia donde sopla el viento
-  return `<svg viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(${deg + 180} 12 12)"><path d="M12 3 L18 19 L12 15 L6 19 Z" fill="${color}"/></g></svg>`;
-}
+const arrowPath = (deg, color) => `<g transform="rotate(${deg + 180} 12 12)"><path d="M12 3 L18 19 L12 15 L6 19 Z" fill="${color}"/></g>`;
+const arrow = (deg, color) => `<svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(deg, color)}</svg>`;
 
 /* ---------- clasificación ---------- */
-function classify(h, c, lvlMin){
-  if(!h.day && !c.night) return {k:"noche"};
+const LABEL = {ok:"Se navega", limite:"Al límite", flojo:"A motor", noche:"Noche", no:"No conviene"};
+function classify(h, need){
+  if(!h.day && !cfg.night) return {k:"noche"};
   if(h.wc != null && h.wc >= 95) return {k:"no", why:"tormenta"};
   if(h.vis != null && h.vis < 1000) return {k:"no", why:"niebla"};
-  if(lvlMin != null && h.lvl != null && h.lvl < lvlMin) return {k:"no", why:"poca agua"};
-  if(h.ws > c.wMax || (h.wg != null && h.wg > c.gMax)) return {k:"no", why:"mucho viento"};
-  if(h.wave != null && h.wave > c.waveMax) return {k:"no", why:"mucha ola"};
-  if(h.ws < c.wMin) return (h.wg != null && h.wg >= c.wMin) ? {k:"limite", why:"flojo, entra con las rachas"} : {k:"flojo", why:"poco viento"};
-  if(h.ws > c.wMax - 3 || (h.wg != null && h.wg > c.gMax - 4)) return {k:"limite", why:"cerca de tu máximo"};
+  if(need != null && h.lvl != null && h.lvl < need) return {k:"no", why:"poca agua"};
+  if(h.ws > cfg.wMax || (h.wg != null && h.wg > cfg.gMax)) return {k:"no", why:"mucho viento"};
+  if(h.wave != null && h.wave > cfg.waveMax) return {k:"no", why:"mucha ola"};
+  if(h.ws < cfg.wMin) return (h.wg != null && h.wg >= cfg.wMin) ? {k:"limite", why:"flojo, entra con las rachas"} : {k:"flojo", why:"poco viento"};
+  if(h.ws > cfg.wMax - 3 || (h.wg != null && h.wg > cfg.gMax - 4)) return {k:"limite", why:"cerca de tu máximo"};
   return {k:"ok"};
 }
 const sailable = k => k === "ok" || k === "limite";
+const stLabel = c => c.k === "no" ? (c.why.charAt(0).toUpperCase() + c.why.slice(1)) : LABEL[c.k] || "—";
 
 function windows(hours){
   const out = []; let cur = null;
   for(const h of hours){
     if(sailable(h.c.k)){
-      if(!cur){ cur = {from:h.h, to:h.h, peak:h.ws, lim:h.c.k === "limite"}; out.push(cur); }
-      else { cur.to = h.h; cur.peak = Math.max(cur.peak, h.ws); if(h.c.k !== "limite") cur.lim = false; }
+      if(!cur){ cur = {from:h.h, to:h.h, peak:h.ws, lo:h.ws, lim:h.c.k === "limite"}; out.push(cur); }
+      else { cur.to = h.h; cur.peak = Math.max(cur.peak, h.ws); cur.lo = Math.min(cur.lo, h.ws); if(h.c.k !== "limite") cur.lim = false; }
     } else cur = null;
   }
   return out;
 }
 
-function dayAlerts(hours, lvlMin){
+function dayAlerts(hours, need){
   const a = [];
   const se = hours.filter(h => inArc(h.wd, 100, 170) && h.ws >= 15).length;
-  if(se >= 3) a.push(["no", `<b>Sudestada:</b> viento del SE de 15 kt o más durante ${se} h. El río sube y el agua se pone corta y dura.`]);
+  if(se >= 3) a.push(["no", `<b>Sudestada:</b> viento del sudeste de 15 kt o más durante ${se} h. El río sube y se forma ola corta y dura.`]);
   const pam = hours.filter(h => inArc(h.wd, 190, 260) && h.wg != null && h.wg >= 25);
-  if(pam.length) a.push(["no", `<b>Pampero:</b> rachas del SO de hasta ${fmt(Math.max(...pam.map(h => h.wg)),0)} kt desde las ${String(pam[0].h).padStart(2,"0")} h. Entra de golpe y baja el río.`]);
+  if(pam.length) a.push(["no", `<b>Pampero:</b> rachas del sudoeste de hasta ${fmt(Math.max(...pam.map(h => h.wg)),0)} kt desde las ${hh(pam[0].h)} h. Entra de golpe y hace bajar el río.`]);
   const st = hours.filter(h => h.wc >= 95).length;
-  if(st) a.push(["no", `<b>Tormenta eléctrica</b> en ${st} h del día.`]);
+  if(st) a.push(["no", `<b>Tormenta eléctrica</b> en ${st} h del día. Con rayos no se navega.`]);
   const fog = hours.filter(h => h.vis != null && h.vis < 1000).length;
-  if(fog) a.push(["lim", `<b>Niebla:</b> visibilidad menor a 1 km en ${fog} h.`]);
+  if(fog) a.push(["lim", `<b>Niebla:</b> se ve a menos de 1 km durante ${fog} h.`]);
   const ps = hours.map(h => h.p).filter(v => v != null);
-  if(ps.length > 2){ const dp = ps[ps.length-1] - ps[0]; if(dp <= -4) a.push(["lim", `<b>La presión baja ${fmt(-dp,1)} hPa</b> en el día: el tiempo se está moviendo.`]); }
+  if(ps.length > 2){ const dp = ps[ps.length-1] - ps[0]; if(dp <= -4) a.push(["lim", `<b>La presión baja ${fmt(-dp,1)} hPa en el día.</b> Suele anunciar un cambio de tiempo, como la llegada de un frente.`]); }
   const rain = hours.filter(h => h.day && h.pr >= 1).length;
   if(rain) a.push(["info", `Lluvia en ${rain} h de luz.`]);
-  if(lvlMin != null){
-    const low = hours.filter(h => h.lvl != null && h.lvl < lvlMin).length;
-    if(low) a.push(["no", `<b>Poca agua:</b> el río queda debajo de ${fmt(lvlMin,2)} m durante ${low} h.`]);
+  if(need != null){
+    const low = hours.filter(h => h.day && h.lvl != null && h.lvl < need).length;
+    if(low) a.push(["no", `<b>Poca agua:</b> durante ${low} h de luz el río queda debajo de los ${fmt(need,2)} m que necesita el barco para pasar.`]);
   }
   return a;
 }
 
 /* ---------- datos ---------- */
+const getJSON = u => fetch(u).then(r => r.ok ? r.json() : Promise.reject(r.status));
+const VARS = ["wind_speed_10m","wind_gusts_10m","wind_direction_10m","precipitation","weather_code","visibility","pressure_msl"];
 async function fetchData(s){
   const q = `latitude=${s.lat}&longitude=${s.lon}&timezone=auto&forecast_days=7`;
-  const m = cfg.model !== "best_match" ? `&models=${cfg.model}` : "";
-  const fUrl = `https://api.open-meteo.com/v1/forecast?${q}&hourly=temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,precipitation,weather_code,visibility,pressure_msl&daily=sunrise,sunset&wind_speed_unit=kn${m}`;
-  const mUrl = `https://marine-api.open-meteo.com/v1/marine?${q}&hourly=wave_height,wave_period,sea_level_height_msl`;
-  const [f, mar] = await Promise.allSettled([fetch(fUrl).then(r => r.ok ? r.json() : Promise.reject(r.status)), fetch(mUrl).then(r => r.ok ? r.json() : Promise.reject(r.status))]);
+  const fc = `https://api.open-meteo.com/v1/forecast?${q}&hourly=${VARS.join(",")}&wind_speed_unit=kn&models=${MODELS.map(m => m.id).join(",")}`;
+  const sun = `https://api.open-meteo.com/v1/forecast?${q}&daily=sunrise,sunset`;
+  const marine = `https://marine-api.open-meteo.com/v1/marine?${q}&hourly=wave_height,wave_period,sea_level_height_msl`;
+  const [f, d, mar] = await Promise.allSettled([getJSON(fc), getJSON(sun), getJSON(marine)]);
   if(f.status !== "fulfilled") throw new Error("forecast");
-  return {f:f.value, m: mar.status === "fulfilled" ? mar.value : null};
+  return {f:f.value, d: d.status === "fulfilled" ? d.value : null, m: mar.status === "fulfilled" ? mar.value : null};
+}
+
+/* junta los modelos: corrige el sesgo y pondera por acierto */
+function blend(per){
+  if(!per.length) return null;
+  let sw = 0, ws = 0, swg = 0, wg = 0, x = 0, y = 0;
+  per.forEach(p => {
+    sw += p.w; ws += p.w * p.ws;
+    if(p.wg != null){ swg += p.w; wg += p.w * p.wg; }
+    if(p.wd != null){ x += p.w * Math.max(p.ws, .5) * Math.cos(p.wd * Math.PI/180); y += p.w * Math.max(p.ws, .5) * Math.sin(p.wd * Math.PI/180); }
+  });
+  return {ws: ws/sw, wg: swg ? wg/swg : null, wd: (Math.atan2(y, x) * 180/Math.PI + 360) % 360};
 }
 
 function build(data, s){
-  const H = data.f.hourly, D = data.f.daily, M = data.m && data.m.hourly;
+  const H = data.f.hourly, M = data.m && data.m.hourly;
+  const g = (v, m, i) => { const a = H[v + "_" + m]; return a ? a[i] : null; };
+  const other = (v, i) => { for(const m of OTHER_ORDER){ const x = g(v, m, i); if(x != null) return x; } return null; };
   const mi = {}; if(M) M.time.forEach((t,i) => mi[t] = i);
-  const sun = {}; D.time.forEach((d,i) => sun[d] = {rise:D.sunrise[i], set:D.sunset[i]});
-  const lvlMin = s.cero != null ? (cfg.lvlMin[s.id] ?? null) : null;
+  const sun = {}; if(data.d) data.d.daily.time.forEach((d,i) => sun[d] = {rise:data.d.daily.sunrise[i], set:data.d.daily.sunset[i]});
+  const need = s.cero != null ? lvlNeeded() : null, corr = corrOn(s);
   const hours = H.time.map((t,i) => {
-    const j = mi[t]; const date = t.slice(0,10); const sd = sun[date];
-    const mid = mins(t) + 30;
-    const day = sd ? (mid >= mins(sd.rise) - 30 && mid <= mins(sd.set) + 30) : true;
+    const per = MODELS.map(m => {
+      const raw = g("wind_speed_10m", m.id, i); if(raw == null) return null;
+      const off = corr ? -REF[m.id].bias : 0, gr = g("wind_gusts_10m", m.id, i);
+      return {id:m.id, raw, ws:raw + off, wg: gr == null ? null : gr + off, wd:g("wind_direction_10m", m.id, i), w: s.rdp ? REF[m.id].acc : 1};
+    }).filter(Boolean);
+    const pick = cfg.model === "combo" ? blend(per) : (per.find(p => p.id === cfg.model) || blend(per));
+    if(!pick) return null;
+    const j = mi[t], date = t.slice(0,10), sd = sun[date], mid = mins(t) + 30;
     const sl = M && j != null ? M.sea_level_height_msl[j] : null;
-    const h = {t, date, h:+t.slice(11,13), day,
-      ws:H.wind_speed_10m[i], wg:H.wind_gusts_10m[i], wd:H.wind_direction_10m[i],
-      pr:H.precipitation[i], wc:H.weather_code[i], vis:H.visibility ? H.visibility[i] : null, p:H.pressure_msl[i], temp:H.temperature_2m[i],
+    const h = {t, date, h:+t.slice(11,13), per,
+      day: sd ? (mid >= mins(sd.rise) - 30 && mid <= mins(sd.set) + 30) : true,
+      ws:pick.ws, wg:pick.wg, wd:pick.wd,
+      lo: per.length > 1 ? Math.min(...per.map(p => p.ws)) : null, hi: per.length > 1 ? Math.max(...per.map(p => p.ws)) : null,
+      pr:other("precipitation", i), wc:other("weather_code", i), vis:other("visibility", i), p:other("pressure_msl", i),
       wave: M && j != null ? M.wave_height[j] : null, wper: M && j != null ? M.wave_period[j] : null,
       lvl: sl == null ? null : (s.cero != null ? sl + s.cero : sl)};
-    h.c = h.ws == null ? {k:"nodata"} : classify(h, cfg, lvlMin);
+    h.c = classify(h, need);
     return h;
-  }).filter(h => h.ws != null);
+  }).filter(Boolean);
   const days = {}; hours.forEach(h => (days[h.date] = days[h.date] || []).push(h));
-  const off = data.f.utc_offset_seconds || 0;
-  const nowStr = new Date(Date.now() + off*1000).toISOString().slice(0,13) + ":00";
-  return {hours, days, sun, nowStr, lvlMin, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null)};
+  const tz = data.f.utc_offset_seconds || 0;
+  const nowStr = new Date(Date.now() + tz*1000).toISOString().slice(0,13) + ":00";
+  return {hours, days, sun, nowStr, need, corr, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null)};
 }
 
-/* ---------- dibujo ---------- */
+/* ---------- gráfico de un día ---------- */
 const COL = {ok:"var(--ok)", limite:"var(--lim)", no:"var(--no)", flojo:"var(--flojo)", noche:"var(--flojo)"};
-function chartSVG(hours, nowStr, lvlMin, isToday){
+function chartSVG(hours, B, isToday){
   const bw = 26, pad = 30, top = 18, hb = 110, n = hours.length;
-  const W = pad + n*bw + 8, lvlTop = top + hb + 50, lvlH = 40, H = lvlTop + lvlH + 18;
+  const W = pad + n*bw + 8, lvlTop = top + hb + 52, lvlH = 40;
+  const lv = hours.map(h => h.lvl).filter(v => v != null);
+  const H = lv.length ? lvlTop + lvlH + 16 : top + hb + 40;
   const maxK = Math.max(cfg.wMax + 4, ...hours.map(h => h.wg || h.ws)) + 2;
   const y = v => top + hb - (v / maxK) * hb;
-  const lv = hours.map(h => h.lvl).filter(v => v != null);
-  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Viento y nivel hora por hora">`;
+  let s = `<svg width="${W}" height="${H}" role="img" aria-label="Viento y nivel hora por hora">`;
   hours.forEach((h,i) => { if(!h.day) s += `<rect x="${pad + i*bw}" y="${top-6}" width="${bw}" height="${H-top}" fill="var(--night)"/>`; });
-  [cfg.wMin, cfg.wMax].forEach(v => { s += `<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--muted)" stroke-dasharray="3 4" stroke-width="1" opacity=".6"/><text x="${pad-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; });
+  [cfg.wMin, cfg.wMax].forEach(v => { s += `<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--muted)" stroke-dasharray="3 4" opacity=".6"/><text x="${pad-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; });
   s += `<line x1="${pad}" x2="${W-8}" y1="${top+hb}" y2="${top+hb}" stroke="var(--line)"/>`;
   hours.forEach((h,i) => {
-    const x = pad + i*bw + 4, w = bw - 8, c = COL[h.c.k] || "var(--flojo)";
-    const op = h.c.k === "noche" ? .45 : 1;
-    s += `<rect x="${x}" y="${y(h.ws)}" width="${w}" height="${Math.max(1, top+hb-y(h.ws))}" rx="3" fill="${c}" opacity="${op}"><title>${String(h.h).padStart(2,"0")} h · ${fmt(h.ws)} kt, ráfaga ${fmt(h.wg)} kt del ${card(h.wd)}${h.c.why ? " · " + h.c.why : ""}</title></rect>`;
+    const x = pad + i*bw + 4, w = bw - 8, c = COL[h.c.k] || "var(--flojo)", op = h.c.k === "noche" ? .45 : 1;
+    s += `<rect x="${x}" y="${y(h.ws)}" width="${w}" height="${Math.max(1, top+hb-y(h.ws))}" rx="3" fill="${c}" opacity="${op}"/>`;
     if(h.wg != null) s += `<line x1="${x}" x2="${x+w}" y1="${y(h.wg)}" y2="${y(h.wg)}" stroke="var(--ink)" stroke-width="2" opacity="${.55*op}"/>`;
-    if(h.h % 3 === 0) s += `<text x="${x + w/2}" y="${top+hb+15}" text-anchor="middle">${String(h.h).padStart(2,"0")}</text>`;
-    s += `<g transform="translate(${x + w/2 - 7} ${top+hb+22}) scale(.58)">${arrow(h.wd, "var(--muted)").replace('<svg viewBox="0 0 24 24" aria-hidden="true">','').replace('</svg>','')}</g>`;
-    if(isToday && h.t === nowStr) s += `<rect x="${pad + i*bw + 1}" y="${top-6}" width="${bw-2}" height="${hb+8}" fill="none" stroke="var(--accent)" stroke-width="2" rx="4"/>`;
+    if(h.h % 3 === 0) s += `<text x="${x + w/2}" y="${top+hb+15}" text-anchor="middle">${hh(h.h)}</text>`;
+    s += `<g transform="translate(${x + w/2 - 7} ${top+hb+22}) scale(.58)">${arrowPath(h.wd, "var(--muted)")}</g>`;
+    if(isToday && h.t === B.nowStr) s += `<rect x="${pad + i*bw + 1}" y="${top-6}" width="${bw-2}" height="${hb+8}" fill="none" stroke="var(--red)" stroke-width="2" rx="4"/>`;
   });
   if(lv.length){
-    const lo = Math.min(...lv, lvlMin ?? Infinity) - .1, hi = Math.max(...lv, lvlMin ?? -Infinity) + .1;
+    const lo = Math.min(...lv, B.need ?? Infinity) - .1, hi = Math.max(...lv, B.need ?? -Infinity) + .1;
     const ly = v => lvlTop + lvlH - (v - lo) / (hi - lo) * lvlH;
     let d = ""; hours.forEach((h,i) => { if(h.lvl != null) d += (d ? "L" : "M") + (pad + i*bw + bw/2) + " " + ly(h.lvl).toFixed(1); });
-    s += `<text x="${pad}" y="${lvlTop-6}">nivel del agua (m)</text>`;
-    if(lvlMin != null) s += `<line x1="${pad}" x2="${W-8}" y1="${ly(lvlMin)}" y2="${ly(lvlMin)}" stroke="var(--no)" stroke-dasharray="4 3"/><text x="${pad-6}" y="${ly(lvlMin)+4}" text-anchor="end">${fmt(lvlMin,1)}</text>`;
+    s += `<text x="${pad}" y="${lvlTop-8}">nivel del agua (m)</text>`;
+    if(B.need != null) s += `<line x1="${pad}" x2="${W-8}" y1="${ly(B.need)}" y2="${ly(B.need)}" stroke="var(--no)" stroke-dasharray="4 3"/><text x="${pad-6}" y="${ly(B.need)+4}" text-anchor="end">${fmt(B.need,1)}</text>`;
     s += `<path d="${d}" fill="none" stroke="var(--level)" stroke-width="2.2" stroke-linejoin="round"/>`;
   }
   return s + `</svg>`;
 }
 
+/* ---------- tabla hora por hora ---------- */
+function hourTable(hrs, B){
+  const rows = hrs.map(h => `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
+    <td class="h">${hh(h.h)}</td>
+    <td><b>${fmt(h.ws,0)}</b> / ${fmt(h.wg,0)}${h.lo != null ? `<div class="sub">modelos ${fmt(h.lo,0)}–${fmt(h.hi,0)}</div>` : ""}</td>
+    <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wd, "var(--muted)")}</svg>${card(h.wd)}</span></td>
+    ${B.hasWave ? `<td>${fmt(h.wave)}</td>` : ""}
+    ${B.hasLevel ? `<td>${fmt(h.lvl,2)}</td>` : ""}
+    <td><span class="st st-${h.c.k}">${stLabel(h.c)}</span></td></tr>`).join("");
+  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga (kt)</th><th>Viene del</th>${B.hasWave ? "<th>Ola (m)</th>" : ""}${B.hasLevel ? "<th>Río (m)</th>" : ""}<th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+/* ---------- veredicto en palabras ---------- */
 function verdict(hrs){
   const n = hrs.filter(h => sailable(h.c.k)).length;
-  if(n >= 3) return ["v-si","Sí"];
-  if(n >= 1) return ["v-poco","Poco"];
-  return ["v-no","No"];
+  return n >= 3 ? ["si","Sí"] : n >= 1 ? ["poco","Poco"] : ["no","No"];
+}
+function mainDir(hrs){
+  const d = hrs.filter(h => h.day); const src = d.length ? d : hrs;
+  let x = 0, y = 0; src.forEach(h => { x += Math.cos(h.wd*Math.PI/180)*Math.max(h.ws,.5); y += Math.sin(h.wd*Math.PI/180)*Math.max(h.ws,.5); });
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+function reasonText(hrs, ws){
+  if(ws.length){
+    const best = ws.reduce((a,b) => (b.to-b.from) > (a.to-a.from) ? b : a);
+    const sub = hrs.filter(h => h.h >= best.from && h.h <= best.to);
+    return `Mejor ventana de ${hh(best.from)} a ${hh(best.to+1)} h, con ${fmt(best.lo,0)} a ${fmt(best.peak,0)} kt del ${card(mainDir(sub))}.${best.lim ? " Algunas horas quedan al límite de lo que pusiste." : ""}`;
+  }
+  const cnt = {}; hrs.filter(h => h.day).forEach(h => { if(h.c.why) cnt[h.c.why] = (cnt[h.c.why] || 0) + 1; });
+  const top = Object.entries(cnt).sort((a,b) => b[1]-a[1])[0];
+  if(!top) return "Ya no quedan horas de luz para navegar.";
+  const map = {"mucho viento":"hay más viento del que pusiste como máximo", "poco viento":"hay poco viento: se puede salir a motor, pero no a vela", "mucha ola":"hay más ola de la que pusiste como máximo", "tormenta":"hay tormenta eléctrica", "niebla":"hay niebla", "poca agua":"el río no tiene agua suficiente para el calado"};
+  return `La mayor parte del día ${map[top[0]] || top[0]}.`;
 }
 function winText(ws){
   if(!ws.length) return `<div class="muted">Sin horas navegables con tus límites.</div>`;
-  return ws.map(w => `<div class="win${w.lim ? " lim" : ""}">${w.from === w.to ? `${String(w.from).padStart(2,"0")} h` : `${String(w.from).padStart(2,"0")} a ${String(w.to + 1).padStart(2,"0")} h`} <span class="muted">· pico ${fmt(w.peak)} kt${w.lim ? " · al límite" : ""}</span></div>`).join("");
+  return ws.map(w => `<div class="win${w.lim ? " lim" : ""}">${w.from === w.to ? `${hh(w.from)} h` : `${hh(w.from)} a ${hh(w.to + 1)} h`} <span class="muted">· pico ${fmt(w.peak)} kt${w.lim ? " · al límite" : ""}</span></div>`).join("");
 }
 function range(arr, d=2){ const v = arr.filter(x => x != null); return v.length ? `${fmt(Math.min(...v),d)} a ${fmt(Math.max(...v),d)} m` : "sin dato"; }
-function mainDir(hrs){
-  const d = hrs.filter(h => h.day); const src = d.length ? d : hrs;
-  let x = 0, y = 0; src.forEach(h => { x += Math.cos(h.wd*Math.PI/180)*h.ws; y += Math.sin(h.wd*Math.PI/180)*h.ws; });
-  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-}
 function dateLbl(d){ const dt = new Date(d + "T12:00:00"); return {dow:DOW[dt.getDay()], txt:`${dt.getDate()} de ${MON[dt.getMonth()]}`}; }
+function reliab(idx){ return idx <= 1 ? "Confiabilidad alta." : idx <= 3 ? "Confiabilidad media." : "Confiabilidad baja: sirve para hacerse una idea, no para decidir."; }
+const srcName = () => cfg.model === "combo" ? "el pronóstico combinado" : "el modelo " + modelOf(cfg.model).name;
 
 function dayCard(date, hrs, B, opts){
-  const s = spot(), sd = B.sun[date], [vc, vt] = verdict(hrs), ws = windows(hrs), al = dayAlerts(hrs, B.lvlMin);
+  const s = spot(), sd = B.sun[date], ws = windows(hrs), [vc, vt] = verdict(hrs), al = dayAlerts(hrs, B.need);
   const L = dateLbl(date), md = mainDir(hrs);
   const name = opts.today ? "Hoy" : opts.idx === 1 ? "Mañana" : L.dow;
-  let nowBlock = "";
+  let top = "";
   if(opts.today){
     const h = hrs.find(x => x.t === B.nowStr) || hrs[hrs.length-1];
-    nowBlock = `<div class="eyebrow">Ahora · pronóstico de las ${String(h.h).padStart(2,"0")} h</div>
+    top = `<div class="verdict v-${vc}"><div class="word">${vt === "Sí" ? "Sí, salimos" : vt === "Poco" ? "Poco tiempo" : "Hoy no"}</div><p>${reasonText(hrs, ws)}</p></div>
+    <div><div class="eyebrow">Pronóstico para las ${hh(h.h)} h</div><p class="note">Es lo que calcula ${srcName()} para esta hora, no una medición de una estación.</p></div>
     <div class="now">
-      <div><div class="big">${fmt(h.ws)}<small>nudos</small></div><div class="muted">ráfaga ${fmt(h.wg)} kt</div></div>
-      <div class="dir">${arrow(h.wd, "var(--accent)")}<div class="kv"><b>${card(h.wd)} ${Math.round(h.wd)}°</b><span>de dónde viene</span></div></div>
-      ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola${h.wper ? ` · ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
-      ${B.hasLevel ? `<div class="kv"><b>${fmt(h.lvl,2)} m</b><span>${s.cero != null ? "nivel del río" : "nivel vs. medio"}</span></div>` : ""}
-    </div>`;
+      <div><div class="big">${fmt(h.ws)}<small>nudos</small></div><div class="muted">ráfagas de ${fmt(h.wg)} kt</div></div>
+      <div class="dir">${arrow(h.wd, "var(--red)")}<div class="kv"><b>${card(h.wd)} ${Math.round(h.wd)}°</b><span>viene del ${card(h.wd)}</span></div></div>
+      ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola${h.wper ? ` cada ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
+      ${B.hasLevel ? `<div class="kv"><b>${fmt(h.lvl,2)} m</b><span>${s.cero != null ? "altura del río" : "nivel vs. medio"}</span></div>` : ""}
+    </div>
+    ${h.lo != null ? `<p class="note">Los cuatro modelos dan entre ${fmt(h.lo)} y ${fmt(h.hi)} kt para esta hora${B.corr ? ", ya corregidos por su sesgo" : ""}.</p>` : ""}`;
   }
   return `<article class="card${opts.today ? " today" : ""}">
-    <div class="dayhead"><div><div class="dayname">${name}</div><div class="date">${opts.today ? L.dow + " " : ""}${L.txt}</div></div><span class="pill ${vc}">${vt}</span></div>
-    ${nowBlock}
+    <div class="dayhead"><div><div class="dayname">${name}</div><div class="date">${opts.today ? L.dow + " " : ""}${L.txt}</div></div>${opts.today ? "" : `<span class="pill p-${vc}">${vt}</span>`}</div>
+    ${top}
     <div><div class="eyebrow" style="margin-bottom:4px">Se navega</div><div class="windows">${winText(ws)}</div></div>
     <dl class="facts">
       <dt>Sol</dt><dd>${sd ? sd.rise.slice(11) + " a " + sd.set.slice(11) : "—"}</dd>
       <dt>Viento</dt><dd>del ${card(md)} · ${fmt(Math.min(...hrs.map(h=>h.ws)),0)} a ${fmt(Math.max(...hrs.map(h=>h.ws)),0)} kt</dd>
       ${B.hasWave ? `<dt>Olas</dt><dd>${range(hrs.map(h => h.wave),1)}</dd>` : ""}
-      ${B.hasLevel ? `<dt>Nivel</dt><dd>${range(hrs.map(h => h.lvl))}${s.cero != null ? "" : " (vs. medio)"}</dd>` : ""}
+      ${B.hasLevel ? `<dt>Río</dt><dd>${range(hrs.map(h => h.lvl))}${s.cero != null ? "" : " (vs. medio)"}</dd>` : ""}
     </dl>
     ${al.length ? `<div class="alerts">${al.map(([k,t]) => `<div class="alert ${k}">${t}</div>`).join("")}</div>` : ""}
-    <div class="chart">${chartSVG(hrs, B.nowStr, B.lvlMin, opts.today)}</div>
+    <div class="chart">${chartSVG(hrs, B, opts.today)}</div>
+    <details${opts.today ? " open" : ""}><summary>Hora por hora</summary>${hourTable(hrs, B)}</details>
+    <p class="note">${reliab(opts.idx)}</p>
   </article>`;
 }
 
-const LEGEND = `<details><summary>Qué significa cada color</summary><div class="legend" style="margin-top:8px">
+const LEGEND = `<details><summary>Cómo leer el gráfico y la tabla</summary><div class="legend">
   <span><i style="background:var(--ok)"></i>se navega</span><span><i style="background:var(--lim)"></i>al límite</span>
-  <span><i style="background:var(--flojo)"></i>poco viento (a motor)</span><span><i style="background:var(--no)"></i>no conviene</span>
+  <span><i style="background:var(--flojo)"></i>poco viento: a motor</span><span><i style="background:var(--no)"></i>no conviene</span>
   <span><i style="background:var(--night);outline:1px solid var(--line)"></i>noche</span><span><i style="background:var(--ink);height:3px"></i>ráfaga</span>
-  <span><i style="background:var(--level);height:3px"></i>nivel del agua</span><span>la flecha apunta hacia donde sopla</span></div></details>`;
+  <span><i style="background:var(--level);height:3px"></i>nivel del agua</span><span>las líneas punteadas son tu mínimo y tu máximo</span><span>la flecha apunta hacia donde va el viento</span><span>"modelos 7–12" es lo menos y lo más que da alguno de los cuatro</span></div></details>`;
 
-function render(B){
+/* ---------- modelos ---------- */
+function modelsBlock(B){
   const s = spot();
-  const dates = Object.keys(B.days).sort();
-  const today = B.nowStr.slice(0,10);
-  const todayHrs = (B.days[today] || []).filter(h => h.t >= today);
-  const notes = [];
-  if(s.cero != null && B.lvlMin == null) notes.push(`<div class="alert info">Definí en <b>Mi barco</b> el nivel mínimo del río para que la página marque cuándo no hay agua para Tupá.</div>`);
-  if(!B.hasLevel && s.cero != null) notes.push(`<div class="alert info">No hay pronóstico de nivel del agua para este punto.</div>`);
-  $("#todaySec").innerHTML = (todayHrs.length ? dayCard(today, todayHrs, B, {today:true, idx:0}) : "") + `<div style="margin-top:12px;display:grid;gap:10px">${notes.join("")}${LEGEND}</div>`;
+  const i0 = Math.max(0, B.hours.findIndex(h => h.t === B.nowStr)), seg = B.hours.slice(i0, i0 + 36);
+  let chart = "", agree = "";
+  if(seg.length){
+    const bw = 18, pad = 30, top = 12, hb = 130, N = seg.length, W = pad + N*bw + 10, H = top + hb + 26;
+    const all = seg.flatMap(h => h.per.map(p => p.ws)).concat(seg.map(h => h.ws));
+    const maxK = Math.max(cfg.wMax, ...all) + 3, y = v => top + hb - v / maxK * hb;
+    let s2 = `<svg width="${W}" height="${H}" role="img" aria-label="Viento según cada modelo, próximas 36 horas">`;
+    seg.forEach((h,k) => { if(!h.day) s2 += `<rect x="${pad + k*bw}" y="${top}" width="${bw}" height="${hb}" fill="var(--night)"/>`; });
+    [0, cfg.wMin, cfg.wMax].forEach(v => { s2 += `<line x1="${pad}" x2="${W-8}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" ${v ? 'stroke-dasharray="3 4"' : ""}/><text x="${pad-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; });
+    seg.forEach((h,k) => { if(h.h % 6 === 0) s2 += `<text x="${pad + k*bw + bw/2}" y="${top+hb+18}" text-anchor="middle">${hh(h.h)}h</text>`; });
+    const line = (vals, col, w, dash) => { let d = ""; vals.forEach((v,k) => { if(v != null) d += (d ? "L" : "M") + (pad + k*bw + bw/2) + " " + y(v).toFixed(1); }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" ${dash ? 'stroke-dasharray="5 4"' : ""} stroke-linejoin="round" stroke-linecap="round"/>`; };
+    MODELS.forEach(m => { s2 += line(seg.map(h => { const p = h.per.find(x => x.id === m.id); return p ? p.ws : null; }), m.col, 1.6, false); });
+    s2 += line(seg.map(h => h.ws), "var(--ink)", 3.2, false);
+    chart = `<div class="chart">${s2}</svg></div>`;
+    const sp = seg.slice(0, 12).filter(h => h.hi != null).map(h => h.hi - h.lo);
+    const avg = sp.length ? sp.reduce((a,b) => a+b, 0) / sp.length : null;
+    if(avg != null) agree = avg <= 3 ? `<div class="alert info"><b>Los modelos coinciden</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. El pronóstico es confiable.</div>`
+      : avg <= 6 ? `<div class="alert lim"><b>Los modelos difieren un poco</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. Mirá el rango de cada hora en la tabla.</div>`
+      : `<div class="alert no"><b>Los modelos no se ponen de acuerdo</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. Hay incertidumbre: salí con margen y mirá el cielo.</div>`;
+  }
+  const useLbl = cfg.model === "combo" ? "combinado" : modelOf(cfg.model).name;
+  const legend = `<div class="legend"><span><i style="background:var(--ink);height:4px"></i><b>${useLbl}</b> (el que decide)</span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div>`;
+  const tot = MODELS.reduce((a,m) => a + REF[m.id].acc, 0);
+  const rows = MODELS.map(m => { const r = REF[m.id], use = cfg.model === m.id;
+    return `<tr class="${use ? "use" : ""}"><td><span class="swatch" style="background:${m.col}"></span>${m.name}</td><td><span class="bar"><i style="width:${Math.min(100, r.acc*2)}%"></i></span>${fmt(r.acc)}%</td><td>${fmt(r.mae)} kt</td><td>${r.bias > 0 ? "+" : ""}${fmt(r.bias)} kt</td><td>${r.bias < 0 ? "sumar " + fmt(-r.bias) : "restar " + fmt(r.bias)} kt</td><td>${fmt(r.acc / tot * 100, 0)}%</td></tr>`; }).join("");
+  return `<article class="card">
+      <h3>Viento en las próximas 36 horas${B.corr ? ", ya corregido" : ""}</h3>
+      ${legend}${chart}${agree}
+      <p class="note">${cfg.model === "combo" ? (s.rdp ? "La línea gruesa es el combinado: cada modelo corregido por su sesgo y con más peso cuanto mejor le pega." : "La línea gruesa es el combinado: el promedio de los cuatro. Acá no hay estación para saber cuál le pega mejor, así que pesan igual.") : `La línea gruesa es el modelo que elegiste en Mi barco. Podés cambiarlo por el combinado.`}</p>
+    </article>
+    <article class="card">
+      <h3>¿Cuál le pega mejor en el Río de la Plata?</h3>
+      <p class="note">Cada modelo comparado contra lo que midió la estación Pilote Norden (CARP), a unos 20 km de Berisso, durante 1218 horas entre el 1 de septiembre y el 31 de octubre de 2026. Medición de OlvidataSoft.</p>
+      <div class="tablewrap"><table class="mtable"><thead><tr><th>Modelo</th><th>Acierto</th><th>Error medio</th><th>Sesgo</th><th>Corrección</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <details><summary>Qué quiere decir cada columna</summary>
+        <p class="note"><b>Acierto:</b> en qué porcentaje de las horas el modelo quedó a menos de 2 kt de lo que midió la estación.<br><br>
+        <b>Error medio:</b> cuánto se equivocó en promedio, para arriba o para abajo.<br><br>
+        <b>Sesgo:</b> para qué lado se equivoca. Negativo quiere decir que marca menos viento del que hay. Los cuatro se quedan cortos, así que hay que sumar.<br><br>
+        <b>Corrección:</b> lo que la página le suma a cada modelo cuando está activado "Corregir con el sesgo" en Mi barco.<br><br>
+        <b>Peso:</b> cuánto cuenta cada modelo en el pronóstico combinado. El ECMWF casi no cuenta porque en el río es el que peor le pega.<br><br>
+        Estos números valen para el Río de la Plata. En otras zonas los modelos se equivocan distinto.</p>
+      </details>
+    </article>`;
+}
+
+/* ---------- calado ---------- */
+function levelBlock(B){
+  const s = spot(), need = lvlNeeded();
+  const now = B.hours.find(h => h.t === B.nowStr);
+  const today = B.days[B.nowStr.slice(0,10)] || [];
+  let calc;
+  if(cfg.sond == null){
+    calc = `<div class="calc"><div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div><div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div><div class="row tot"><span>Agua que necesitás</span><span>${fmt(cfg.draft + cfg.ukc,2)} m</span></div></div>
+    <div class="alert lim"><b>Falta un dato.</b> Para saber si hay agua, cargá en <b>Mi barco</b> la profundidad del lugar menos hondo de la salida, según la carta. Preguntala en el club.</div>`;
+  } else {
+    calc = `<div class="calc">
+      <div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div>
+      <div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div>
+      <div class="row"><span>− profundidad en la carta</span><span>${fmt(cfg.sond,2)} m</span></div>
+      <div class="row tot"><span>Altura mínima del río</span><span>${fmt(need,2)} m</span></div></div>
+      <p class="note">Si el río está por encima de ${fmt(need,2)} m, hay agua para pasar con ${fmt(cfg.ukc,2)} m de margen.${need <= 0 ? " Con esa profundidad pasás casi siempre, salvo una bajante muy fuerte." : ""}</p>`;
+  }
+  let status = "";
+  if(s.cero != null && B.hasLevel && need != null){
+    const low = today.filter(h => h.day && h.lvl != null && h.lvl < need);
+    const ok = now && now.lvl != null && now.lvl >= need;
+    status = `<div class="alert ${low.length || !ok ? "no" : "info"}">${now && now.lvl != null ? `Ahora el río está en <b>${fmt(now.lvl,2)} m</b>: ${ok ? "hay agua para salir." : "<b>no alcanza para salir.</b>"} ` : ""}${low.length ? `Hoy queda por debajo durante ${low.length} h de luz.` : "En las horas de luz que quedan no baja de lo que necesitás."}</div>`;
+  } else if(s.cero == null){
+    status = `<div class="alert info">El cálculo con la altura del río está armado para el Náutico Berisso. En otros puertos usá las tablas de marea del lugar.</div>`;
+  }
+  return `<article class="card">${calc}${status}</article>
+  <article class="card">
+    <h3>De dónde sale la altura del río</h3>
+    <p class="note">La página usa un modelo de nivel del agua llevado al cero del mareógrafo de La Plata. Es orientativo: en el Río de la Plata el viento mueve mucho el agua y el modelo puede no verlo bien.</p>
+    <p class="note">El dato oficial es del <b>Servicio de Hidrografía Naval (SHN)</b>. Sus tablas de marea dan la marea astronómica de cada puerto. Cuando el viento la corre, el SHN emite un aviso que dice cuánto va a estar el río por encima o por debajo de las tablas en el Puerto de La Plata, que es el que sirve para Berisso. Antes de salir, sumale ese aviso a la tabla.</p>
+    <a class="btn" href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Ver el SHN ↗</a>
+  </article>`;
+}
+
+/* ---------- armado ---------- */
+function render(B){
+  const dates = Object.keys(B.days).sort(), today = B.nowStr.slice(0,10);
+  const todayHrs = B.days[today] || [];
+  $("#todaySec").innerHTML = (todayHrs.length ? dayCard(today, todayHrs, B, {today:true, idx:0}) : "") + `<div style="margin-top:12px">${LEGEND}</div>`;
   $("#week").innerHTML = dates.filter(d => d > today).map((d,i) => dayCard(d, B.days[d], B, {idx:i+1})).join("");
-  $("#rangeTxt").textContent = `Horas navegables con viento entre ${cfg.wMin} y ${cfg.wMax} kt, ráfagas hasta ${cfg.gMax} kt${B.hasWave ? ` y olas hasta ${fmt(cfg.waveMax)} m` : ""}.`;
-  $("#weekSec").hidden = false;
-  $("#modelTxt").textContent = MODEL_NAMES[cfg.model] || cfg.model;
+  $("#rangeTxt").textContent = `Horas navegables con viento entre ${cfg.wMin} y ${cfg.wMax} kt, ráfagas de hasta ${cfg.gMax} kt${B.hasWave ? ` y olas de hasta ${fmt(cfg.waveMax)} m` : ""}. Lo cambiás en Mi barco.`;
+  $("#models").innerHTML = modelsBlock(B);
+  $("#level").innerHTML = levelBlock(B);
+  ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = false);
+}
+
+function setWindy(s){
+  $("#windy").src = `https://embed.windy.com/embed2.html?lat=${s.lat}&lon=${s.lon}&detailLat=${s.lat}&detailLon=${s.lon}&zoom=8&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`;
+  $("#windyLink").href = `https://www.windy.com/?${s.lat},${s.lon},9`;
 }
 
 async function refresh(){
   const s = spot();
   $("#todaySec").innerHTML = `<div class="status">Cargando pronóstico para ${esc(s.name)}…</div>`;
-  $("#weekSec").hidden = true;
+  ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = true);
+  setWindy(s); renderStations(s);
   try{ render(build(await fetchData(s), s)); }
-  catch(e){ $("#todaySec").innerHTML = `<div class="status err">No se pudo cargar el pronóstico. Revisá la conexión y tocá <button class="btn" type="button" onclick="refresh()">Reintentar</button></div>`; }
+  catch(e){ console.error(e); $("#todaySec").innerHTML = `<div class="status err">No se pudo cargar el pronóstico. Revisá la conexión y tocá <button class="btn" type="button" onclick="refresh()">Reintentar</button></div>`; }
 }
 
 /* ---------- controles ---------- */
-function fillSpots(){
-  $("#spotSel").innerHTML = allSpots().map(s => `<option value="${esc(s.id)}"${s.id === spotId ? " selected" : ""}>${esc(s.name)}</option>`).join("");
-}
+function fillSpots(){ $("#spotSel").innerHTML = allSpots().map(s => `<option value="${esc(s.id)}"${s.id === spotId ? " selected" : ""}>${esc(s.name)}</option>`).join(""); }
 $("#spotSel").addEventListener("change", e => { spotId = e.target.value; save("salimos.spot", spotId); refresh(); });
 
 $("#btnCfg").addEventListener("click", () => {
-  const s = spot();
-  $("#wMin").value = cfg.wMin; $("#wMax").value = cfg.wMax; $("#gMax").value = cfg.gMax; $("#waveMax").value = cfg.waveMax;
-  $("#night").checked = cfg.night; $("#model").value = cfg.model;
-  $("#lvlMin").value = cfg.lvlMin.berisso ?? "";
+  ["wMin","wMax","gMax","waveMax","draft","ukc"].forEach(k => $("#" + k).value = cfg[k]);
+  $("#sond").value = cfg.sond ?? ""; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
   if($("#dlgCfg").returnValue !== "ok") return;
-  const num = (id, d) => { const v = parseFloat($(id).value); return isNaN(v) ? d : v; };
+  const num = (id, d) => { const v = parseFloat(String($(id).value).replace(",", ".")); return isNaN(v) ? d : v; };
   cfg.wMin = num("#wMin", DEF.wMin); cfg.wMax = Math.max(cfg.wMin + 1, num("#wMax", DEF.wMax));
   cfg.gMax = num("#gMax", DEF.gMax); cfg.waveMax = num("#waveMax", DEF.waveMax);
-  cfg.night = $("#night").checked; cfg.model = $("#model").value;
-  const lm = parseFloat($("#lvlMin").value); cfg.lvlMin = Object.assign({}, cfg.lvlMin); if(isNaN(lm)) delete cfg.lvlMin.berisso; else cfg.lvlMin.berisso = lm;
-  save("salimos.cfg", cfg); refresh();
+  cfg.draft = num("#draft", DEF.draft); cfg.ukc = num("#ukc", DEF.ukc); cfg.sond = num("#sond", null);
+  cfg.model = $("#model").value; cfg.corr = $("#corr").checked; cfg.night = $("#night").checked;
+  save("salimos.cfg3", cfg); refresh();
 });
 
 $("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
+function showAddErr(t){ $("#addErr").textContent = t; $("#addErr").hidden = false; }
 $("#btnGeo").addEventListener("click", () => {
   if(!navigator.geolocation){ showAddErr("Este navegador no da la ubicación."); return; }
   navigator.geolocation.getCurrentPosition(
     p => { $("#addCoords").value = `${p.coords.latitude.toFixed(4)}, ${p.coords.longitude.toFixed(4)}`; if(!$("#addName").value) $("#addName").value = "Donde estoy"; },
     () => showAddErr("No se pudo obtener la ubicación. Revisá el permiso de ubicación del navegador."), {timeout:10000});
 });
-function showAddErr(t){ $("#addErr").textContent = t; $("#addErr").hidden = false; }
 $("#addSave").addEventListener("click", e => {
   const m = $("#addCoords").value.trim().match(/^(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)$/);
   const name = $("#addName").value.trim();
   if(!name){ e.preventDefault(); showAddErr("Poné un nombre para el lugar."); return; }
-  if(!m){ e.preventDefault(); showAddErr("Escribí las coordenadas como -47.75, -65.90."); return; }
+  if(!m){ e.preventDefault(); showAddErr("Escribí las coordenadas así: -47.75, -65.90"); return; }
   const lat = parseFloat(m[1].replace(",", ".")), lon = parseFloat(m[2].replace(",", "."));
   if(Math.abs(lat) > 90 || Math.abs(lon) > 180){ e.preventDefault(); showAddErr("Esas coordenadas no existen. Revisá latitud y longitud."); return; }
   const sp = {id:"c" + Date.now(), name, lat, lon, cero:null};
   custom.push(sp); save("salimos.spots", custom); spotId = sp.id; save("salimos.spot", spotId); fillSpots(); refresh();
 });
 
-document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - (window._last || 0) > 15*60*1000){ window._last = Date.now(); refresh(); } });
-window._last = Date.now();
+let last = Date.now();
+document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - last > 15*60*1000){ last = Date.now(); refresh(); } });
 fillSpots(); refresh();
 </script>
 </body>
