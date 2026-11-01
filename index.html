@@ -143,6 +143,10 @@ details[open] > summary{margin-bottom:10px}
 .sta-meta{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font-size:12px;border-radius:999px;padding:2px 9px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
 .chip.water{color:var(--level);border-color:color-mix(in srgb,var(--level) 40%,transparent)}
+.live{border-left:4px solid var(--level);background:var(--bg);border-radius:8px;padding:12px 14px;display:grid;gap:6px}
+.live .row1{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.live .val{font:700 34px/1 var(--f-display)}
+.live a{color:var(--level)}
 .sta a{color:var(--level);font-size:14px;font-weight:500}
 footer{padding-block:24px 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:10px}
 footer p{margin:0 0 8px;max-width:65ch}
@@ -333,15 +337,17 @@ const STATIONS = [
   {name:"Puerto de Carmelo", who:"CARP", what:"Viento y marea", water:true, lat:-34.00, lon:-58.29, url:CARP_URL, how:"Costa uruguaya, cerca de la entrada al delta."},
   {name:"Mareógrafo de La Plata", who:"SHN / Puerto La Plata", what:"Altura del río", water:true, lat:-34.83, lon:-57.88, url:SHN_URL, how:"Es el cero que usa la página para la altura del río en Berisso."},
   {name:"Puerto de Buenos Aires", who:"SHN", what:"Altura del río", water:true, lat:-34.57, lon:-58.37, url:SHN_URL, how:"Mareógrafo de referencia de los avisos de crecida."},
-  {name:"Aeroparque (SABE)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-34.56, lon:-58.42, url:metar("SABE"), how:"Aeropuerto sobre la costa del río."},
-  {name:"Aeropuerto de Mar del Plata (SAZM)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-37.93, lon:-57.57, url:metar("SAZM"), how:"En tierra, unos 10 km al norte del puerto."},
+  {name:"Aeródromo de La Plata (SADL)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SADL", lat:-34.97, lon:-57.89, url:metar("SADL"), how:"En tierra, unos 14 km al sur de Berisso."},
+  {name:"Aeropuerto de Colonia (SUCA)", who:"Uruguay", what:"Viento, ráfagas y presión", water:false, icao:"SUCA", lat:-34.46, lon:-57.77, url:metar("SUCA"), how:"En tierra, unos 8 km al este del puerto de Colonia."},
+  {name:"Aeroparque (SABE)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-34.56, lon:-58.42, icao:"SABE", url:metar("SABE"), how:"Aeropuerto sobre la costa del río."},
+  {name:"Aeropuerto de Mar del Plata (SAZM)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-37.93, lon:-57.57, icao:"SAZM", url:metar("SAZM"), how:"En tierra, unos 10 km al norte del puerto."},
   {name:"Puerto de Mar del Plata", who:"SHN", what:"Altura del mar", water:true, lat:-38.04, lon:-57.53, url:SHN_URL, how:"Mareógrafo del puerto."},
-  {name:"Aeropuerto de Puerto Madryn (SAVY)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-42.76, lon:-65.10, url:metar("SAVY"), how:"En tierra, a unos 10 km de la costa."},
-  {name:"Aeropuerto de Ushuaia (SAWH)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-54.84, lon:-68.30, url:metar("SAWH"), how:"Sobre la costa del Canal Beagle."},
+  {name:"Aeropuerto de Puerto Madryn (SAVY)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-42.76, lon:-65.10, icao:"SAVY", url:metar("SAVY"), how:"En tierra, a unos 10 km de la costa."},
+  {name:"Aeropuerto de Ushuaia (SAWH)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-54.84, lon:-68.30, icao:"SAWH", url:metar("SAWH"), how:"Sobre la costa del Canal Beagle."},
   {name:"Base Carlini", who:"SMN / Instituto Antártico", what:"Viento, presión y temperatura", water:false, lat:-62.24, lon:-58.67, url:"https://www.smn.gob.ar/", how:"Estación automática y oficina meteorológica de la base. No encontré dónde se publican sus datos en vivo."},
-  {name:"Aeródromo Teniente Marsh (SCRM)", who:"Chile", what:"Viento, ráfagas y presión", water:false, lat:-62.19, lon:-58.99, url:metar("SCRM"), how:"En la misma isla (25 de Mayo / Rey Jorge), del lado de la Península Fildes."},
-  {name:"Base Marambio (SAWB)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-64.24, lon:-56.63, url:metar("SAWB"), how:"Centro meteorológico antártico del SMN."},
-  {name:"Aeropuerto de Florianópolis (SBFL)", who:"Brasil", what:"Viento, ráfagas y presión", water:false, lat:-27.67, lon:-48.55, url:metar("SBFL"), how:"En la isla de Santa Catarina, al sur de la ciudad."},
+  {name:"Aeródromo Teniente Marsh (SCRM)", who:"Chile", what:"Viento, ráfagas y presión", water:false, lat:-62.19, lon:-58.99, icao:"SCRM", url:metar("SCRM"), how:"En la misma isla (25 de Mayo / Rey Jorge), del lado de la Península Fildes."},
+  {name:"Base Marambio (SAWB)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-64.24, lon:-56.63, icao:"SAWB", url:metar("SAWB"), how:"Centro meteorológico antártico del SMN."},
+  {name:"Aeropuerto de Florianópolis (SBFL)", who:"Brasil", what:"Viento, ráfagas y presión", water:false, lat:-27.67, lon:-48.55, icao:"SBFL", url:metar("SBFL"), how:"En la isla de Santa Catarina, al sur de la ciudad."},
   {name:"Boyas de la Marina de Brasil (PNBOIA)", who:"Marinha do Brasil", what:"Viento y olas", water:true, lat:-27.6, lon:-47.9, url:"https://www.marinha.mil.br/chm/", how:"La Marina tiene boyas en algunos puntos de la costa. No pude confirmar cuál está más cerca de Florianópolis: revisalo en su página."}
 ];
 function distKm(a, b){ const R = 6371, r = Math.PI/180, dLa = (b.lat-a.lat)*r, dLo = (b.lon-a.lon)*r; const x = Math.sin(dLa/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(x)); }
@@ -355,7 +361,37 @@ function renderStations(s){
   $("#stations").innerHTML = (list || `<p class="note">No conozco estaciones a menos de 350 km de este lugar.</p>`) +
     `<p class="note">Los aeropuertos publican cada hora su medición en un formato llamado METAR; el link lo muestra traducido, en inglés. Las estaciones en tierra suelen marcar algo menos de viento que sobre el agua. Para cualquier lugar que no esté acá, buscá el aeropuerto o el puerto más cercano.</p>`;
 }
-const OTHER_ORDER =["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
+async function loadLive(s, B){
+  const box = () => document.getElementById("live");
+  if(!box()) return;
+  const head = `<div class="eyebrow" style="color:var(--level)">Medición real, ahora</div>`;
+  const carp = s.rdp ? `<p class="note">Pilote Norden mide sobre el agua, pero sus datos todavía no se pueden leer desde la página: <a href="${CARP_URL}" target="_blank" rel="noopener">verlos en la CARP ↗</a></p>` : "";
+  const cands = STATIONS.filter(st => st.icao).map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 250).sort((a,b) => a.km - b.km).slice(0, 3);
+  if(!cands.length){ box().innerHTML = head + `<p class="note">No hay ninguna estación con datos en vivo a menos de 250 km.</p>` + carp; return; }
+  try{
+    const data = await getJSON(`/api/metar?ids=${cands.map(c => c.st.icao).join(",")}`);
+    if(spot().id !== s.id || !box()) return;
+    const pick = cands.map(c => ({...c, o: data.find(d => d.icaoId === c.st.icao)})).find(c => c.o && c.o.wspd != null);
+    if(!pick) throw new Error("sin datos");
+    const o = pick.o, ago = Math.max(0, Math.round((Date.now()/1000 - o.obsTime) / 60));
+    const dirOk = typeof o.wdir === "number";
+    const h = B.hours.find(x => x.t === B.nowStr);
+    let cmp = "";
+    if(h){
+      const d = o.wspd - h.ws;
+      cmp = Math.abs(d) < 2 ? `Coincide con el pronóstico de esta hora (${fmt(h.ws)} kt).`
+        : d > 0 ? `Mide ${fmt(d)} kt <b>más</b> que el pronóstico de esta hora (${fmt(h.ws)} kt): el modelo viene corto.`
+        : `Mide ${fmt(-d)} kt <b>menos</b> que el pronóstico de esta hora (${fmt(h.ws)} kt).`;
+    }
+    box().innerHTML = head + `<div class="row1"><span class="val">${fmt(o.wspd,0)} kt</span><span>${o.wgst ? `ráfagas de ${fmt(o.wgst,0)} kt · ` : ""}${dirOk ? `viene del ${card(o.wdir)} (${o.wdir}°)` : "dirección variable"}</span></div>
+      <p class="note"><b>${esc(pick.st.name)}</b>, a ${fmt(pick.km,0)} km · medido hace ${ago < 60 ? ago + " min" : Math.round(ago/60) + " h"}${o.altim ? ` · presión ${fmt(o.altim,0)} hPa` : ""}</p>
+      ${cmp ? `<p style="margin:0;font-size:14px">${cmp}</p>` : ""}
+      <p class="note">Es una estación en tierra: sobre el agua suele haber un poco más de viento.</p>` + carp;
+  }catch(e){
+    if(box()) box().innerHTML = head + `<p class="note">No se pudo traer la medición en vivo en este momento.</p>` + carp;
+  }
+}
+const OTHER_ORDER = ["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
 const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sond:null, night:false, model:"combo", corr:true};
 
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
@@ -603,6 +639,7 @@ function dayCard(date, hrs, B, opts){
       ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola${h.wper ? ` cada ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
       ${B.hasLevel ? `<div class="kv"><b>${fmt(h.lvl,2)} m</b><span>${s.cero != null ? "altura del río" : "nivel vs. medio"}</span></div>` : ""}
     </div>
+    <div class="live" id="live" aria-live="polite"><div class="eyebrow" style="color:var(--level)">Medición real, ahora</div><p class="note">Buscando la estación más cercana…</p></div>
     ${h.lo != null ? `<p class="note">Los cuatro modelos dan entre ${fmt(h.lo)} y ${fmt(h.hi)} kt para esta hora${B.corr ? ", ya corregidos por su sesgo" : ""}.</p>` : ""}`;
   }
   return `<article class="card${opts.today ? " today" : ""}">
@@ -721,6 +758,7 @@ function render(B){
   $("#rangeTxt").textContent = `Horas navegables con viento entre ${cfg.wMin} y ${cfg.wMax} kt, ráfagas de hasta ${cfg.gMax} kt${B.hasWave ? ` y olas de hasta ${fmt(cfg.waveMax)} m` : ""}. Lo cambiás en Mi barco.`;
   $("#models").innerHTML = modelsBlock(B);
   $("#level").innerHTML = levelBlock(B);
+  loadLive(spot(), B);
   ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = false);
 }
 
