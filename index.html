@@ -130,6 +130,11 @@ details[open] > summary{margin-bottom:10px}
 .calc{display:grid;gap:6px;font-family:var(--f-mono);font-size:15px;font-variant-numeric:tabular-nums;background:var(--bg);border-radius:8px;padding:12px 14px}
 .calc .row{display:flex;justify-content:space-between;gap:12px}
 .calc .tot{border-top:1px solid var(--line);padding-top:6px;font-weight:600}
+.shn-in{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shn-res{border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.shn-res.ok{background:var(--ok-bg)} .shn-res.no{background:var(--no-bg)} .shn-res.wait{background:var(--bg)}
+.shn-res .word{font:700 26px/1 var(--f-display);text-transform:uppercase}
+.shn-res.ok .word{color:var(--ok)} .shn-res.no .word{color:var(--no)}
 .windy{width:100%;height:380px;border:0;border-radius:10px;background:var(--bg);display:block}
 .gloss dl{display:grid;gap:12px;margin:0}
 .gloss dt{font-weight:600}
@@ -276,7 +281,7 @@ label.check input{width:auto;margin-top:4px}
       <label for="draft">Calado del barco (m)<input id="draft" type="number" min="0" max="6" step="0.05" inputmode="decimal"></label>
       <label for="ukc">Margen bajo la quilla (m)<input id="ukc" type="number" min="0" max="2" step="0.05" inputmode="decimal"></label>
     </div>
-    <label for="sond">Profundidad del lugar menos hondo de la salida, según la carta (m)<input id="sond" type="number" min="0" max="20" step="0.05" inputmode="decimal" placeholder="Preguntalo en el club"></label>
+    <label for="sond"><span id="sondLbl">Profundidad del lugar menos hondo de la salida, según la carta (m)</span><input id="sond" type="number" min="0" max="20" step="0.05" inputmode="decimal" placeholder="Preguntalo en el club"></label>
     <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el cero de la carta. La sabe el club o figura en la carta náutica del canal.</p>
   </fieldset>
   <fieldset><legend>Pronóstico</legend>
@@ -309,14 +314,14 @@ label.check input{width:auto;margin-top:4px}
 "use strict";
 /* ---------- datos fijos ---------- */
 const PRESETS = [
-  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true},
-  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true},
-  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true},
-  {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null},
-  {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null},
-  {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null},
-  {id:"carlini", name:"Caleta Potter, Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null},
-  {id:"floripa", name:"Florianópolis (Brasil)", lat:-27.60, lon:-48.45, cero:null}
+  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto La Plata", water:"río"}},
+  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}},
+  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Buenos Aires", water:"río"}},
+  {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Mar del Plata", water:"mar"}},
+  {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto Madryn", water:"mar"}},
+  {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Ushuaia", water:"mar"}},
+  {id:"carlini", name:"Caleta Potter, Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null, tide:{who:"SHN (publica tablas de algunos puntos antárticos)", url:"https://www.hidro.gob.ar/", port:"el punto más cercano a Caleta Potter", water:"mar"}},
+  {id:"floripa", name:"Florianópolis (Brasil)", lat:-27.60, lon:-48.45, cero:null, tide:{who:"Marinha do Brasil (DHN)", url:"https://www.marinha.mil.br/chm/tabuas-de-mare", port:"Florianópolis", water:"mar"}}
 ];
 const MODELS = [
   {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)"},
@@ -392,12 +397,13 @@ async function loadLive(s, B){
   }
 }
 const OTHER_ORDER = ["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
-const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sond:null, night:false, model:"combo", corr:true};
+const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sondBy:{}, night:false, model:"combo", corr:true};
 
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
 function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 
 let cfg = Object.assign({}, DEF, load("salimos.cfg3", {}));
+cfg.sondBy = Object.assign({}, cfg.sondBy || {}); if(cfg.sond != null && cfg.sondBy.berisso == null) cfg.sondBy.berisso = cfg.sond; delete cfg.sond;
 let custom = load("salimos.spots", []);
 let spotId = load("salimos.spot", "berisso");
 
@@ -406,7 +412,9 @@ const allSpots = () => PRESETS.concat(custom);
 const spot = () => allSpots().find(s => s.id === spotId) || PRESETS[0];
 const modelOf = id => MODELS.find(m => m.id === id);
 const corrOn = s => !!(s.rdp && cfg.corr);
-const lvlNeeded = () => cfg.sond == null ? null : +(cfg.draft + cfg.ukc - cfg.sond).toFixed(2);
+const sondOf = s => cfg.sondBy[s.id] ?? null;
+const lvlNeeded = s => sondOf(s) == null ? null : +(cfg.draft + cfg.ukc - sondOf(s)).toFixed(2);
+const tideOf = s => s.tide || {who:"el servicio hidrográfico del país", url:"", port:s.name, water:"agua"};
 
 const CARD = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
 const card = d => CARD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
@@ -499,7 +507,7 @@ function build(data, s){
   const other = (v, i) => { for(const m of OTHER_ORDER){ const x = g(v, m, i); if(x != null) return x; } return null; };
   const mi = {}; if(M) M.time.forEach((t,i) => mi[t] = i);
   const sun = {}; if(data.d) data.d.daily.time.forEach((d,i) => sun[d] = {rise:data.d.daily.sunrise[i], set:data.d.daily.sunset[i]});
-  const need = s.cero != null ? lvlNeeded() : null, corr = corrOn(s);
+  const need = s.cero != null ? lvlNeeded(s) : null, corr = corrOn(s);
   const hours = H.time.map((t,i) => {
     const per = MODELS.map(m => {
       const raw = g("wind_speed_10m", m.id, i); if(raw == null) return null;
@@ -715,36 +723,51 @@ function modelsBlock(B){
 
 /* ---------- calado ---------- */
 function levelBlock(B){
-  const s = spot(), need = lvlNeeded();
+  const s = spot(), T = tideOf(s), sond = sondOf(s), need = lvlNeeded(s), agua = T.water === "mar" ? "el mar" : T.water === "río" ? "el río" : "el agua";
   const now = B.hours.find(h => h.t === B.nowStr);
   const today = B.days[B.nowStr.slice(0,10)] || [];
   let calc;
-  if(cfg.sond == null){
+  if(sond == null){
     calc = `<div class="calc"><div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div><div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div><div class="row tot"><span>Agua que necesitás</span><span>${fmt(cfg.draft + cfg.ukc,2)} m</span></div></div>
-    <div class="alert lim"><b>Falta un dato.</b> Para saber si hay agua, cargá en <b>Mi barco</b> la profundidad del lugar menos hondo de la salida, según la carta. Preguntala en el club.</div>`;
+    <div class="alert lim"><b>Falta un dato de ${esc(s.name)}.</b> Para saber si hay agua, cargá en <b>Mi barco</b> la profundidad del lugar menos hondo de la entrada o salida, según la carta de este puerto. Cada puerto tiene la suya.</div>`;
   } else {
     calc = `<div class="calc">
       <div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div>
       <div class="row"><span>+ margen bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div>
-      <div class="row"><span>− profundidad en la carta</span><span>${fmt(cfg.sond,2)} m</span></div>
-      <div class="row tot"><span>Altura mínima del río</span><span>${fmt(need,2)} m</span></div></div>
-      <p class="note">Si el río está por encima de ${fmt(need,2)} m, hay agua para pasar con ${fmt(cfg.ukc,2)} m de margen.${need <= 0 ? " Con esa profundidad pasás casi siempre, salvo una bajante muy fuerte." : ""}</p>`;
+      <div class="row"><span>− profundidad en la carta</span><span>${fmt(sond,2)} m</span></div>
+      <div class="row tot"><span>Altura mínima de ${agua}</span><span>${fmt(need,2)} m</span></div></div>
+      <p class="note">En ${esc(s.name)}, si ${agua} está por encima de ${fmt(need,2)} m según la tabla, hay agua para pasar con ${fmt(cfg.ukc,2)} m de margen.${need <= 0 ? " Con esa profundidad pasás casi siempre, salvo una bajante muy fuerte." : ""}</p>`;
   }
   let status = "";
   if(s.cero != null && B.hasLevel && need != null){
     const low = today.filter(h => h.day && h.lvl != null && h.lvl < need);
     const ok = now && now.lvl != null && now.lvl >= need;
-    status = `<div class="alert ${low.length || !ok ? "no" : "info"}">${now && now.lvl != null ? `Ahora el río está en <b>${fmt(now.lvl,2)} m</b>: ${ok ? "hay agua para salir." : "<b>no alcanza para salir.</b>"} ` : ""}${low.length ? `Hoy queda por debajo durante ${low.length} h de luz.` : "En las horas de luz que quedan no baja de lo que necesitás."}</div>`;
+    status = `<div class="alert ${low.length || !ok ? "no" : "info"}">Según el modelo, ${now && now.lvl != null ? `ahora ${agua} está en <b>${fmt(now.lvl,2)} m</b>: ${ok ? "hay agua para salir." : "<b>no alcanza para salir.</b>"} ` : ""}${low.length ? `Hoy queda por debajo durante ${low.length} h de luz.` : "En las horas de luz que quedan no baja de lo que necesitás."}</div>`;
   } else if(s.cero == null){
-    status = `<div class="alert info">El cálculo con la altura del río está armado para el Náutico Berisso. En otros puertos usá las tablas de marea del lugar.</div>`;
+    status = `<div class="alert info">Acá el modelo de nivel no está llevado al cero de la carta del puerto, así que la página no puede decirte la altura sola. Usá la calculadora de abajo con la tabla de marea de ${esc(T.port)}.</div>`;
   }
-  return `<article class="card">${calc}${status}</article>
-  <article class="card">
+  const saved = load("salimos.shn." + s.id, {tabla:"", aviso:""});
+  const isShn = /SHN/.test(T.who);
+  const calcCard = `<article class="card">
+    <h3>Calculá con la tabla de marea</h3>
+    <p class="note">Buscá en la tabla de mareas de <b>${esc(T.who)}</b> la altura de <b>${esc(T.port)}</b> para la hora en que querés entrar o salir. ${isShn ? "Si el SHN emitió un aviso de crecida o bajante, poné cuántos centímetros dice" : "Si hay un aviso de que el viento sube o baja el agua, poné cuántos centímetros"}: positivo si va a estar por encima de la tabla, negativo si va a estar por debajo. Si no hay aviso, dejalo en 0.</p>
+    <div class="shn-in">
+      <label for="shnTabla">Altura según la tabla (m)<input id="shnTabla" type="number" step="0.01" inputmode="decimal" placeholder="Ej.: 0,85" value="${esc(saved.tabla)}"></label>
+      <label for="shnAviso">Aviso por viento (cm)<input id="shnAviso" type="number" step="1" inputmode="numeric" placeholder="0" value="${esc(saved.aviso)}"></label>
+    </div>
+    <div id="shnRes"></div>
+    <p class="note">La profundidad de la carta y la tabla de marea de un mismo país se miden desde el mismo cero, así que se pueden sumar. No mezcles la tabla de un país con la carta de otro.</p>
+    ${T.url ? `<a class="btn" href="${T.url}" target="_blank" rel="noopener">Ver las tablas de ${esc(T.who.split(" (")[0])} ↗</a>` : ""}
+  </article>`;
+  const fromCard = s.cero != null ? `<article class="card">
     <h3>De dónde sale la altura del río</h3>
     <p class="note">La página usa un modelo de nivel del agua llevado al cero del mareógrafo de La Plata. Es orientativo: en el Río de la Plata el viento mueve mucho el agua y el modelo puede no verlo bien.</p>
-    <p class="note">El dato oficial es del <b>Servicio de Hidrografía Naval (SHN)</b>. Sus tablas de marea dan la marea astronómica de cada puerto. Cuando el viento la corre, el SHN emite un aviso que dice cuánto va a estar el río por encima o por debajo de las tablas en el Puerto de La Plata, que es el que sirve para Berisso. Antes de salir, sumale ese aviso a la tabla.</p>
-    <a class="btn" href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Ver el SHN ↗</a>
+    <p class="note">El dato oficial es del <b>SHN</b>. Sus tablas dan la marea astronómica, la de la Luna y el Sol. Cuando el viento la corre, el SHN emite un aviso que dice cuánto va a estar el río por encima o por debajo de las tablas en el Puerto de La Plata, que es el que sirve para Berisso. La altura real es la tabla más el aviso.</p>
+  </article>` : `<article class="card">
+    <h3>De dónde sale la altura del agua acá</h3>
+    <p class="note">La altura oficial de ${esc(s.name)} sale de las tablas de marea de ${esc(T.who)}. Las tablas dan la marea astronómica; el viento y la presión pueden sumarle o restarle. Los gráficos de la página muestran un modelo de nivel respecto del nivel medio del mar, que sirve para ver cuándo sube y cuándo baja, pero no para calcular el calado.</p>
   </article>`;
+  return `<article class="card">${calc}${status}</article>${calcCard}${fromCard}`;
 }
 
 /* ---------- armado ---------- */
@@ -758,6 +781,7 @@ function render(B){
   $("#rangeTxt").textContent = `Horas navegables con viento entre ${cfg.wMin} y ${cfg.wMax} kt, ráfagas de hasta ${cfg.gMax} kt${B.hasWave ? ` y olas de hasta ${fmt(cfg.waveMax)} m` : ""}. Lo cambiás en Mi barco.`;
   $("#models").innerHTML = modelsBlock(B);
   $("#level").innerHTML = levelBlock(B);
+  shnCalc();
   loadLive(spot(), B);
   ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = false);
 }
@@ -782,7 +806,7 @@ $("#spotSel").addEventListener("change", e => { spotId = e.target.value; save("s
 
 $("#btnCfg").addEventListener("click", () => {
   ["wMin","wMax","gMax","waveMax","draft","ukc"].forEach(k => $("#" + k).value = cfg[k]);
-  $("#sond").value = cfg.sond ?? ""; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
+  $("#sond").value = sondOf(spot()) ?? ""; $("#sondLbl").textContent = `Profundidad del lugar menos hondo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
@@ -790,7 +814,7 @@ $("#dlgCfg").addEventListener("close", () => {
   const num = (id, d) => { const v = parseFloat(String($(id).value).replace(",", ".")); return isNaN(v) ? d : v; };
   cfg.wMin = num("#wMin", DEF.wMin); cfg.wMax = Math.max(cfg.wMin + 1, num("#wMax", DEF.wMax));
   cfg.gMax = num("#gMax", DEF.gMax); cfg.waveMax = num("#waveMax", DEF.waveMax);
-  cfg.draft = num("#draft", DEF.draft); cfg.ukc = num("#ukc", DEF.ukc); cfg.sond = num("#sond", null);
+  cfg.draft = num("#draft", DEF.draft); cfg.ukc = num("#ukc", DEF.ukc); cfg.sondBy = Object.assign({}, cfg.sondBy); { const v = num("#sond", null); if(v == null) delete cfg.sondBy[spot().id]; else cfg.sondBy[spot().id] = v; }
   cfg.model = $("#model").value; cfg.corr = $("#corr").checked; cfg.night = $("#night").checked;
   save("salimos.cfg3", cfg); refresh();
 });
@@ -821,6 +845,26 @@ document.addEventListener("click", e => {
   const box = document.querySelector(`.htbox[data-date="${date}"]`);
   if(box) box.innerHTML = mid === "combo" ? hourTable(hrs, lastB) : modelTable(hrs, lastB, mid);
 });
+function shnCalc(){
+  const res = document.getElementById("shnRes"); if(!res) return;
+  const num = id => { const v = parseFloat(String(document.getElementById(id).value).replace(",", ".")); return isNaN(v) ? null : v; };
+  const tabla = num("shnTabla"), aviso = num("shnAviso") ?? 0;
+  save("salimos.shn." + spot().id, {tabla: document.getElementById("shnTabla").value, aviso: document.getElementById("shnAviso").value});
+  if(tabla == null){ res.innerHTML = `<div class="shn-res wait"><p class="note">Cargá la altura de la tabla para ver el resultado.</p></div>`; return; }
+  const alt = tabla + aviso/100;
+  const lines = `<div class="calc"><div class="row"><span>Tabla de marea</span><span>${fmt(tabla,2)} m</span></div><div class="row"><span>${aviso >= 0 ? "+" : "−"} aviso</span><span>${fmt(Math.abs(aviso)/100,2)} m</span></div><div class="row tot"><span>Altura corregida</span><span>${fmt(alt,2)} m</span></div>${sondOf(spot()) != null ? `<div class="row"><span>+ profundidad en la carta</span><span>${fmt(sondOf(spot()),2)} m</span></div><div class="row tot"><span>Agua total</span><span>${fmt(alt + sondOf(spot()),2)} m</span></div>` : ""}</div>`;
+  if(sondOf(spot()) == null){
+    res.innerHTML = lines + `<div class="shn-res wait"><p class="note">El agua va a estar en <b>${fmt(alt,2)} m</b>. Para saber si alcanza, falta cargar en <b>Mi barco</b> la profundidad de la carta en el lugar menos hondo de la entrada de este puerto.</p></div>`;
+    return;
+  }
+  const water = alt + sondOf(spot()), needW = cfg.draft + cfg.ukc, extra = water - cfg.draft;
+  res.innerHTML = lines + (water >= needW
+    ? `<div class="shn-res ok"><div class="word">Hay agua</div><p style="margin:0">Quedan ${fmt(extra,2)} m entre la quilla y el fondo (pediste al menos ${fmt(cfg.ukc,2)} m).</p></div>`
+    : extra > 0
+      ? `<div class="shn-res no"><div class="word">Muy justo</div><p style="margin:0">Pasa, pero con solo ${fmt(extra,2)} m bajo la quilla, menos del margen de ${fmt(cfg.ukc,2)} m que pusiste.</p></div>`
+      : `<div class="shn-res no"><div class="word">No hay agua</div><p style="margin:0">Faltan ${fmt(-extra,2)} m: el barco tocaría fondo.</p></div>`);
+}
+document.addEventListener("input", e => { if(e.target.id === "shnTabla" || e.target.id === "shnAviso") shnCalc(); });
 let last = Date.now();
 document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - last > 15*60*1000){ last = Date.now(); refresh(); } });
 fillSpots(); refresh();
