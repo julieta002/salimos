@@ -53,7 +53,9 @@ button{cursor:pointer}
 .ibtn[aria-pressed="true"]{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
 .bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.span2{grid-column:span 2}.tall{grid-row:span 2}
+.span2{grid-column:span 2}
+.nowhead{display:grid;gap:2px;padding:2px 4px 2px}
+.nowtime{font:700 26px/1 var(--f-num);font-variant-numeric:tabular-nums}.tall{grid-row:span 2}
 .lbl{font:700 12px var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--text2)}
 .hrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .num{font:700 40px/.95 var(--f-num);font-variant-numeric:tabular-nums}
@@ -768,7 +770,9 @@ function renderNow(B){
     ${STRIP_LEGEND}
     <p class="note">Pronóstico de ${srcName()} para las ${hh(h.h)} h${h.lo != null ? `; los cuatro modelos dan entre ${fmt(h.lo,0)} y ${fmt(h.hi,0)} kt` : ""}${B.corr ? ", corregidos por su sesgo" : ""}. No es una medición.</p>
   </section>`;
-  $("#nowGrid").innerHTML = wind + wave + cur + live + win;
+  const L = dateLbl(h.date), corrTxt = B.corr ? ", corregido" : "";
+  const head = `<div class="span2 nowhead"><div><span class="nowtime">${hh(h.h)}:00</span><span class="sub"> · ${L.dow} ${L.txt}</span></div><div class="note">Pronóstico para esta hora · ${cfg.model === "combo" ? "combinado de 4 modelos" : modelOf(cfg.model).name}${corrTxt}. No es una medición: la medición real está más abajo.</div></div>`;
+  $("#nowGrid").innerHTML = head + wind + wave + cur + live + win;
 }
 
 /* ---------- hoy ---------- */
