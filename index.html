@@ -67,6 +67,19 @@ button{cursor:pointer}
 .span2{grid-column:span 2}
 .nowhead{display:grid;gap:2px;padding:2px 4px 2px}
 .nowtime{font:700 26px/1 var(--f-num);font-variant-numeric:tabular-nums}.tall{grid-row:span 2}
+.from{font:600 15px/1.3 var(--f-body);text-align:center}
+.from b{font-weight:800}
+a.chip{text-decoration:none}
+.card .sub a{color:var(--wave)}
+.bflist{display:grid}
+.bf{padding:9px 0;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.bf:last-child{border-bottom:0}
+.bfh{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.bfh b{font:800 16px var(--f-num);min-width:30px}
+.bfk{margin-left:auto;font:600 13px var(--f-mono);color:var(--text2)}
+.bfn{font-size:14px;font-weight:600}
+.sq{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--flojo)}
+.sq.go{background:var(--ok)}.sq.care{background:var(--warn)}.sq.stop{background:var(--bad)}
 .lbl{font:700 14px var(--f-body);color:var(--text)}
 .hrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .num{font:700 44px/.95 var(--f-num);font-variant-numeric:tabular-nums}
@@ -271,10 +284,15 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
         <p><b>Combinado:</b> junta los cuatro modelos, con más peso el que mejor le pega en Pilote Norden y, si está activado en Mi barco, cada uno corregido por su sesgo. La comparación contra Pilote Norden es una medición de OlvidataSoft (septiembre y octubre de 2026).</p>
         <p><b>Olas, período y corrientes:</b> modelos oceánicos de Open-Meteo Marine. <b>Nivel del agua:</b> modelo orientativo; el dato oficial es el del SHN. <b>Mediciones reales:</b> aeropuertos (METAR) y estaciones de la CARP.</p>
       </details>
+      <details class="card span2" id="beaufort"><summary>Escala Beaufort: cómo leer la fuerza del viento</summary>
+        <p class="note">La escala que usan los navegantes para el viento, de 0 a 12. En la página aparece como <b>F</b> y un número, por ejemplo F4. El cuadradito de color es una guía para un velero como Tupá: verde, buen viento; amarillo, con cuidado; rojo, a puerto; gris, a motor.</p>
+        <div class="bflist"><div class="bf"><div class="bfh"><i class="sq n"></i><b>F0</b> Calma<span class="bfk">menos de 1 kt · menos de 1 km/h</span></div><div class="sub">Como un espejo.</div><div class="bfn">Sin viento: a motor.</div></div><div class="bf"><div class="bfh"><i class="sq n"></i><b>F1</b> Ventolina<span class="bfk">1 a 3 kt · 1 a 5 km/h</span></div><div class="sub">Rizos sin espuma.</div><div class="bfn">A motor; la vela apenas se llena.</div></div><div class="bf"><div class="bfh"><i class="sq go"></i><b>F2</b> Flojito<span class="bfk">4 a 6 kt · 6 a 11 km/h</span></div><div class="sub">Olitas cortas que no rompen.</div><div class="bfn">Navegación tranquila, lenta.</div></div><div class="bf"><div class="bfh"><i class="sq go"></i><b>F3</b> Flojo<span class="bfk">7 a 10 kt · 12 a 19 km/h</span></div><div class="sub">Olitas que empiezan a romper; algún borreguito.</div><div class="bfn">Muy buen día para navegar.</div></div><div class="bf"><div class="bfh"><i class="sq go"></i><b>F4</b> Bonancible<span class="bfk">11 a 16 kt · 20 a 28 km/h</span></div><div class="sub">Olas chicas, borreguitos frecuentes.</div><div class="bfn">Ideal: el barco anda bien.</div></div><div class="bf"><div class="bfh"><i class="sq care"></i><b>F5</b> Fresquito<span class="bfk">17 a 21 kt · 29 a 38 km/h</span></div><div class="sub">Olas moderadas, muchos borreguitos, algo de rocío.</div><div class="bfn">Bueno con experiencia; tené los rizos listos.</div></div><div class="bf"><div class="bfh"><i class="sq care"></i><b>F6</b> Fresco<span class="bfk">22 a 27 kt · 39 a 49 km/h</span></div><div class="sub">Olas más grandes, mucha espuma blanca.</div><div class="bfn">Fuerte: rizar. Solo con tripulación con experiencia.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F7</b> Frescachón<span class="bfk">28 a 33 kt · 50 a 61 km/h</span></div><div class="sub">Mar gruesa; la espuma vuela en franjas.</div><div class="bfn">Quedarse en puerto.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F8</b> Duro<span class="bfk">34 a 40 kt · 62 a 74 km/h</span></div><div class="sub">Olas altas; las crestas se rompen en rocío.</div><div class="bfn">Quedarse en puerto.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F9</b> Muy duro<span class="bfk">41 a 47 kt · 75 a 88 km/h</span></div><div class="sub">Olas muy altas; el rocío quita visibilidad.</div><div class="bfn">Quedarse en puerto.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F10</b> Temporal<span class="bfk">48 a 55 kt · 89 a 102 km/h</span></div><div class="sub">Mar blanca de espuma.</div><div class="bfn">Quedarse en puerto.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F11</b> Borrasca<span class="bfk">56 a 63 kt · 103 a 117 km/h</span></div><div class="sub">Olas excepcionales.</div><div class="bfn">Quedarse en puerto.</div></div><div class="bf"><div class="bfh"><i class="sq stop"></i><b>F12</b> Huracán<span class="bfk">64 kt o más · 118 km/h o más</span></div><div class="sub">El aire se llena de espuma y rocío.</div><div class="bfn">Quedarse en puerto.</div></div></div>
+        <p class="note">En el Río de la Plata, como es poco profundo, la ola se arma más corta y dura que en el mar con el mismo viento: con F5 o F6 ya se navega incómodo. Tus límites de viento los ponés en Mi barco.</p>
+      </details>
       <details class="card span2 gloss"><summary>Qué significa cada cosa</summary>
         <dl>
           <div><dt>Nudos (kt)</dt><dd>Velocidad en el agua: 1 nudo es 1,85 km/h. Con 10 kt se navega cómodo; arriba de 20 kt es viento fuerte.</dd></div>
-          <div><dt>Escala Beaufort (F)</dt><dd>La escala del viento de los navegantes, de 0 (calma) a 12 (huracán). F3–F4 es buen viento para navegar; F6 ya es fresco; de F7 en adelante, a puerto.</dd></div>
+          <div><dt>Escala Beaufort (F)</dt><dd>La escala del viento de los navegantes, de 0 (calma) a 12 (huracán). Está la tabla completa justo arriba.</dd></div>
           <div><dt>Ráfaga</dt><dd>Golpe de viento más fuerte que dura segundos. Es lo que escora el barco de golpe.</dd></div>
           <div><dt>Barba de viento</dt><dd>Cómo se dibuja el viento en las cartas meteorológicas. El palito apunta hacia donde viene el viento ("del E" viene del este). Cada raya larga suma 10 kt, la corta 5 kt y el triángulo 50 kt. Un círculo es calma.</dd></div>
           <div><dt>Sudestada y pampero</dt><dd>Sudestada: viento fuerte del SE que sube el río y arma ola corta. Pampero: viento del SO que entra de golpe y baja el río.</dd></div>
@@ -431,6 +449,8 @@ const corrOn = (s, S) => !!(cfg.corr2 && S && S.ok);
 const lvlNeeded = s => cfg.minBy[s.id] ?? null;
 const tideOf = s => s.tide || Object.assign({}, TIDE_SRC[s.country || guessCountry(s.lat, s.lon)] || TIDE_SRC.otro, {port:s.name, water:"agua"});
 const CARD = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
+const CARDNAME = ["Norte","Nor-noreste","Noreste","Este-noreste","Este","Este-sudeste","Sudeste","Sur-sudeste","Sur","Sur-sudoeste","Sudoeste","Oeste-sudoeste","Oeste","Oeste-noroeste","Noroeste","Nor-noroeste"];
+const cardName = d => CARDNAME[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
 const card = d => CARD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
 const fmt = (n, d=1) => n == null || isNaN(n) ? "—" : n.toLocaleString("es-AR", {minimumFractionDigits:d, maximumFractionDigits:d});
 const hh = h => String(h).padStart(2, "0");
@@ -698,7 +718,7 @@ function chartSVG(hours, B, isToday){
     s += `<text x="${cx(i)}" y="${y(h.wg ?? h.ws) - 6}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(h.ws,0)}</text>`;
     s += `<text x="${cx(i)}" y="${hrsY}" text-anchor="middle"${h.t === B.nowStr && isToday ? ' style="fill:var(--wind)" font-weight="700"' : ""}>${hh(h.h)}</text>`;
     s += `<g transform="translate(${cx(i)} ${dirY + 18})" style="color:var(--text)">${barb(h.ws, h.wd, 13)}</g>`;
-    if(h.h % 2 === 0) s += `<text x="${cx(i)}" y="${cardY}" text-anchor="middle">${card(h.wd)}</text>`;
+    s += `<text x="${cx(i)}" y="${cardY}" text-anchor="middle"${isToday && h.t === B.nowStr ? ' style="fill:var(--wind)" font-weight="700"' : ""}>${card(h.wd)}</text>`;
     if(isToday && h.t === B.nowStr) s += `<rect x="${padL + i*bw + 1}" y="${top-4}" width="${bw-2}" height="${hb+26}" fill="none" stroke="var(--wind)" stroke-width="2" rx="4"/><text x="${cx(i)}" y="${top-8}" text-anchor="middle" style="fill:var(--wind)" font-weight="700">ahora</text>`;
   });
   s += `<text x="${x0-8}" y="${hrsY}" text-anchor="end" font-weight="700">hora</text><text x="${x0-8}" y="${cardY}" text-anchor="end" font-weight="700">viene</text>`;
@@ -764,15 +784,16 @@ function renderNow(B){
   const s = spot(), h = B.hours.find(x => x.t === B.nowStr) || B.hours[0];
   const b = bft(h.ws), bc = h.c.k === "no" ? "c-bad" : h.c.k === "limite" ? "c-warn" : h.c.k === "ok" ? "c-ok" : "c-n";
   const wind = `<section class="card tall" aria-label="Viento">
-    <div class="hrow"><span class="lbl">Viento</span><span class="chip ${bc}">F${b.f}</span></div>
+    <div class="hrow"><span class="lbl">Viento</span><a class="chip ${bc}" href="#beaufort" data-bft="1" aria-label="Fuerza ${b.f} en la escala Beaufort: ver la tabla">F${b.f}</a></div>
     <svg class="compass" width="132" height="120" viewBox="0 0 140 128" role="img" aria-label="Barba de viento: ${fmt(h.ws,0)} nudos del ${card(h.wd)}">
       <circle cx="70" cy="64" r="56" fill="none" stroke="var(--line)" stroke-width="1.5"/>
       ${[0,45,90,135,180,225,270,315].map(a => `<line x1="70" y1="${a % 90 ? 11 : 6}" x2="70" y2="14" stroke="var(--text2)" stroke-width="${a % 90 ? 1 : 2}" transform="rotate(${a} 70 64)"/>`).join("")}
       <text x="70" y="27" text-anchor="middle" fill="var(--text2)" font-family="Overpass Mono, monospace" font-size="11">N</text>
       <g transform="translate(70 64)" style="color:var(--wind)">${barb(h.ws, h.wd, 46)}</g>
     </svg>
+    <div class="from">Viene del <b>${cardName(h.wd)}</b><br><span class="sub">${card(h.wd)} · ${Math.round(h.wd)}°</span></div>
     <div><span class="num xl">${fmt(h.ws,0)}</span><span class="unit">kt</span></div>
-    <div class="sub">Ráfagas <b>${fmt(h.wg,0)} kt</b><br>Del ${card(h.wd)} · ${Math.round(h.wd)}°<br>${b.name}</div>
+    <div class="sub">Ráfagas <b>${fmt(h.wg,0)} kt</b><br>Fuerza ${b.f} · ${b.name} · <a href="#beaufort" data-bft="1">escala</a></div>
     <div class="note" style="border-top:1px solid var(--line);padding-top:8px">${(() => {
       const src = cfg.model === "combo" ? "Combinado de 4 modelos" : modelOf(cfg.model).name + " solo";
       const rawPer = cfg.model === "combo" ? h.per : h.per.filter(p => p.id === cfg.model);
@@ -1066,6 +1087,7 @@ document.addEventListener("change", e => { if(isTide(e.target)){ tideRead(); con
 document.addEventListener("click", e => { if(e.target.closest("#tClear")){ save("salimos.shn2." + spot().id, null); const y = scrollY; rebuild(); scrollTo(0, y); } });
 
 $("#btnCfgTop").addEventListener("click", () => $("#btnCfg").click());
+document.addEventListener("click", e => { if(e.target.closest("[data-bft]")){ const d = document.getElementById("beaufort"); if(d) d.open = true; } });
 $("#btnCfg").addEventListener("click", () => {
   ["wMin","wMax","gMax"].forEach(k => $("#" + k).value = cfg[k]);
   $("#waveMax").value = String(cfg.waveMax).replace(".", ",");
