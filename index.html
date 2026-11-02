@@ -302,14 +302,16 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
     <label class="check" for="corr2"><input id="corr2" type="checkbox"> Corregir el viento con el sesgo medido en Pilote Norden (Río de la Plata)</label>
     <label class="check" for="night"><input id="night" type="checkbox"> Contar las horas de noche como navegables</label>
   </fieldset>
-  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" value="ok" type="submit">Guardar</button></div>
+  <div class="drow" style="justify-content:space-between"><button class="btn" type="button" id="delSpot" hidden>Borrar este lugar</button><span style="display:flex;gap:8px;margin-left:auto"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" value="ok" type="submit">Guardar</button></span></div>
 </form></dialog>
 
 <dialog id="dlgAdd"><form class="dlg" method="dialog">
   <div><div class="lbl">Nuevo lugar</div><div class="h2" style="margin:2px 0 0">Agregar puerto o fondeadero</div></div>
   <label for="addName">Nombre<input id="addName" type="text" placeholder="Ej.: Puerto Deseado" autocomplete="off"></label>
-  <label for="addCoords">Coordenadas (latitud, longitud)<input id="addCoords" type="text" placeholder="-47.75, -65.90" autocomplete="off"></label>
-  <p class="hint">Copialas de Google Maps manteniendo apretado sobre el agua, justo afuera del puerto.</p>
+  <label for="addCoords">¿Dónde vas a navegar? Coordenadas en el río<input id="addCoords" type="text" placeholder="-34.76, -57.80" autocomplete="off"></label>
+  <p class="hint">Un punto en el agua abierta, donde vas a andar. De acá salen el viento y las olas. En Google Maps, mantené apretado sobre el agua y copiá los números.</p>
+  <label for="addPort">Coordenadas del puerto o club (opcional)<input id="addPort" type="text" placeholder="-34.86, -57.88" autocomplete="off"></label>
+  <p class="hint">Solo para mostrar a cuántos km queda. La marea se carga aparte, con la tabla del lugar.</p>
   <label for="addCountry">Tabla de mareas de
     <select class="f" id="addCountry">
       <option value="ar">Argentina · SHN</option>
@@ -343,8 +345,8 @@ function guessCountry(lat, lon){
   return "ar";
 }
 const PRESETS = [
-  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true, tide:{...SHN, port:"Puerto La Plata", water:"río"}},
-  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}}
+  {id:"berisso", name:"Náutico Berisso", lat:-34.76, lon:-57.80, port:{lat:-34.8624, lon:-57.8830}, cero:0.91, rdp:true, tide:{...SHN, port:"Puerto La Plata", water:"río"}},
+  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.56, lon:-57.92, port:{lat:-34.475, lon:-57.843}, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}}
 ];
 const MODELS = [
   {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)", windy:"gfs"},
@@ -979,7 +981,7 @@ function render(B){
 function rebuild(){ if(lastData) render(build(lastData, spot())); }
 async function refresh(){
   const s = spot();
-  $("#coords").textContent = `${fmt(Math.abs(s.lat),2)}°${s.lat < 0 ? "S" : "N"} ${fmt(Math.abs(s.lon),2)}°${s.lon < 0 ? "O" : "E"} · pronóstico`;
+  $("#coords").textContent = `Pronóstico en el río · ${fmt(Math.abs(s.lat),2)}°${s.lat < 0 ? "S" : "N"} ${fmt(Math.abs(s.lon),2)}°${s.lon < 0 ? "O" : "E"}${s.port ? ` · ${fmt(distKm(s, s.port),0)} km del puerto` : ""}`;
   $("#verdictBox").innerHTML = `<div class="status">Cargando pronóstico para ${esc(s.name)}…</div>`;
   $("#nowGrid").innerHTML = "";
   ["#hoy","#modelos","#marea","#semana"].forEach(id => $(id).hidden = true);
@@ -1018,6 +1020,7 @@ $("#btnCfg").addEventListener("click", () => {
   ["wMin","wMax","gMax"].forEach(k => $("#" + k).value = cfg[k]);
   $("#waveMax").value = String(cfg.waveMax).replace(".", ",");
   const s = spot(), mn = lvlNeeded(s); $("#minAlt").value = mn == null ? "" : String(mn).replace(".", ",");
+  $("#delSpot").hidden = !custom.some(c => c.id === s.id); $("#delSpot").textContent = `Borrar "${s.name}"`;
   $("#minLbl").textContent = `Altura mínima del SHN para salir de ${s.name} (m)`;
   $("#night").checked = cfg.night; $("#corr2").checked = !!cfg.corr2;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
@@ -1032,7 +1035,11 @@ $("#dlgCfg").addEventListener("close", () => {
   save("salimos.cfg3", cfg); rebuild();
 });
 
-$("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addCountry").value = "ar"; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
+$("#delSpot").addEventListener("click", () => {
+  const id = spot().id; custom = custom.filter(c => c.id !== id); save("salimos.spots", custom);
+  spotId = "berisso"; save("salimos.spot", spotId); $("#dlgCfg").close("cancel"); fillSpots(); refresh();
+});
+$("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addPort").value = ""; $("#addCountry").value = "ar"; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
 $("#addCoords").addEventListener("input", () => { const m = $("#addCoords").value.trim().match(/^(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)$/); if(m) $("#addCountry").value = guessCountry(parseFloat(m[1].replace(",", ".")), parseFloat(m[2].replace(",", "."))); });
 function showAddErr(t){ $("#addErr").textContent = t; $("#addErr").hidden = false; }
 $("#btnGeo").addEventListener("click", () => {
@@ -1048,7 +1055,10 @@ $("#addSave").addEventListener("click", e => {
   if(!m){ e.preventDefault(); showAddErr("Escribí las coordenadas así: -47.75, -65.90"); return; }
   const lat = parseFloat(m[1].replace(",", ".")), lon = parseFloat(m[2].replace(",", "."));
   if(Math.abs(lat) > 90 || Math.abs(lon) > 180){ e.preventDefault(); showAddErr("Esas coordenadas no existen."); return; }
+  const pm = $("#addPort").value.trim().match(/^(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)$/);
+  if($("#addPort").value.trim() && !pm){ e.preventDefault(); showAddErr("Las coordenadas del puerto van así: -34.86, -57.88 (o dejalas vacías)."); return; }
   const sp = {id:"c" + Date.now(), name, lat, lon, cero:null, country:$("#addCountry").value};
+  if(pm) sp.port = {lat:parseFloat(pm[1].replace(",", ".")), lon:parseFloat(pm[2].replace(",", "."))};
   custom.push(sp); save("salimos.spots", custom); spotId = sp.id; save("salimos.spot", spotId); fillSpots(); refresh();
 });
 
