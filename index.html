@@ -4,426 +4,385 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>¿Salimos hoy?</title>
-<meta name="description" content="Pronóstico para navegar a vela: viento, ráfagas, olas y nivel del río hora por hora, combinando cuatro modelos, con cálculo de calado.">
-<meta name="theme-color" content="#0B2545">
-<link rel="icon" href="data:image/png;base64,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">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="description" content="Pronóstico para navegar a vela: viento, ráfagas, olas, corrientes y marea, combinando GFS, ECMWF, ICON y GDPS, con cálculo de calado.">
+<meta name="theme-color" content="#04070C">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAR5UlEQVR42u2deXSV5Z3Hf8/zvNtNckP2hMiSDdlCQCBsLmAFRUBbFxARPa6N1WIVHZU66hFnsXOsOtqezpkZz8yZodVaZ9qpILh0FHT0TNmUTXpMxGXaQkJy93vf5Vnmj5tECGvA3Pve5Pc9/Enu8r6f+31+z+/7e9+XaGYBoFDHE8VDgEI4UAgHCuFAIRwohAOFcKAQDhTCgUI4UAgHCoVwoBAOFMKBQjhQCAcK4UAhHCiEA4VwoBAOFArhQCEcKIQDhXCgEA4UwoFCOFAIBwrhQCEcQ0GEECQA4Ti+hBBIAMJxHCmlgsGgUgohQDiOWk2E59TV1S1fsUK4KcYYcnBcaUPwOzPGPOm13Pk9AACQWHmgc3xtG65jl5RV3XLrzZFoBAlAOI6yDcntW+9oKQkG7JSNBCAcR9lGeeU5LXe2KKWw2kA4+trG7S131o4aLgkhFKsNhONo2/huy3ejCRd7wwjHcWyjprrCth00DYTjOLYRcwRWGwjHiWzDxd4GwoG2gXCgbSAcaBsIB9oGwpETtjG0SaJoGydBQzoOgEI40Db6/rESXsG4CUQzYKgOBFG0jeOzQZngduXVy8rmL+RugjAN4UDb6P17AADlefWPrdULixR3h2D9QdE2TiKejBdMbBhx693cTZKhtwemaBsnex2me2Fn5B13Bc9tFMkYoQzhQNs4YicrJMvPr//hWmAUQCIcaBtHgcYj4dKFi6uuut5LxYimIRxoG0fvXOKxmtVrzNIq6dpDpzKlaBun86LStgM1taNX3S88m1CKcKBtHIGHpnmhrhG3tJTMnseT0SGyc6FoG3D6108C1D34KDUtJcRQWFwo2sZpb2uZiEWHzTq/evnN3IkPBfOgaBv94yMeH33PA1bVCOmkYLAXHxRto3+VqWObVcPr16yV3CPoHGgbfSvTSLjy6mWlF1/KU7HBvbhQtI0zqU0Fr3vocWblKcEHcWVK0Tb63xOjIh4PNk0Z1fID7iQGceBC0TbOrDLlsejIu+4Njp0k7MRgbYtRtI0ze1fFOcvPq3voMSU5OgfaxjHmEYmUXrqo8oqlXio6KEfFKNrG2by7dOz6R9aaZZXScwZfZUrRNs7i4FGZSlmja0bf/YDwUoOvMqVoG2fZ9uCRcPXKW4ZNniEGXduDom2cdc9DENMY88RTxDAGWSBH0Ta+gcAlGh02c87gC+Qo2gYGcoMKDt9dOD9IAzmKtjEAgdwgGRWjaBvffCAXKFBCAEE40Db6BHKTzxt56/e4Ex8EPVOKtvGNB3IjWlYV1I8TdjLXAzmKtvENB3Kua5SW1f/lXynhoXOgbRxTmYZDpQsur1xyrZeK5vQVchRtY0D8w3Nr7l+jF5YoL4fv3UDRNgakMk0k8sdNrF29hrvJ3A3kKNrGgAVyoeobbimaMlOkcrWnTtE2Bi6Qo5ZV++CjiqgcvasYRdsYyFGxcMm8S0asvCNHR8Uo2sbABnLJxOgf/EVg+Cjp2TkXyFG0jYEN5GzbrD6n5r6HhWcTgnCgbRxz74aqpSvKLrqUJyO5VZlStI0M1KZASd0ja1kgP7cCOYq2MfBtDyZisWDTlJwL5CjaBgZyuQfHoHpOSm4GchRtAwO5HINjcD5eKR3IrV5jDCvNiUCOom1kNpCLF0xsHHl7btxMnaJtZHZx0b1Q14iW7xdNmSmSfr9CjqJtZD6QY3n5tQ8+Coz6PJCjaBtZ2NaGQyUXz6+66nqfV6YUbSM7gVwiXnP/msDwkdK1gRKEA22jz83U62ruWyM8mxCGcKBtHN326OqsWrqiZPY83wZyFG0je6WpAkbrHnyMBfKU9GMgR9E2snvvhqI5F4y89S5u+zGQo2gb2eXDi4RHtKzKrz3Xh4EcRdvIfiBXVl573xolfNdQp2gbfhgVq7jmusolS71kxFdtD4q24Q//cHwYyFG0DQzk/AvHULcNHwdyFG3Dl4GcRDjQNk4UyPni6cYUbcNngVzCP083pmgbPgvkUv55ujFF2/Bh28MnTzemaBs+DOR6nm4cyG4gR9E2/Fh5xKLDZl1Qvfym7AZyFG3Dr1fIRWofeCS/9twsPkOOom34NpDTS8tqV6/J4mM6aLZs47Y7WmqqK1IpJ73IZkunNZKTjX+EMS/UWfHta0vnLvCSkawsLlrmbcNxUpXVo+5edXeKg2VZWVlTCCGEkFOaFqGU6DrRdKJnY+EXDADGrP1R9KqdIhYjTMvwpQyZ/s6UUsWdFStvLLC0P/7poJalPiDnnHhWMpmEk20GiEilvM5OL9yVnaqQgNfZYVafU33djZ//7Me6PkwJkdl9tVmQ+b1aUVGxyvb1PIQQ27ZtO3ViPhQ1LWpZIFV29pPq68/Ko5FsNF2yAAdw7osH9VJK6Uk3AkpKkBLIEecp4+aRfuusRC3ZcXVd1/3UcDpZzQE+2Uxlw2g1H54S8NsFBENVFFAo/8GBXVGE4wSVYPZqvBw8SUOnfc6Y5qYSsnstR/84hbsKKd1UkmWj0UIzPkirO8nwtJmzPnh/85gxY7ibxGzlRCEDd5Jjx4/f+PqGuoYxTjKc+YYhzWxTgdjx0I03375x4+szm6f9/U9+QhnzPJciH32OVfqwaNozzz172fx572zZPP+yRXYiTCnN5A3UGdWMzPwOPM8Vrv3U08/+7VN/DUQLx+xJ4+rKqkZs2rCec24YppQSsQAATdMcx6agnv/pP1x3zZXtoWRhYeGNN60MRxMfvr8ZCNE0PTO9gEzAoWm6k4yUlJS+/Op/3HbTinDckVJpGkvY3tw5zRfM+9abmzaFuw5pZoAQooZyX4FSQqmTjFQNP+fXv31t2dVXdkZtXdc4F64nrrny8upRNe/87u1UPG5YgQz8lgYcDk3X7URo2ow5v33ttfNnNR+OpBhj6SSWUhpPeWPH1l679Lo/Hzy0e+c2wbluBejQQ4QxRhlzk3Hh2UuX3/DSy79saprQFbE1jaVjICAklnQvmj39wnmXbNmypePg/xlW3kDzQQc02VJKpYuMN97cVN/QcDiS6lNVaRqLRO3KquHrXlq3YdObM2bNchJhJxklhDJNG/y36CCEaRoh1ElGnUR4xqxZGza9ue6ldZVVwyPRbjJ6ty26rrWHU7NmN7/7/vvpEkRJOaBzQAMVvBFClJKWaTz+xJPfX3W35wnH9U60MZFSKSWLC61o3P71f776i5+/9Lu33gTFgVmmZYFSUsrB5CWEEEopEOLYNggbiHbJgktX3HD9VVdfW1hghaI2IZSe4C5yXIiAaTBG1zz88Iv/9I+24xJCB+jgDCAcUophhQVbd+4acU5lKJw0TePk30EIwRgrytdtAR++/z+/eOnn619bf+hPXwEA0QKGYcARM2O5CERaAOC6ruIpAKisHrnkiiUrrr9h9gXnWwzCCS99EE41LeWWFOV99cdDzec1RaJxSlmOwQEAlDI3FZs8dfrGTRuHFRUnkvapd+pKcSEpJcGgaQB89uWf33pr04b1G97b8l64qz29EDHDTL+O/0E5EgjOuXAdAA4ARSUVF1504eIlixcsWFg3argLEIs5UiqN0VMuE5zz/DwrEg4tWnj5Rzu2GYGglCIn5zkY05xkeGrz7A2vbygtKw6FU/rpzdtJKaVUlmUVmMAB2tq+2Ll92xubNm3btq21tc1JxboLJs00dD3dXe7fZOhAopCmQUrpeh5wB0ACgBkINjTUT58+/bKFC8+bNr2+frQGEHfAtm1KyWk2yD2PFxcFOg+HFi9avGPrh2ZekRA8h4d9NE2zE+FJU6b984svzpg6uT2cPP1hDqWUEIIQagXMgA4EIBK321pbd2zf9sEHH+zb90lba1vX4Y70zxEAAAyqa5qm9Z6hNChSqnSUc/bc9NTIJF0T9L6LUopzLj0O4PZ+9ZKy8vqG+gkTxs+ZM2fqtOn1DQ3DCiwFkPLATjlKyd6N2+mR4VUU5f1+x8e333bb7o+2W/lFAz0zlYlJsDQfRSUV/7Zu3RWXL+iKu1Iqxmi/5j/S2zamaZapmQwAIOmog4cOtn766e5dHx84cOAP+z85cODzjvb2eDTUN9UjRvqxnbquE9Kd+fUCdMq37kGKKCU9z0s7Gyi3z5EsKCwur6iora0ZO258bW3tpKbJDWPGVFVW5ZkEABwBtsMF5939jP7sMoSQlJKSAuO1jW/dtHJluKs9A2RkbkyQMc11bcW9Hz72+KOPPwoAsViqX7+b3nMle84WpdQwDNMAHUABeAChUKz9UMdXXx7oCkX379sTjsT27P5Y07TW1rZYLMqY1tHRAcIGSPOh+pN/EQAJzCovLxeCB4OFDQ31nPPGSZOLhgXHTWgsKS4cOaq2orK8uDioAxAAD8BxwXXdNNaEEEpIf3eeae8MBgMA8OQTT/7N2ieIphuGNaCrSRZmSCmlSinPjs2/bPFTf/ejqU0TYynhuO7Z5EnqiF0upVTTNE1nhgYUgAEoAFcBJdBxOOo4NmOsrbUtFosSQhkjXV3hvXt2EcpOOkMqJjY2lZQUCaGUksFgYX1DvRDCNK3yskKpwCBAAASABHA5cE9wzr+moZ8OcWztaRpGMMB27Nr78IMPvf3GBt0KEkIyljNkesA4vcSYgYJ777vv3tWrq0qLQgmPc64xdvb9nCML0l5ilAJd1yilCsA0u28zrqAboFNbOoDsGSwQAI6jCICU0vM4IdDLQZ+9yVl+DS6EpmnF+frBzvBzzzzz3LPPOql4ZpaSLE+fM8aEENyJjxnX+MAD91+7bHlx0AonOfe8M1lo+jOy2mcvczr16ZGf58hzP0CfUwih6XpRnhaK2a++8vLTT//40/17NLMgfdCGxKUJPRaSAPAmNp23atU9y65bXhS0oinhuu4prxgYfJJSSikNwygMsHDMfuWXL7/wwvN7d+0E0K38/GxdyZE1OHqLdieZAOATJ5236p57vv2d71SUFTkCEgkblKIDYyTgpztxSCGAkPx8y2TQfjj8X7/5zQvPP793904AzczL792mDTk4jkYkDiBGjqq98eZbli5b2jhxHAVIemCnbKUUG1yU9PRviBWw8nSQAHv27v/VK7/693/9l6++PADAzLyC7GLhFziOQsS2QTqBgmHz589ftGTJxfO+1VA/igIkXLBtRylJKT2DDaFPiJBKSSkJoZZl5hsgAVrbvnzn3f9+ff36t99+OxWPADVNy/IDFv6C4+sImzHP84SbAICikopFSxbPveiiufMurqsfrQM4ClIpzjlXSqV58rOjpOtfKSUhRNO0QEAzCXgAn7V9sfnddzZv2fL6+g3pzIgZ+bquCyF8FRX5C46jEm0gruuk08t0UnXh3LnNzTOaJk8pLjAJgKPAcZTnuVJKQoCQ7LPSs5WWSgGlVNcN0yQmAQUQiju7Pv5o69bfv7d5c2+OSLSAYZgAPp1J8CMcJ6GEMHP8hAnNzdMmTmxsnjm7vqGhvLzEoiABPAWuqzzPS0+H9Gk8fLPQ9LZSevfG6Y6XruuGQXQCFMCW0NHR1dbauvV/P9y7d8/Wrds/2bdPCcf/TOQGHH0oIYQIITw71Z20MauioqKxcdL06dNqamsaGxtHjR5dXFIesEi6oS4ABIDrKABwXbd303jcHsbpXNbbu8FOD5cYJmEArKdZnrJVqKvjyy++2LNnz+cHPt+2bfuePbvb29tB2N0Dk1aAMaZyZ3YpN+A4pnSlhIAQwnNdkE7PNwmUlhSPrq0rKy2Z1NRUXlE5ccL4QH5BQ329AlJZWZo+s8YJup/HvTtGny6q240XHDrUSUC1trWlEvG9+z7paD+0e9euw51dXxz4rLMrlDY5AABq6obBGFMqPc4mIcduipprcBzXUZRSQkjOPRBuen6iW8wqKyullI0dN44xxhibOm2arukKVG9uwoUkxxCiQGmM9uYvBIjHvR3btwshhBB/2L9fSnH4cGePK/QM5DJD03TGuj9Srk835jYcJxm3UQBKqu6QXaleg+nn9dwnOLXUBELSAwCEEuKDUSOE48zHc3rLhSPrjFOeyz7bn97/nF4gBv31ExrAULhZNGQ+tQK8BQMK4UAhHCgUwoFCOFAIBwrhQCEcKIQDhXCgEA4UwoFCOFAohAOFcKAQDhTCgUI4UAgHyrf6f5eTb2Jun9u8AAAAAElFTkSuQmCC">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Salimos">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Banderas de señales: azul marino, rojo y blanco. Una columna; cada sección responde una pregunta de quien sale a navegar. */
+/* Instrumento de a bordo: casi negro azulado, tarjetas Bento, un color por fenómeno. Modo guardia: todo rojo. */
 :root{
-  --bg:#F4F6F9; --paper:#FFFFFF; --ink:#0B2545; --muted:#55657A; --line:#D7DEE8;
-  --blue:#13315C; --red:#C8102E; --red-ink:#FFFFFF; --head:#0B2545; --head-ink:#FFFFFF;
-  --ok:#17824F; --ok-bg:#E1F2E9; --lim:#B06A00; --lim-bg:#FDF0D8; --no:#C8102E; --no-bg:#FBE3E6;
-  --flojo:#8A9BB0; --night:rgba(11,37,69,.06); --level:#1F6FD1;
-  --m1:#C8102E; --m2:#1F6FD1; --m3:#17824F; --m4:#B06A00;
-  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#04070C; --water:#081321; --card:#0C1520; --card2:#111D2C; --line:#1D2C40;
+  --text:#EEF4FA; --text2:#9AADC2; --wind:#3FD8E8; --wave:#5C9DFF; --current:#B794FF;
+  --ok:#2FD27C; --okbg:#0B2A1C; --warn:#FFC23D; --warnbg:#2A2108; --bad:#FF5468; --badbg:#2E0F17;
+  --sel:#EEF4FA; --seltext:#04070C; --flojo:#6E819A; --night:rgba(255,255,255,.045);
+  --m1:#FF9F6E; --m2:#5C9DFF; --m3:#C7A6FF; --m4:#7EE0C3;
+  --ink:var(--text); --muted:var(--text2); --level:var(--wave); --red:var(--bad); --no:var(--bad); --lim:var(--warn); --paper:var(--card);
+  --f-num:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-  color-scheme:light;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root{
-  --bg:#061528; --paper:#0C2038; --ink:#EEF3F9; --muted:#9DB0C7; --line:#1F3858;
-  --blue:#8FB4E8; --red:#FF4D63; --red-ink:#FFFFFF; --head:#030D1A; --head-ink:#FFFFFF;
-  --ok:#4CC88A; --ok-bg:#0E3324; --lim:#F2A93B; --lim-bg:#3A2A0C; --no:#FF6B7D; --no-bg:#3D1219;
-  --flojo:#6E819A; --night:rgba(0,0,0,.28); --level:#6FA8F0;
-  --m1:#FF6B7D; --m2:#6FA8F0; --m3:#4CC88A; --m4:#F2A93B; color-scheme:dark;
-}}
+:root[data-guardia="1"]{
+  --bg:#000000; --water:#070101; --card:#0B0202; --card2:#120403; --line:#2E0B08;
+  --text:#FF6A5C; --text2:#C24A3F; --wind:#FF6A5C; --wave:#E8483C; --current:#C24A3F;
+  --ok:#FF8B80; --okbg:#1E0605; --warn:#FF6A5C; --warnbg:#200605; --bad:#FF2D1F; --badbg:#2A0705;
+  --sel:#FF6A5C; --seltext:#000000; --flojo:#7A2A22; --night:rgba(255,60,40,.05);
+  --m1:#FF8B80; --m2:#E8483C; --m3:#C24A3F; --m4:#A3271F;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--head);z-index:20}
-.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--head);color:var(--head-ink);border-bottom:4px solid var(--red)}
-header.top .wrap{display:flex;align-items:center;gap:10px;padding-block:10px}
-.mark{display:flex;align-items:center;gap:8px;font:700 21px/1 var(--f-display);letter-spacing:.03em;text-transform:uppercase}
-.mark svg{width:28px;height:28px}
-.spacer{flex:1}
-.btn{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:8px 13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;justify-self:start}
-header .btn,.btn.primary{background:var(--red);color:var(--red-ink);border-color:var(--red);font-weight:600}
-.btn:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--level);outline-offset:2px}
-select,input{font:15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
-.hero{padding-block:20px 4px}
-.place{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.place select{width:auto;max-width:100%;font-weight:600}
-h1{font:700 clamp(46px,13vw,72px)/.92 var(--f-display);margin:16px 0 8px;text-transform:uppercase;text-wrap:balance}
-h1 em{font-style:normal;color:var(--red)}
-.lede{color:var(--muted);margin:0;max-width:56ch}
-.eyebrow{font:600 12px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
-h2{font:700 32px/1.02 var(--f-display);text-transform:uppercase;margin:4px 0 8px;text-wrap:balance}
-h3{font:600 16px var(--f-body);margin:0}
-section{padding-block:20px}
-.intro{color:var(--muted);margin:0 0 14px;max-width:62ch}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:14px;min-width:0}
-.card.today{border:2px solid var(--blue)}
-.verdict{display:grid;gap:6px;padding:14px 16px;border-radius:10px}
-.verdict.v-si{background:var(--ok-bg);color:var(--ok)} .verdict.v-poco{background:var(--lim-bg);color:var(--lim)} .verdict.v-no{background:var(--no-bg);color:var(--no)}
-.verdict .word{font:700 38px/1 var(--f-display);text-transform:uppercase}
-.verdict p{margin:0;color:var(--ink)}
-.dayhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.dayname{font:700 26px/1 var(--f-display);text-transform:uppercase}
-.date{color:var(--muted);font-size:14px}
-.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-weight:600;font-size:14px;white-space:nowrap}
-.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.p-si{background:var(--ok-bg);color:var(--ok)} .p-poco{background:var(--lim-bg);color:var(--lim)} .p-no{background:var(--no-bg);color:var(--no)}
-.now{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px 18px}
-.big{font:700 56px/1 var(--f-display);font-variant-numeric:tabular-nums}
-.big small{font:500 16px var(--f-body);color:var(--muted);margin-left:4px}
-.kv{display:grid;gap:2px}
-.kv b{font:600 20px var(--f-mono);font-variant-numeric:tabular-nums}
-.kv span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.dir{display:flex;align-items:center;gap:8px}
-.dir svg{width:32px;height:32px;flex:none}
-.note{font-size:13px;color:var(--muted);margin:0}
-.windows{display:flex;flex-direction:column;gap:6px}
-.win{font-weight:600;color:var(--ok)} .win.lim{color:var(--lim)} .win .muted{font-weight:400}
-.muted{color:var(--muted)}
-.facts{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:14px;margin:0}
-.facts dt{color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-size:12px;padding-top:2px}
-.facts dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:0}
-.alerts{display:grid;gap:8px}
-.alert{border-radius:8px;padding:10px 12px;font-size:14px;border-left:4px solid}
-.alert.no{background:var(--no-bg);border-color:var(--no)} .alert.lim{background:var(--lim-bg);border-color:var(--lim)} .alert.info{background:var(--bg);border-color:var(--line)}
-.chart{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:-6px}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 var(--f-body);-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.app{max-width:560px;margin:0 auto;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--wind);outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;align-items:center;gap:8px;padding-block:12px 10px}
+.top .where{flex:1;min-width:0}
+.spot{appearance:none;-webkit-appearance:none;background:transparent;border:0;padding:0;font:700 23px/1.1 var(--f-num);color:var(--text);max-width:100%;text-overflow:ellipsis}
+.coords{font:500 12px/1.4 var(--f-mono);color:var(--text2);margin-top:2px}
+.ibtn{width:44px;height:44px;border-radius:22px;border:1px solid var(--line);background:var(--card2);color:var(--text);display:grid;place-items:center;flex:none}
+.ibtn svg{width:20px;height:20px}
+.ibtn[aria-pressed="true"]{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.span2{grid-column:span 2}.tall{grid-row:span 2}
+.lbl{font:700 12px var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--text2)}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.num{font:700 40px/.95 var(--f-num);font-variant-numeric:tabular-nums}
+.num.xl{font-size:56px;line-height:.9}
+.unit{font:600 16px var(--f-num);color:var(--text2);margin-left:3px}
+.sub{font-size:13px;color:var(--text2)}
+.sub b{color:var(--text)}
+.chip{font:700 12px var(--f-body);border-radius:10px;padding:2px 8px;white-space:nowrap}
+.c-ok{color:var(--ok);background:var(--okbg)}.c-warn{color:var(--warn);background:var(--warnbg)}.c-bad{color:var(--bad);background:var(--badbg)}.c-n{color:var(--text2);background:var(--card2)}
+section.block{padding-top:18px}
+.h2{font:700 24px/1.05 var(--f-num);margin:0 0 10px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.h2 small{font:500 12px var(--f-mono);color:var(--text2)}
+/* veredicto */
+.verdict{border-radius:22px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;border:1px solid}
+.verdict.v-si{background:var(--okbg);border-color:var(--ok)}.verdict.v-poco{background:var(--warnbg);border-color:var(--warn)}.verdict.v-no{background:var(--badbg);border-color:var(--bad)}
+.verdict .word{font:700 30px/1 var(--f-num);text-transform:uppercase}
+.v-si .word{color:var(--ok)}.v-poco .word{color:var(--warn)}.v-no .word{color:var(--bad)}
+.verdict p{margin:4px 0 0;font-size:15px}
+.verdict svg{width:26px;height:26px;flex:none;margin-top:2px}
+.alist{display:grid;gap:8px;margin-top:8px}
+.al{border-radius:16px;padding:10px 12px;font-size:14px;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:var(--card)}
+.al svg{width:18px;height:18px;flex:none;margin-top:2px}
+.al.no{border-color:var(--bad)}.al.no svg{color:var(--bad)}.al.lim{border-color:var(--warn)}.al.lim svg{color:var(--warn)}.al.info svg{color:var(--text2)}
+/* mapa */
+.map{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--water);height:380px}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.layers{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:6px;overflow-x:auto;z-index:2;scrollbar-width:none}
+.layers::-webkit-scrollbar{display:none}
+.lchip{height:36px;padding:0 13px;border-radius:18px;white-space:nowrap;font:700 13px var(--f-body);border:1px solid var(--line);background:var(--card);color:var(--text)}
+.lchip[aria-pressed="true"]{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
+.mapnote{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:12px;color:var(--text2)}
+.mapnote a{color:var(--wind)}
+/* viento */
+.compass{align-self:center}
+@media (prefers-reduced-motion:no-preference){.kin{animation:kin 1.6s ease-in-out infinite}@keyframes kin{0%,100%{opacity:.6}50%{opacity:1}}}
+/* tiras de horas */
+.strip{display:grid;gap:2px}
+.strip span{height:22px;border-radius:3px}
+.ticks{display:flex;justify-content:space-between;font:500 11px var(--f-mono);color:var(--text2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--text2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* segmentado de modelos */
+.seg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;background:var(--bg);border-radius:16px;padding:4px}
+.seg button{min-height:52px;border-radius:12px;border:0;background:transparent;padding:6px 2px;color:var(--text)}
+.seg button[aria-pressed="true"]{background:var(--sel);color:var(--seltext)}
+.seg b{display:block;font:700 15px var(--f-num)}
+.seg span{display:block;font:500 12px var(--f-mono);opacity:.8}
+/* gráficos y tablas */
+.chart{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:-4px}
 .chart svg{display:block}
-.chart text{font:11px var(--f-mono);fill:var(--muted)}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.chart text,.tide text{font:11px var(--f-mono);fill:var(--text2)}
 details{min-width:0}
-details summary{cursor:pointer;color:var(--level);font-size:14px;font-weight:600}
-details[open] > summary{margin-bottom:10px}
-.stack{display:grid;gap:14px}
-.status{padding:30px 0;color:var(--muted)}
-.err{color:var(--no)}
-/* tabla hora por hora */
-.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-inline:-4px}
-.ht{width:100%;border-collapse:collapse;font-size:14px}
-.ht th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
-.ht td{padding:7px 6px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
-.ht td.h{font-weight:600}
-.ht .sub{font-size:11px;color:var(--muted)}
-.ht tr.night td{background:var(--night);color:var(--muted)}
-.ht tr.nowrow td{box-shadow:inset 0 2px 0 var(--red),inset 0 -2px 0 var(--red)}
-.ht .d{display:flex;align-items:center;gap:4px}
-.ht .d svg{width:16px;height:16px}
-.st{font-family:var(--f-body);font-size:13px;font-weight:600}
+summary{cursor:pointer;color:var(--wind);font-weight:700;font-size:14px;min-height:32px;display:flex;align-items:center}
+details[open]>summary{margin-bottom:8px}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ht,.mtable{width:100%;border-collapse:collapse;font-size:14px}
+.ht th,.mtable th{text-align:left;font-weight:700;color:var(--text2);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
+.ht td,.mtable td{padding:7px 6px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
+.ht td.h,.mtable td:first-child{font-weight:700}
+.mtable td:first-child{font-family:var(--f-body)}
+.ht .sub{font-size:11px}
+.ht tr.night td{background:var(--night);color:var(--text2)}
+.ht tr.nowrow td{box-shadow:inset 0 2px 0 var(--wind),inset 0 -2px 0 var(--wind)}
+.ht .d{display:flex;align-items:center;gap:4px}.ht .d svg{width:16px;height:16px}
+.st{font-family:var(--f-body);font-size:13px;font-weight:700}
+.st-ok{color:var(--ok)}.st-limite{color:var(--warn)}.st-no{color:var(--bad)}.st-flojo,.st-noche{color:var(--flojo)}
 .mtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.mtab{font:600 13px var(--f-body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.mtab{font:700 13px var(--f-body);border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;min-height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:6px}
 .mtab i{width:8px;height:8px;border-radius:50%;display:inline-block}
-.mtab[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.mtab:focus-visible{outline:2px solid var(--level);outline-offset:2px}
-.st-ok{color:var(--ok)} .st-limite{color:var(--lim)} .st-no{color:var(--no)} .st-flojo,.st-noche{color:var(--flojo)}
-/* modelos */
-.mtable{width:100%;border-collapse:collapse;font-size:14px}
-.mtable th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
-.mtable td{padding:9px 8px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-.mtable td:first-child{font-family:var(--f-body);font-weight:600}
-.mtable tr.use td{background:color-mix(in srgb,var(--level) 10%,transparent)}
+.mtab[aria-pressed="true"]{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
 .swatch{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}
-.bar{height:6px;border-radius:3px;background:var(--line);width:60px;display:inline-block;vertical-align:middle;margin-right:8px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--blue)}
-/* calado */
-.calc{display:grid;gap:6px;font-family:var(--f-mono);font-size:15px;font-variant-numeric:tabular-nums;background:var(--bg);border-radius:8px;padding:12px 14px}
+.bar{height:6px;border-radius:3px;background:var(--line);width:56px;display:inline-block;vertical-align:middle;margin-right:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--wind)}
+/* días */
+.day{gap:10px}
+.dname{font:700 22px/1 var(--f-num)}
+.dwin{font-size:14px}.dwin b{color:var(--ok)}
+/* marea */
+.tr,.trhead{display:grid;grid-template-columns:1.2fr 1fr .9fr;gap:8px}
+.trhead{font-size:12px;color:var(--text2);font-weight:700}
+input[type="time"]{appearance:none;-webkit-appearance:none}
+.calc{display:grid;gap:6px;font:500 14px var(--f-mono);font-variant-numeric:tabular-nums;background:var(--bg);border-radius:14px;padding:12px 14px}
 .calc .row{display:flex;justify-content:space-between;gap:12px}
-.calc .tot{border-top:1px solid var(--line);padding-top:6px;font-weight:600}
-.shn-in{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.shn-res{border-radius:8px;padding:12px 14px;display:grid;gap:4px}
-.shn-res.ok{background:var(--ok-bg)} .shn-res.no{background:var(--no-bg)} .shn-res.wait{background:var(--bg)}
-.shn-res .word{font:700 26px/1 var(--f-display);text-transform:uppercase}
-.shn-res.ok .word{color:var(--ok)} .shn-res.no .word{color:var(--no)}
-.windy{width:100%;height:380px;border:0;border-radius:10px;background:var(--bg);display:block}
-.gloss dl{display:grid;gap:12px;margin:0}
-.gloss dt{font-weight:600}
-.gloss dd{margin:2px 0 0;color:var(--muted)}
-.src p{margin:0}
-.sta{display:grid;gap:4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.calc .tot{border-top:1px solid var(--line);padding-top:6px;color:var(--text)}
+.in2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+label{display:grid;gap:4px;font-size:13px;color:var(--text2)}
+input,select.f{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%;min-height:46px;color:var(--text)}
+.res{border-radius:16px;padding:12px 14px;display:grid;gap:4px}
+.res.ok{background:var(--okbg)}.res.no{background:var(--badbg)}.res.wait{background:var(--bg)}
+.res .word{font:700 26px/1 var(--f-num);text-transform:uppercase}
+.res.ok .word{color:var(--ok)}.res.no .word{color:var(--bad)}
+.res p{margin:0}
+.btn{min-height:44px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--text);padding:0 14px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;justify-self:start}
+.btn.pri{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
+.btn.small{min-height:36px;font-size:13px}
+/* estaciones */
+.sta{display:grid;gap:4px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .sta:last-of-type{border-bottom:0;padding-bottom:0}
 .sta-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.sta-name{font-weight:600}
-.sta-km{font:600 14px var(--f-mono);color:var(--red);white-space:nowrap}
+.sta-name{font-weight:700}
+.sta-km{font:500 13px var(--f-mono);color:var(--wind);white-space:nowrap}
 .sta-meta{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font-size:12px;border-radius:999px;padding:2px 9px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
-.chip.water{color:var(--level);border-color:color-mix(in srgb,var(--level) 40%,transparent)}
-.live{border-left:4px solid var(--level);background:var(--bg);border-radius:8px;padding:12px 14px;display:grid;gap:6px}
+.sta a{color:var(--wind);font-size:14px;font-weight:700}
 .live .row1{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.live .val{font:700 34px/1 var(--f-display)}
-.live a{color:var(--level)}
-.sta a{color:var(--level);font-size:14px;font-weight:500}
-footer{padding-block:24px 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:10px}
-footer p{margin:0 0 8px;max-width:65ch}
-footer a{color:var(--level)}
-dialog{border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);padding:0;width:min(540px,calc(100% - 32px));max-height:90vh}
-dialog::backdrop{background:rgba(3,13,26,.6)}
-.dlg{padding:20px;display:grid;gap:14px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-fieldset{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:12px;margin:0;min-width:0}
-legend{font-weight:600;padding:0 6px}
-label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
-label.check{display:flex;align-items:flex-start;gap:8px;color:var(--ink);font-size:15px}
-label.check input{width:auto;margin-top:4px}
+.live a{color:var(--wind)}
+.gloss dl{display:grid;gap:12px;margin:0}
+.gloss dt{font-weight:700}
+.gloss dd{margin:2px 0 0;color:var(--text2)}
+.src p{margin:0 0 8px;color:var(--text2);font-size:14px}
+.src b{color:var(--text)}
+.status{padding:30px 4px;color:var(--text2)}
+.err{color:var(--bad)}
+.note{font-size:13px;color:var(--text2);margin:0}
+.foot{padding:24px 4px 12px;color:var(--text2);font-size:13px}
+.foot p{margin:0 0 8px}
+.foot a{color:var(--wind)}
+/* barra inferior */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--card);border-top:1px solid var(--line);padding:6px max(4px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-left,0px))}
+.tabbar .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;justify-content:center;text-decoration:none;font:700 12px var(--f-body);color:var(--text2);background:none;border:0}
+.tab svg{width:22px;height:22px}
+.tab[aria-current="true"]{color:var(--text)}
+/* diálogos */
+dialog{border:1px solid var(--line);border-radius:24px;background:var(--card);color:var(--text);padding:0;width:min(540px,calc(100% - 24px));max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.dlg{padding:18px;display:grid;gap:14px}
+fieldset{border:1px solid var(--line);border-radius:16px;padding:12px;display:grid;gap:12px;margin:0;min-width:0}
+legend{font-weight:700;padding:0 6px}
+label.check{display:flex;align-items:flex-start;gap:10px;color:var(--text);font-size:15px}
+label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-color:var(--wind)}
 .drow{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-.hint{font-size:13px;color:var(--muted);margin:0}
+.hint{font-size:13px;color:var(--text2);margin:0}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap">
-  <div class="mark" aria-label="Salimos">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15 3 L15 24 L5 24 Z" fill="#FFFFFF"/><path d="M17 7 L27 24 L17 24 Z" fill="#C8102E"/><path d="M3 27 Q16 31 29 27" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
-    Salimos
-  </div>
-  <div class="spacer"></div>
-  <button class="btn" id="btnCfg" type="button">Mi barco</button>
-</div></header>
-
-<main class="wrap">
-  <div class="hero">
-    <div class="place">
-      <select id="spotSel" aria-label="Puerto o fondeadero"></select>
-      <button class="btn" id="btnAdd" type="button">+ Lugar</button>
+<div class="app" id="panel">
+  <header class="top">
+    <div class="where">
+      <select class="spot" id="spotSel" aria-label="Puerto o fondeadero"></select>
+      <div class="coords" id="coords"></div>
     </div>
-    <h1>¿Salimos <em>hoy</em>?</h1>
-    <p class="lede">Viento, ráfagas, olas y nivel del río hora por hora, comparados con los datos de tu barco. Al final está explicado cada término.</p>
-  </div>
+    <button class="ibtn" id="btnAdd" type="button" aria-label="Agregar un lugar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button class="ibtn" id="btnGuardia" type="button" aria-pressed="false" aria-label="Modo guardia nocturna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+  </header>
 
-  <section id="todaySec"><div class="status">Cargando pronóstico…</div></section>
+  <div id="verdictBox"><div class="status">Cargando pronóstico…</div></div>
 
-  <section id="modelSec" hidden>
-    <div class="eyebrow">Los modelos</div>
-    <h2>¿Qué dice cada modelo?</h2>
-    <p class="intro">Un modelo es un programa que calcula el tiempo que va a hacer. Hay uno de Canadá, uno de Estados Unidos, uno de Alemania y uno europeo, y no siempre coinciden. La página los junta en un pronóstico combinado que le da más peso al que mejor le pega.</p>
-    <div class="stack" id="models"></div>
-  </section>
-
-  <section id="levelSec" hidden>
-    <div class="eyebrow">Calado</div>
-    <h2>¿Hay agua para salir del puerto?</h2>
-    <div class="stack" id="level"></div>
-  </section>
-
-  <section id="weekSec" hidden>
-    <div class="eyebrow">Próximos días</div>
-    <h2>Cómo viene la semana</h2>
-    <p class="intro" id="rangeTxt"></p>
-    <div class="stack" id="week"></div>
-  </section>
-
-  <section>
-    <div class="eyebrow">Mapa</div>
-    <h2>El viento en el mapa</h2>
-    <p class="intro">El mapa de Windy muestra cómo se mueve el viento en toda la zona. Sirve para ver de dónde viene un frente y cuándo llega.</p>
-    <div class="card">
-      <iframe class="windy" id="windy" title="Mapa de viento de Windy" loading="lazy"></iframe>
-      <a class="btn" id="windyLink" href="https://www.windy.com" target="_blank" rel="noopener">Abrir en Windy ↗</a>
+  <section class="block" aria-label="Mapa">
+    <div class="map">
+      <div class="layers" id="layers" role="group" aria-label="Capas del mapa"></div>
+      <iframe id="windy" title="Mapa de Windy"></iframe>
     </div>
+    <div class="mapnote"><span>Mapa de Windy · modelo <span id="mapModel">ECMWF</span></span><a id="windyLink" href="https://www.windy.com" target="_blank" rel="noopener">Abrir en Windy ↗</a></div>
   </section>
 
-  <section>
-    <div class="eyebrow">Mediciones reales</div>
-    <h2>¿Quién mide de verdad cerca?</h2>
-    <p class="intro">Estas son estaciones que miden el viento o el agua de verdad, no modelos. Tocá cada una para ver lo que está midiendo ahora. Sirven para comparar con el pronóstico: si la estación marca más viento que el modelo, el modelo viene corto.</p>
+  <section class="block" aria-label="Ahora">
+    <div class="bento" id="nowGrid"></div>
+  </section>
+
+  <section class="block" id="hoy" hidden>
+    <h2 class="h2">Hoy, hora por hora <small id="todayDate"></small></h2>
+    <div class="card" id="todayCard"></div>
+  </section>
+
+  <section class="block" id="modelos" hidden>
+    <h2 class="h2">Modelos <small>cuál decide</small></h2>
+    <div class="card" id="modelsCard"></div>
+  </section>
+
+  <section class="block" id="marea" hidden>
+    <h2 class="h2">Marea y calado <small id="tidePort"></small></h2>
+    <div class="bento" id="tideGrid"></div>
+  </section>
+
+  <section class="block" id="semana" hidden>
+    <h2 class="h2">Próximos días <small id="rangeTxt"></small></h2>
+    <div class="bento" id="week"></div>
+  </section>
+
+  <section class="block" id="estaciones">
+    <h2 class="h2">Mediciones reales <small>quién mide cerca</small></h2>
     <div class="card" id="stations"></div>
   </section>
 
-  <section class="src">
-    <div class="eyebrow">Fuentes</div>
-    <h2>¿De dónde salen los datos?</h2>
-    <div class="card">
-      <p><b>Viento, lluvia, presión y tormentas.</b> Los cuatro modelos calculan el tiempo para todo el planeta, dividido en cuadraditos de 11 a 25 km de lado. La página les pide el valor del cuadradito donde están las coordenadas del lugar. Por eso funciona en cualquier parte, también en la Antártida o en Brasil.</p>
-      <p><b>Lo que cambia según el lugar es cuánto confiar.</b> Lo que sale en esta página es un cálculo, no una medición. Cerca de la cordillera, en canales angostos o en la Antártida el viento real puede ser bastante distinto, porque los cuadraditos no ven las montañas chicas ni los efectos de la costa.</p>
-      <p><b>La corrección de sesgo solo existe en el Río de la Plata</b>, porque es donde se comparó cada modelo con una estación real (Pilote Norden). En los demás lugares el combinado es un promedio simple de los cuatro.</p>
-      <p><b>Olas:</b> modelo global de olas. <b>Nivel del agua:</b> modelo de nivel del mar; en Berisso se lleva al cero del mareógrafo de La Plata. Todos vienen de Open-Meteo, un servicio gratuito que junta los modelos oficiales.</p>
+  <section class="block">
+    <h2 class="h2">Para entender</h2>
+    <div class="bento">
+      <details class="card span2 src"><summary>¿De dónde salen los datos?</summary>
+        <p><b>Viento, lluvia, presión y tormentas:</b> cuatro modelos (GDPS de Canadá, GFS de Estados Unidos, ICON de Alemania y ECMWF europeo) que calculan el tiempo para todo el planeta en cuadraditos de 11 a 25 km. La página pide el del lugar elegido, por eso funciona en la Antártida o en Brasil. Es un cálculo, no una medición: cerca de montañas o canales angostos el viento real puede ser distinto.</p>
+        <p><b>Combinado:</b> en el Río de la Plata, cada modelo se corrige por su sesgo medido contra Pilote Norden (medición de OlvidataSoft, sep–oct 2026) y pesa según cuánto acierta. En otros lugares es el promedio de los cuatro.</p>
+        <p><b>Olas, período y corrientes:</b> modelos oceánicos de Open-Meteo Marine. <b>Nivel del agua:</b> modelo orientativo; el dato oficial es el del SHN. <b>Mediciones reales:</b> aeropuertos (METAR) y estaciones de la CARP.</p>
+      </details>
+      <details class="card span2 gloss"><summary>Qué significa cada cosa</summary>
+        <dl>
+          <div><dt>Nudos (kt)</dt><dd>Velocidad en el agua: 1 nudo es 1,85 km/h. Con 10 kt se navega cómodo; arriba de 20 kt es viento fuerte.</dd></div>
+          <div><dt>Escala Beaufort (F)</dt><dd>La escala del viento de los navegantes, de 0 (calma) a 12 (huracán). F3–F4 es buen viento para navegar; F6 ya es fresco; de F7 en adelante, a puerto.</dd></div>
+          <div><dt>Ráfaga</dt><dd>Golpe de viento más fuerte que dura segundos. Es lo que escora el barco de golpe.</dd></div>
+          <div><dt>De dónde viene el viento</dt><dd>El viento se nombra por donde sopla: "del E" viene del este. Las flechas apuntan hacia donde va.</dd></div>
+          <div><dt>Sudestada y pampero</dt><dd>Sudestada: viento fuerte del SE que sube el río y arma ola corta. Pampero: viento del SO que entra de golpe y baja el río.</dd></div>
+          <div><dt>Altura significativa y período</dt><dd>La altura promedio del tercio de olas más grandes, y los segundos entre una ola y la siguiente. Período corto con ola alta es mar incómodo.</dd></div>
+          <div><dt>Corriente</dt><dd>Hacia dónde se mueve el agua. En contra te frena; a favor te empuja.</dd></div>
+          <div><dt>Calado</dt><dd>Lo que el barco se hunde bajo el agua. Tupá cala 1,90 m.</dd></div>
+          <div><dt>Altura mínima para salir</dt><dd>El número de la tabla del SHN a partir del cual tu barco sale sin tocar fondo. Lo da la experiencia del club; para Tupá en Berisso es 0,70 m.</dd></div>
+          <div><dt>Tabla y aviso del SHN</dt><dd>La tabla da la marea de la Luna y el Sol. El aviso dice cuánto el viento la sube o la baja. Los "valores corregidos" ya traen el aviso sumado.</dd></div>
+          <div><dt>Modelo y sesgo</dt><dd>Modelo: programa que calcula el tiempo. Sesgo: si se equivoca siempre para el mismo lado; −2 kt quiere decir que marca 2 menos de lo que hay.</dd></div>
+          <div><dt>Milla náutica (mn)</dt><dd>1,852 km. Un nudo es una milla por hora.</dd></div>
+        </dl>
+      </details>
     </div>
   </section>
 
-  <section class="gloss">
-    <div class="eyebrow">Para empezar</div>
-    <h2>Qué significa cada cosa</h2>
-    <div class="card"><dl>
-      <div><dt>Nudos (kt)</dt><dd>La unidad de velocidad en el agua. 1 nudo es 1,85 km/h. Con 10 kt se navega cómodo; arriba de 20 kt ya es viento fuerte para la mayoría de los barcos.</dd></div>
-      <div><dt>Ráfaga</dt><dd>Un golpe de viento más fuerte que dura unos segundos. Es lo que escora el barco de golpe. Si las ráfagas pasan tu máximo, conviene rizar o no salir.</dd></div>
-      <div><dt>Rizar</dt><dd>Achicar la vela para que el viento empuje menos. Se hace antes de que el viento suba, no cuando ya está fuerte.</dd></div>
-      <div><dt>De dónde viene el viento</dt><dd>El viento se nombra por el lado de donde sopla: viento "del E" viene del este. En los gráficos la flechita apunta hacia donde va.</dd></div>
-      <div><dt>Sudestada</dt><dd>Viento fuerte y sostenido del sudeste. Empuja el agua del mar hacia el río: el río sube mucho y se forma ola corta y dura.</dd></div>
-      <div><dt>Pampero</dt><dd>Viento del sudoeste que entra de golpe después de un frente frío, con rachas fuertes. Saca agua del río y el nivel baja: cuidado al volver a puerto.</dd></div>
-      <div><dt>Escala Beaufort</dt><dd>La escala que usan los navegantes para el viento, de fuerza 0 (calma) a 12 (huracán). Fuerza 3 y 4 (7 a 16 kt) es buen viento para navegar; fuerza 6 (22 a 27 kt) ya es fresco y fuerza 7 en adelante es para quedarse en puerto.</dd></div>
-      <div><dt>Sondaje</dt><dd>La profundidad que marca la carta náutica en cada punto, medida desde el plano de reducción. Agua total = sondaje + altura de la marea.</dd></div>
-      <div><dt>Resguardo bajo la quilla</dt><dd>El agua que querés que quede entre la quilla y el fondo, por seguridad. Cubre la ola, el error de la tabla y lo que se hunde el barco al moverse.</dd></div>
-      <div><dt>Altura significativa de ola</dt><dd>La altura promedio del tercio de olas más grandes. Es la que dan los pronósticos; de vez en cuando viene alguna bastante más grande.</dd></div>
-      <div><dt>Milla náutica (mn)</dt><dd>La unidad de distancia en el agua: 1,852 km. Un nudo es una milla náutica por hora.</dd></div>
-      <div><dt>Calado</dt><dd>Lo que el barco se hunde bajo el agua, desde la superficie hasta la punta de la quilla. Si el agua es menos profunda que el calado, el barco toca fondo.</dd></div>
-      <div><dt>Plano de reducción (cero de la carta)</dt><dd>El nivel de referencia de las cartas náuticas y de las tablas de marea. La profundidad que marca la carta se mide desde ese cero, y la altura del río dice cuánta agua hay por encima. Agua total = profundidad de la carta + altura del río.</dd></div>
-      <div><dt>Marea astronómica</dt><dd>La subida y bajada del agua que causan la Luna y el Sol. Se calcula con años de anticipación: es lo que dicen las tablas de marea.</dd></div>
-      <div><dt>Marea meteorológica</dt><dd>Lo que el viento y la presión le agregan o le sacan a la marea astronómica. En el Río de la Plata puede pasar el metro, por eso el SHN avisa "tantos centímetros por encima o por debajo de las tablas".</dd></div>
-      <div><dt>Modelo</dt><dd>Un programa de computadora que calcula el tiempo que va a hacer. Cada servicio meteorológico tiene el suyo.</dd></div>
-      <div><dt>Sesgo</dt><dd>Si un modelo se equivoca siempre para el mismo lado. Un sesgo de −2 kt quiere decir que suele marcar 2 nudos menos de lo que hay: hay que sumárselos.</dd></div>
-      <div><dt>Confiabilidad</dt><dd>Cuanto más lejos está el día, menos confiable es el pronóstico. Hoy y mañana sirven para decidir; los días siguientes, para hacerse una idea.</dd></div>
-    </dl></div>
-  </section>
-
-  <footer>
-    <p>Pronóstico: Open-Meteo, con los modelos GDPS, GFS, ICON y ECMWF. Olas y nivel del agua: Open-Meteo Marine. Acierto de los modelos en Pilote Norden: medición de OlvidataSoft, del 1 de septiembre al 31 de octubre de 2026.</p>
-    <p>Antes de salir, confirmá la altura del río con el <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. Con alerta meteorológica, Prefectura Naval puede suspender la navegación de embarcaciones deportivas: consultá antes de zarpar. El pronóstico es orientativo: la decisión de salir es del patrón.</p>
+  <footer class="foot">
+    <p>Pronóstico: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>. Marea oficial: <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. Mapa: Windy.</p>
+    <p>Con alerta meteorológica, Prefectura Naval puede suspender la navegación deportiva: consultá antes de zarpar. El pronóstico es orientativo; la decisión de salir es del patrón.</p>
   </footer>
-</main>
+</div>
+
+<nav class="tabbar" aria-label="Secciones"><div class="in">
+  <a class="tab" href="#panel" aria-current="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/></svg>Panel</a>
+  <a class="tab" href="#hoy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M9 20V6M14 20v-8M19 20V4"/></svg>Hoy</a>
+  <a class="tab" href="#marea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12c3-4 5-4 8 0s5 4 8 0 3-2 4-1M2 18c3-4 5-4 8 0s5 4 8 0"/></svg>Marea</a>
+  <a class="tab" href="#semana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M9 3v4M15 3v4"/></svg>Semana</a>
+  <button class="tab" id="btnCfg" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v14M12 4l7 11h-7M3 18h18l-2 3H5z"/></svg>Mi barco</button>
+</div></nav>
 
 <dialog id="dlgCfg"><form class="dlg" method="dialog">
-  <div><div class="eyebrow">Mi barco</div><h2 style="margin:0">Datos del barco</h2></div>
+  <div><div class="lbl">Mi barco</div><div class="h2" style="margin:2px 0 0">Datos del barco</div></div>
   <fieldset><legend>Viento y olas</legend>
-    <div class="grid2">
-      <label for="wMin">Mínimo para ir a vela (kt)<input id="wMin" type="number" min="0" max="40" step="1" inputmode="numeric"></label>
-      <label for="wMax">Máximo cómodo (kt)<input id="wMax" type="number" min="5" max="60" step="1" inputmode="numeric"></label>
-      <label for="gMax">Ráfaga máxima (kt)<input id="gMax" type="number" min="5" max="70" step="1" inputmode="numeric"></label>
+    <div class="in2">
+      <label for="wMin">Mínimo para ir a vela (kt)<input id="wMin" type="text" inputmode="numeric" autocomplete="off"></label>
+      <label for="wMax">Máximo cómodo (kt)<input id="wMax" type="text" inputmode="numeric" autocomplete="off"></label>
+      <label for="gMax">Ráfaga máxima (kt)<input id="gMax" type="text" inputmode="numeric" autocomplete="off"></label>
       <label for="waveMax">Ola máxima (m)<input id="waveMax" type="text" inputmode="decimal" autocomplete="off"></label>
     </div>
     <p class="hint">Debajo del mínimo se sale a motor. Arriba del máximo, o con ráfagas más fuertes, la página marca que no conviene.</p>
   </fieldset>
-  <fieldset><legend>Calado</legend>
-    <div class="grid2">
-      <label for="draft">Calado del barco (m)<input id="draft" type="text" inputmode="decimal" autocomplete="off"></label>
-      <label for="ukc">Resguardo bajo la quilla (m)<input id="ukc" type="text" inputmode="decimal" autocomplete="off"></label>
-    </div>
-    <label for="sond"><span id="sondLbl">Sondaje del punto menos profundo de la salida, según la carta (m)</span><input id="sond" type="text" inputmode="decimal" autocomplete="off" placeholder="Preguntalo en el club"></label>
-    <p class="hint">Es la profundidad del punto menos hondo entre el amarre y el río abierto, medida desde el plano de reducción (el cero de la carta). La sabe el club o figura en la carta náutica del canal.</p>
+  <fieldset><legend>Para salir del puerto</legend>
+    <label for="minAlt"><span id="minLbl">Altura mínima del SHN para salir (m)</span><input id="minAlt" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej.: 0,70"></label>
+    <p class="hint">Es el número de la tabla del SHN a partir del cual tu barco sale y vuelve sin tocar fondo. Ya tiene en cuenta el calado y el fondo de la salida. Para Tupá en el Náutico Berisso es <b>0,70 m</b>, según el capitán.</p>
+    <details><summary>No lo sé: ¿cómo lo consigo?</summary>
+      <p class="hint">Preguntá en el club: "¿con qué altura del SHN sale un barco que cala tanto?". Los socios y los marineros lo saben de experiencia. También podés anotar en cada salida qué decía el SHN y si pasaste bien o justo: en pocas salidas tenés tu número. Mientras tanto, salí y volvé cerca de la pleamar.</p>
+    </details>
   </fieldset>
   <fieldset><legend>Pronóstico</legend>
-    <label for="model">Pronóstico para decidir
-      <select id="model">
-        <option value="combo">Combinado: lo mejor de los cuatro</option>
-        <option value="gem_global">Solo GDPS (Canadá)</option>
-        <option value="gfs_seamless">Solo GFS (Estados Unidos)</option>
-        <option value="icon_seamless">Solo ICON (Alemania)</option>
-        <option value="ecmwf_ifs025">Solo ECMWF (Europa)</option>
-      </select>
-    </label>
-    <label class="check" for="corr"><input id="corr" type="checkbox"> Corregir el viento con el sesgo medido (solo en el Río de la Plata)</label>
+    <label class="check" for="corr"><input id="corr" type="checkbox"> Corregir el viento con el sesgo medido (solo Río de la Plata)</label>
     <label class="check" for="night"><input id="night" type="checkbox"> Contar las horas de noche como navegables</label>
   </fieldset>
-  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" value="ok" type="submit">Guardar</button></div>
+  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" value="ok" type="submit">Guardar</button></div>
 </form></dialog>
 
 <dialog id="dlgAdd"><form class="dlg" method="dialog">
-  <div><div class="eyebrow">Nuevo lugar</div><h2 style="margin:0">Agregar puerto o fondeadero</h2></div>
+  <div><div class="lbl">Nuevo lugar</div><div class="h2" style="margin:2px 0 0">Agregar puerto o fondeadero</div></div>
   <label for="addName">Nombre<input id="addName" type="text" placeholder="Ej.: Puerto Deseado" autocomplete="off"></label>
   <label for="addCoords">Coordenadas (latitud, longitud)<input id="addCoords" type="text" placeholder="-47.75, -65.90" autocomplete="off"></label>
-  <p class="hint">Copialas de Google Maps manteniendo apretado sobre el agua, justo afuera del puerto. Así el pronóstico es del agua y no de tierra.</p>
+  <p class="hint">Copialas de Google Maps manteniendo apretado sobre el agua, justo afuera del puerto.</p>
   <button class="btn" id="btnGeo" type="button">Usar mi ubicación</button>
   <p class="hint err" id="addErr" hidden></p>
-  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn primary" id="addSave" value="ok" type="submit">Agregar</button></div>
+  <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" id="addSave" value="ok" type="submit">Agregar</button></div>
 </form></dialog>
 
 <script>
 "use strict";
 /* ---------- datos fijos ---------- */
+const SHN = {who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/"};
 const PRESETS = [
-  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto La Plata", water:"río"}},
+  {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true, tide:{...SHN, port:"Puerto La Plata", water:"río"}},
   {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}},
-  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Buenos Aires", water:"río"}},
-  {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Mar del Plata", water:"mar"}},
-  {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto Madryn", water:"mar"}},
-  {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null, tide:{who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/", port:"Puerto de Ushuaia", water:"mar"}},
-  {id:"carlini", name:"Caleta Potter, Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null, tide:{who:"SHN (publica tablas de algunos puntos antárticos)", url:"https://www.hidro.gob.ar/", port:"el punto más cercano a Caleta Potter", water:"mar"}},
+  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true, tide:{...SHN, port:"Puerto de Buenos Aires", water:"río"}},
+  {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null, tide:{...SHN, port:"Puerto de Mar del Plata", water:"mar"}},
+  {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null, tide:{...SHN, port:"Puerto Madryn", water:"mar"}},
+  {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null, tide:{...SHN, port:"Puerto de Ushuaia", water:"mar"}},
+  {id:"carlini", name:"Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null, tide:{who:"SHN (publica tablas de algunos puntos antárticos)", url:"https://www.hidro.gob.ar/", port:"el punto más cercano a Caleta Potter", water:"mar"}},
   {id:"floripa", name:"Florianópolis (Brasil)", lat:-27.60, lon:-48.45, cero:null, tide:{who:"Marinha do Brasil (DHN)", url:"https://www.marinha.mil.br/chm/tabuas-de-mare", port:"Florianópolis", water:"mar"}}
 ];
 const MODELS = [
-  {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)"},
-  {id:"gfs_seamless", name:"GFS", from:"Estados Unidos", col:"var(--m2)"},
-  {id:"icon_seamless", name:"ICON", from:"Alemania", col:"var(--m3)"},
-  {id:"ecmwf_ifs025", name:"ECMWF", from:"Europa", col:"var(--m4)"}
+  {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)", windy:"gfs"},
+  {id:"gfs_seamless", name:"GFS", from:"EE. UU.", col:"var(--m2)", windy:"gfs"},
+  {id:"icon_seamless", name:"ICON", from:"Alemania", col:"var(--m3)", windy:"icon"},
+  {id:"ecmwf_ifs025", name:"ECMWF", from:"Europa", col:"var(--m4)", windy:"ecmwf"}
 ];
 /* Acierto medido en Pilote Norden (CARP) por OlvidataSoft, 1/9 al 31/10/2026, 1218 h, margen ±2 kt */
 const REF = {gem_global:{acc:38.9, mae:3.7, bias:-2.1}, gfs_seamless:{acc:37.9, mae:3.5, bias:-1.8}, icon_seamless:{acc:35.3, mae:3.8, bias:-2.0}, ecmwf_ifs025:{acc:10.8, mae:6.1, bias:-5.8}};
-/* Estaciones reales conocidas. Coordenadas aproximadas. */
-const CARP_URL = "https://www.comisionriodelaplata.org/servicios_main.php?sid=VM";
-const SHN_URL = "https://www.hidro.gob.ar/";
-const metar = id => `https://aviationweather.gov/data/metar/?ids=${id}&decoded=yes`;
-const STATIONS = [
-  {name:"Pilote Norden", who:"CARP", what:"Viento y marea", water:true, lat:-34.63, lon:-57.92, url:CARP_URL, how:"Plataforma en medio del río. Es la referencia para Berisso y Punta Lara."},
-  {name:"Puerto de Colonia", who:"CARP", what:"Viento y marea", water:true, lat:-34.47, lon:-57.85, url:CARP_URL, how:"En el puerto de Colonia, del lado uruguayo."},
-  {name:"Puerto de Conchillas", who:"CARP", what:"Viento y marea", water:true, lat:-34.19, lon:-58.06, url:CARP_URL, how:"Costa uruguaya, al oeste de Colonia."},
-  {name:"Puerto de Carmelo", who:"CARP", what:"Viento y marea", water:true, lat:-34.00, lon:-58.29, url:CARP_URL, how:"Costa uruguaya, cerca de la entrada al delta."},
-  {name:"Mareógrafo de La Plata", who:"SHN / Puerto La Plata", what:"Altura del río", water:true, lat:-34.83, lon:-57.88, url:SHN_URL, how:"Es el cero que usa la página para la altura del río en Berisso."},
-  {name:"Puerto de Buenos Aires", who:"SHN", what:"Altura del río", water:true, lat:-34.57, lon:-58.37, url:SHN_URL, how:"Mareógrafo de referencia de los avisos de crecida."},
-  {name:"Aeródromo de La Plata (SADL)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SADL", lat:-34.97, lon:-57.89, url:metar("SADL"), how:"En tierra, unos 14 km al sur de Berisso."},
-  {name:"Aeropuerto de Colonia (SUCA)", who:"Uruguay", what:"Viento, ráfagas y presión", water:false, icao:"SUCA", lat:-34.46, lon:-57.77, url:metar("SUCA"), how:"En tierra, unos 8 km al este del puerto de Colonia."},
-  {name:"Aeroparque (SABE)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-34.56, lon:-58.42, icao:"SABE", url:metar("SABE"), how:"Aeropuerto sobre la costa del río."},
-  {name:"Aeropuerto de Mar del Plata (SAZM)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-37.93, lon:-57.57, icao:"SAZM", url:metar("SAZM"), how:"En tierra, unos 10 km al norte del puerto."},
-  {name:"Puerto de Mar del Plata", who:"SHN", what:"Altura del mar", water:true, lat:-38.04, lon:-57.53, url:SHN_URL, how:"Mareógrafo del puerto."},
-  {name:"Aeropuerto de Puerto Madryn (SAVY)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-42.76, lon:-65.10, icao:"SAVY", url:metar("SAVY"), how:"En tierra, a unos 10 km de la costa."},
-  {name:"Aeropuerto de Ushuaia (SAWH)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-54.84, lon:-68.30, icao:"SAWH", url:metar("SAWH"), how:"Sobre la costa del Canal Beagle."},
-  {name:"Base Carlini", who:"SMN / Instituto Antártico", what:"Viento, presión y temperatura", water:false, lat:-62.24, lon:-58.67, url:"https://www.smn.gob.ar/", how:"Estación automática y oficina meteorológica de la base. No encontré dónde se publican sus datos en vivo."},
-  {name:"Aeródromo Teniente Marsh (SCRM)", who:"Chile", what:"Viento, ráfagas y presión", water:false, lat:-62.19, lon:-58.99, icao:"SCRM", url:metar("SCRM"), how:"En la misma isla (25 de Mayo / Rey Jorge), del lado de la Península Fildes."},
-  {name:"Base Marambio (SAWB)", who:"SMN", what:"Viento, ráfagas y presión", water:false, lat:-64.24, lon:-56.63, icao:"SAWB", url:metar("SAWB"), how:"Centro meteorológico antártico del SMN."},
-  {name:"Aeropuerto de Florianópolis (SBFL)", who:"Brasil", what:"Viento, ráfagas y presión", water:false, lat:-27.67, lon:-48.55, icao:"SBFL", url:metar("SBFL"), how:"En la isla de Santa Catarina, al sur de la ciudad."},
-  {name:"Boyas de la Marina de Brasil (PNBOIA)", who:"Marinha do Brasil", what:"Viento y olas", water:true, lat:-27.6, lon:-47.9, url:"https://www.marinha.mil.br/chm/", how:"La Marina tiene boyas en algunos puntos de la costa. No pude confirmar cuál está más cerca de Florianópolis: revisalo en su página."}
-];
-function distKm(a, b){ const R = 6371, r = Math.PI/180, dLa = (b.lat-a.lat)*r, dLo = (b.lon-a.lon)*r; const x = Math.sin(dLa/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(x)); }
-function renderStations(s){
-  const near = STATIONS.map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 350).sort((a,b) => a.km - b.km).slice(0, 6);
-  const list = near.map(({st, km}) => `<div class="sta">
-      <div class="sta-top"><span class="sta-name">${esc(st.name)}</span><span class="sta-km">${km < 1 ? "acá" : "a " + fmt(km, 0) + " km · " + fmt(nm(km), 0) + " mn"}</span></div>
-      <div class="sta-meta"><span class="chip">${esc(st.who)}</span><span class="chip${st.water ? " water" : ""}">${st.water ? "En el agua" : "En tierra"}</span><span class="chip">${esc(st.what)}</span></div>
-      <p class="note">${esc(st.how)}</p>
-      <a href="${st.url}" target="_blank" rel="noopener">Ver la medición ↗</a></div>`).join("");
-  $("#stations").innerHTML = (list || `<p class="note">No conozco estaciones a menos de 350 km de este lugar.</p>`) +
-    `<p class="note">Los aeropuertos publican cada hora su medición en un formato llamado METAR; el link lo muestra traducido, en inglés. Las estaciones en tierra suelen marcar algo menos de viento que sobre el agua. Para cualquier lugar que no esté acá, buscá el aeropuerto o el puerto más cercano.</p>`;
-}
-async function loadLive(s, B){
-  const box = () => document.getElementById("live");
-  if(!box()) return;
-  const head = `<div class="eyebrow" style="color:var(--level)">Medición real, ahora</div>`;
-  const carp = s.rdp ? `<p class="note">Pilote Norden mide sobre el agua, pero sus datos todavía no se pueden leer desde la página: <a href="${CARP_URL}" target="_blank" rel="noopener">verlos en la CARP ↗</a></p>` : "";
-  const cands = STATIONS.filter(st => st.icao).map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 250).sort((a,b) => a.km - b.km).slice(0, 3);
-  if(!cands.length){ box().innerHTML = head + `<p class="note">No hay ninguna estación con datos en vivo a menos de 250 km.</p>` + carp; return; }
-  try{
-    const data = await getJSON(`/api/metar?ids=${cands.map(c => c.st.icao).join(",")}`);
-    if(spot().id !== s.id || !box()) return;
-    const pick = cands.map(c => ({...c, o: data.find(d => d.icaoId === c.st.icao)})).find(c => c.o && c.o.wspd != null);
-    if(!pick) throw new Error("sin datos");
-    const o = pick.o, ago = Math.max(0, Math.round((Date.now()/1000 - o.obsTime) / 60));
-    const dirOk = typeof o.wdir === "number";
-    const h = B.hours.find(x => x.t === B.nowStr);
-    let cmp = "";
-    if(h){
-      const d = o.wspd - h.ws;
-      cmp = Math.abs(d) < 2 ? `Coincide con el pronóstico de esta hora (${fmt(h.ws)} kt).`
-        : d > 0 ? `Mide ${fmt(d)} kt <b>más</b> que el pronóstico de esta hora (${fmt(h.ws)} kt): el modelo viene corto.`
-        : `Mide ${fmt(-d)} kt <b>menos</b> que el pronóstico de esta hora (${fmt(h.ws)} kt).`;
-    }
-    box().innerHTML = head + `<div class="row1"><span class="val">${fmt(o.wspd,0)} kt</span><span>${o.wgst ? `ráfagas de ${fmt(o.wgst,0)} kt · ` : ""}${dirOk ? `viene del ${card(o.wdir)} (${o.wdir}°)` : "dirección variable"}</span></div>
-      <p class="note"><b>${esc(pick.st.name)}</b>, a ${fmt(pick.km,0)} km (${fmt(nm(pick.km),0)} mn) · medido hace ${ago < 60 ? ago + " min" : Math.round(ago/60) + " h"}${o.altim ? ` · presión ${fmt(o.altim,0)} hPa` : ""}</p>
-      ${cmp ? `<p style="margin:0;font-size:14px">${cmp}</p>` : ""}
-      <p class="note">Es una estación en tierra: sobre el agua suele haber un poco más de viento.</p>` + carp;
-  }catch(e){
-    if(box()) box().innerHTML = head + `<p class="note">No se pudo traer la medición en vivo en este momento.</p>` + carp;
-  }
-}
-const BFT = [[1,"Calma"],[4,"Ventolina"],[7,"Flojito"],[11,"Flojo"],[17,"Bonancible"],[22,"Fresquito"],[28,"Fresco"],[34,"Frescachón"],[41,"Duro"],[48,"Muy duro"],[56,"Temporal"],[64,"Borrasca"],[999,"Huracán"]];
-const bft = kt => { const i = BFT.findIndex(([lim]) => kt < lim); return {f:i, name:BFT[i][1]}; };
-const nm = km => km / 1.852;
 const OTHER_ORDER = ["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
-const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, draft:1.90, ukc:0.30, sondBy:{}, night:false, model:"combo", corr:true};
+const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, minBy:{berisso:0.70}, night:false, model:"combo", corr:true};
 
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
 function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 
 let cfg = Object.assign({}, DEF, load("salimos.cfg3", {}));
-cfg.sondBy = Object.assign({}, cfg.sondBy || {}); if(cfg.sond != null && cfg.sondBy.berisso == null) cfg.sondBy.berisso = cfg.sond; delete cfg.sond;
+cfg.minBy = Object.assign({berisso:0.70}, cfg.minBy || {}); delete cfg.sond; delete cfg.sondBy; delete cfg.draft; delete cfg.ukc;
+if(cfg.model !== "combo" && !MODELS.some(m => m.id === cfg.model)) cfg.model = "combo";
 let custom = load("salimos.spots", []);
 let spotId = load("salimos.spot", "berisso");
+let guardia = load("salimos.guardia", false);
+let mapLayer = load("salimos.layer", "wind"), mapIso = load("salimos.iso", true);
+let lastData = null, lastB = null;
 
+/* estaciones reales conocidas, coordenadas aproximadas */
+const CARP_URL = "https://www.comisionriodelaplata.org/vientosymareas.php";
+const metar = id => `https://aviationweather.gov/data/metar/?ids=${id}&decoded=yes`;
+const STATIONS = [
+  {name:"Pilote Norden", who:"CARP", what:"Viento y marea", water:true, lat:-34.63, lon:-57.92, url:CARP_URL, how:"Plataforma en medio del río. Referencia para Berisso y Punta Lara."},
+  {name:"Puerto de Colonia", who:"CARP", what:"Viento y marea", water:true, lat:-34.47, lon:-57.85, url:CARP_URL, how:"En el puerto de Colonia."},
+  {name:"Puerto de Conchillas", who:"CARP", what:"Viento y marea", water:true, lat:-34.19, lon:-58.06, url:CARP_URL, how:"Costa uruguaya, al oeste de Colonia."},
+  {name:"Puerto de Carmelo", who:"CARP", what:"Viento y marea", water:true, lat:-34.00, lon:-58.29, url:CARP_URL, how:"Costa uruguaya, cerca del delta."},
+  {name:"Mareógrafo de La Plata", who:"SHN / Puerto La Plata", what:"Altura del río", water:true, lat:-34.83, lon:-57.88, url:SHN.url, how:"Referencia de la altura del río en Berisso."},
+  {name:"Puerto de Buenos Aires", who:"SHN", what:"Altura del río", water:true, lat:-34.57, lon:-58.37, url:SHN.url, how:"Mareógrafo de los avisos de crecida."},
+  {name:"Aeródromo de La Plata (SADL)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SADL", lat:-34.97, lon:-57.89, url:metar("SADL"), how:"En tierra, unos 14 km al sur de Berisso."},
+  {name:"Aeropuerto de Colonia (SUCA)", who:"Uruguay", what:"Viento, ráfagas y presión", water:false, icao:"SUCA", lat:-34.46, lon:-57.77, url:metar("SUCA"), how:"En tierra, unos 8 km al este del puerto."},
+  {name:"Aeroparque (SABE)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SABE", lat:-34.56, lon:-58.42, url:metar("SABE"), how:"Sobre la costa del río."},
+  {name:"Aeropuerto de Mar del Plata (SAZM)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SAZM", lat:-37.93, lon:-57.57, url:metar("SAZM"), how:"En tierra, unos 10 km al norte del puerto."},
+  {name:"Puerto de Mar del Plata", who:"SHN", what:"Altura del mar", water:true, lat:-38.04, lon:-57.53, url:SHN.url, how:"Mareógrafo del puerto."},
+  {name:"Aeropuerto de Puerto Madryn (SAVY)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SAVY", lat:-42.76, lon:-65.10, url:metar("SAVY"), how:"En tierra, a unos 10 km de la costa."},
+  {name:"Aeropuerto de Ushuaia (SAWH)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SAWH", lat:-54.84, lon:-68.30, url:metar("SAWH"), how:"Sobre la costa del Canal Beagle."},
+  {name:"Base Carlini", who:"SMN / Instituto Antártico", what:"Viento, presión y temperatura", water:false, lat:-62.24, lon:-58.67, url:"https://www.smn.gob.ar/", how:"Estación automática de la base; no encontré dónde publica en vivo."},
+  {name:"Aeródromo Teniente Marsh (SCRM)", who:"Chile", what:"Viento, ráfagas y presión", water:false, icao:"SCRM", lat:-62.19, lon:-58.99, url:metar("SCRM"), how:"En la misma isla, Península Fildes."},
+  {name:"Base Marambio (SAWB)", who:"SMN", what:"Viento, ráfagas y presión", water:false, icao:"SAWB", lat:-64.24, lon:-56.63, url:metar("SAWB"), how:"Centro meteorológico antártico del SMN."},
+  {name:"Aeropuerto de Florianópolis (SBFL)", who:"Brasil", what:"Viento, ráfagas y presión", water:false, icao:"SBFL", lat:-27.67, lon:-48.55, url:metar("SBFL"), how:"En la isla de Santa Catarina."},
+  {name:"Boyas de la Marina de Brasil (PNBOIA)", who:"Marinha do Brasil", what:"Viento y olas", water:true, lat:-27.6, lon:-47.9, url:"https://www.marinha.mil.br/chm/", how:"No pude confirmar cuál está más cerca: revisalo en su página."}
+];
+
+/* ---------- utilidades ---------- */
 const $ = s => document.querySelector(s);
 const allSpots = () => PRESETS.concat(custom);
 const spot = () => allSpots().find(s => s.id === spotId) || PRESETS[0];
 const modelOf = id => MODELS.find(m => m.id === id);
 const corrOn = s => !!(s.rdp && cfg.corr);
-const sondOf = s => cfg.sondBy[s.id] ?? null;
-const lvlNeeded = s => sondOf(s) == null ? null : +(cfg.draft + cfg.ukc - sondOf(s)).toFixed(2);
+const lvlNeeded = s => cfg.minBy[s.id] ?? null;
 const tideOf = s => s.tide || {who:"el servicio hidrográfico del país", url:"", port:s.name, water:"agua"};
-
 const CARD = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
 const card = d => CARD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
 const fmt = (n, d=1) => n == null || isNaN(n) ? "—" : n.toLocaleString("es-AR", {minimumFractionDigits:d, maximumFractionDigits:d});
@@ -435,6 +394,16 @@ const inArc = (d, a, b) => d >= a && d <= b;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const arrowPath = (deg, color) => `<g transform="rotate(${deg + 180} 12 12)"><path d="M12 3 L18 19 L12 15 L6 19 Z" fill="${color}"/></g>`;
 const arrow = (deg, color) => `<svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(deg, color)}</svg>`;
+const BFT = [[1,"Calma"],[4,"Ventolina"],[7,"Flojito"],[11,"Flojo"],[17,"Bonancible"],[22,"Fresquito"],[28,"Fresco"],[34,"Frescachón"],[41,"Duro"],[48,"Muy duro"],[56,"Temporal"],[64,"Borrasca"],[999,"Huracán"]];
+const bft = kt => { const i = BFT.findIndex(([lim]) => kt < lim); return {f:i, name:BFT[i][1]}; };
+const nm = km => km / 1.852;
+const num = v => { const x = parseFloat(String(v).replace(",", ".")); return isNaN(x) ? null : x; };
+function distKm(a, b){ const R = 6371, r = Math.PI/180, dLa = (b.lat-a.lat)*r, dLo = (b.lon-a.lon)*r; const x = Math.sin(dLa/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(x)); }
+const ICON = {
+  no:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg>',
+  ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>'
+};
 
 /* ---------- clasificación ---------- */
 const LABEL = {ok:"Se navega", limite:"Al límite", flojo:"A motor", noche:"Noche", no:"No conviene"};
@@ -451,6 +420,7 @@ function classify(h, need){
 }
 const sailable = k => k === "ok" || k === "limite";
 const stLabel = c => c.k === "no" ? (c.why.charAt(0).toUpperCase() + c.why.slice(1)) : LABEL[c.k] || "—";
+const STRIPCOL = {ok:"var(--ok)", limite:"var(--warn)", no:"var(--bad)", flojo:"var(--flojo)", noche:"var(--line)"};
 
 function windows(hours){
   const out = []; let cur = null;
@@ -462,25 +432,24 @@ function windows(hours){
   }
   return out;
 }
-
 function dayAlerts(hours, need){
   const a = [];
   const se = hours.filter(h => inArc(h.wd, 100, 170) && h.ws >= 15).length;
-  if(se >= 3) a.push(["no", `<b>Sudestada:</b> viento del sudeste de 15 kt o más durante ${se} h. El río sube y se forma ola corta y dura.`]);
+  if(se >= 3) a.push(["no", `<b>Sudestada:</b> viento del SE de 15 kt o más durante ${se} h. El río sube y arma ola corta y dura.`]);
   const pam = hours.filter(h => inArc(h.wd, 190, 260) && h.wg != null && h.wg >= 25);
-  if(pam.length) a.push(["no", `<b>Pampero:</b> rachas del sudoeste de hasta ${fmt(Math.max(...pam.map(h => h.wg)),0)} kt desde las ${hh(pam[0].h)} h. Entra de golpe y hace bajar el río.`]);
+  if(pam.length) a.push(["no", `<b>Pampero:</b> rachas del SO de hasta ${fmt(Math.max(...pam.map(h => h.wg)),0)} kt desde las ${hh(pam[0].h)} h. Entra de golpe y baja el río.`]);
   const st = hours.filter(h => h.wc >= 95).length;
-  if(st) a.push(["no", `<b>Tormenta eléctrica</b> en ${st} h del día. Con rayos no se navega.`]);
+  if(st) a.push(["no", `<b>Tormenta eléctrica</b> en ${st} h. Con rayos no se navega.`]);
+  if(need != null){
+    const low = hours.filter(h => h.day && h.lvl != null && h.lvl < need);
+    if(low.length) a.push(["no", `<b>Poca agua:</b> el río queda debajo de tu mínimo (${fmt(need,2)} m) durante ${low.length} h de luz, desde las ${hh(low[0].h)} h${low.every(h => h.lvlSrc === "shn") ? "" : " (según el modelo: confirmalo con el SHN)"}.`]);
+  }
   const fog = hours.filter(h => h.vis != null && h.vis < 1000).length;
   if(fog) a.push(["lim", `<b>Niebla:</b> visibilidad menor a 1 km (media milla) durante ${fog} h.`]);
   const ps = hours.map(h => h.p).filter(v => v != null);
-  if(ps.length > 2){ const dp = ps[ps.length-1] - ps[0]; if(dp <= -4) a.push(["lim", `<b>La presión baja ${fmt(-dp,1)} hPa en el día.</b> Suele anunciar un cambio de tiempo, como la llegada de un frente.`]); }
+  if(ps.length > 2){ const dp = ps[ps.length-1] - ps[0]; if(dp <= -4) a.push(["lim", `<b>La presión baja ${fmt(-dp,1)} hPa:</b> suele anunciar un frente.`]); }
   const rain = hours.filter(h => h.day && h.pr >= 1).length;
   if(rain) a.push(["info", `Lluvia en ${rain} h de luz.`]);
-  if(need != null){
-    const low = hours.filter(h => h.day && h.lvl != null && h.lvl < need).length;
-    if(low) a.push(["no", `<b>Poca agua:</b> durante ${low} h de luz el río queda debajo de los ${fmt(need,2)} m que necesita el barco para pasar.`]);
-  }
   return a;
 }
 
@@ -491,13 +460,11 @@ async function fetchData(s){
   const q = `latitude=${s.lat}&longitude=${s.lon}&timezone=auto&forecast_days=7`;
   const fc = `https://api.open-meteo.com/v1/forecast?${q}&hourly=${VARS.join(",")}&wind_speed_unit=kn&models=${MODELS.map(m => m.id).join(",")}`;
   const sun = `https://api.open-meteo.com/v1/forecast?${q}&daily=sunrise,sunset`;
-  const marine = `https://marine-api.open-meteo.com/v1/marine?${q}&hourly=wave_height,wave_period,sea_level_height_msl`;
+  const marine = `https://marine-api.open-meteo.com/v1/marine?${q}&hourly=wave_height,wave_period,wave_direction,sea_level_height_msl,ocean_current_velocity,ocean_current_direction`;
   const [f, d, mar] = await Promise.allSettled([getJSON(fc), getJSON(sun), getJSON(marine)]);
   if(f.status !== "fulfilled") throw new Error("forecast");
   return {f:f.value, d: d.status === "fulfilled" ? d.value : null, m: mar.status === "fulfilled" ? mar.value : null};
 }
-
-/* junta los modelos: corrige el sesgo y pondera por acierto */
 function blend(per){
   if(!per.length) return null;
   let sw = 0, ws = 0, swg = 0, wg = 0, x = 0, y = 0;
@@ -508,14 +475,15 @@ function blend(per){
   });
   return {ws: ws/sw, wg: swg ? wg/swg : null, wd: (Math.atan2(y, x) * 180/Math.PI + 360) % 360};
 }
-
 function build(data, s){
   const H = data.f.hourly, M = data.m && data.m.hourly;
   const g = (v, m, i) => { const a = H[v + "_" + m]; return a ? a[i] : null; };
   const other = (v, i) => { for(const m of OTHER_ORDER){ const x = g(v, m, i); if(x != null) return x; } return null; };
+  const mv = (v, j) => M && j != null && M[v] ? M[v][j] : null;
   const mi = {}; if(M) M.time.forEach((t,i) => mi[t] = i);
   const sun = {}; if(data.d) data.d.daily.time.forEach((d,i) => sun[d] = {rise:data.d.daily.sunrise[i], set:data.d.daily.sunset[i]});
-  const need = s.cero != null ? lvlNeeded(s) : null, corr = corrOn(s);
+  const need = lvlNeeded(s), corr = corrOn(s);
+  const shnD = shnLoad(s), shnF = shnSeries(shnD), shnDate = shnD.date;
   const hours = H.time.map((t,i) => {
     const per = MODELS.map(m => {
       const raw = g("wind_speed_10m", m.id, i); if(raw == null) return null;
@@ -526,25 +494,57 @@ function build(data, s){
     const pick = cfg.model === "combo" ? blend(per) : (per.find(p => p.id === cfg.model) || blend(per));
     if(!pick) return null;
     const j = mi[t], date = t.slice(0,10), sd = sun[date], mid = mins(t) + 30;
-    const sl = M && j != null ? M.sea_level_height_msl[j] : null;
+    const sl = mv("sea_level_height_msl", j), cv = mv("ocean_current_velocity", j);
     const h = {t, date, h:+t.slice(11,13), per,
       day: sd ? (mid >= mins(sd.rise) - 30 && mid <= mins(sd.set) + 30) : true,
       ws:pick.ws, wg:pick.wg, wd:pick.wd,
       lo: per.length > 1 ? Math.min(...per.map(p => p.ws)) : null, hi: per.length > 1 ? Math.max(...per.map(p => p.ws)) : null,
       pr:other("precipitation", i), wc:other("weather_code", i), temp:other("temperature_2m", i), vis:other("visibility", i), p:other("pressure_msl", i),
-      wave: M && j != null ? M.wave_height[j] : null, wper: M && j != null ? M.wave_period[j] : null,
-      lvl: sl == null ? null : (s.cero != null ? sl + s.cero : sl)};
+      wave:mv("wave_height", j), wper:mv("wave_period", j), wdir:mv("wave_direction", j),
+      cur: cv == null ? null : cv / 1.852, curDir:mv("ocean_current_direction", j),
+      lvl: (s.cero != null && sl != null) ? sl + s.cero : null, lvlSrc: "modelo"};
+    if(shnF && date === shnDate){ const v = shnF(h.h * 60 + 30); if(v != null){ h.lvl = v; h.lvlSrc = "shn"; } }
     h.c = classify(h, need);
     return h;
   }).filter(Boolean);
   const days = {}; hours.forEach(h => (days[h.date] = days[h.date] || []).push(h));
   const tz = data.f.utc_offset_seconds || 0;
   const nowStr = new Date(Date.now() + tz*1000).toISOString().slice(0,13) + ":00";
-  return {hours, days, sun, nowStr, need, corr, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null)};
+  return {hours, days, sun, nowStr, need, corr, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null), hasCur: hours.some(h => h.cur != null)};
 }
 
+/* ---------- textos de decisión ---------- */
+function verdict(hrs){ const n = hrs.filter(h => sailable(h.c.k)).length; return n >= 3 ? ["si","Sí, salimos"] : n >= 1 ? ["poco","Poco tiempo"] : ["no","Hoy no"]; }
+function mainDir(hrs){
+  const d = hrs.filter(h => h.day); const src = d.length ? d : hrs;
+  let x = 0, y = 0; src.forEach(h => { x += Math.cos(h.wd*Math.PI/180)*Math.max(h.ws,.5); y += Math.sin(h.wd*Math.PI/180)*Math.max(h.ws,.5); });
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+function bestWin(ws){ return ws.length ? ws.reduce((a,b) => (b.to-b.from) > (a.to-a.from) ? b : a) : null; }
+function winLabel(w){ return w.from === w.to ? `${hh(w.from)} h` : `${hh(w.from)} a ${hh(w.to + 1)} h`; }
+function reasonText(hrs, ws){
+  const best = bestWin(ws);
+  if(best){
+    const sub = hrs.filter(h => h.h >= best.from && h.h <= best.to);
+    return `Mejor ventana de ${winLabel(best)}, con ${fmt(best.lo,0)} a ${fmt(best.peak,0)} kt del ${card(mainDir(sub))}.${best.lim ? " Algunas horas al límite de lo que pusiste." : ""}`;
+  }
+  const cnt = {}; hrs.filter(h => h.day).forEach(h => { if(h.c.why) cnt[h.c.why] = (cnt[h.c.why] || 0) + 1; });
+  const top = Object.entries(cnt).sort((a,b) => b[1]-a[1])[0];
+  if(!top) return "Ya no quedan horas de luz para navegar.";
+  const map = {"mucho viento":"hay más viento del que pusiste como máximo", "poco viento":"hay poco viento: a motor sí, a vela no", "mucha ola":"hay más ola de la que pusiste como máximo", "tormenta":"hay tormenta eléctrica", "niebla":"hay niebla", "poca agua":"no hay agua suficiente para el calado"};
+  return `La mayor parte del día ${map[top[0]] || top[0]}.`;
+}
+function dateLbl(d){ const dt = new Date(d + "T12:00:00"); return {dow:DOW[dt.getDay()], txt:`${dt.getDate()} de ${MON[dt.getMonth()]}`}; }
+function reliab(idx){ return idx <= 1 ? "Confiabilidad alta" : idx <= 3 ? "Confiabilidad media" : "Confiabilidad baja: para hacerse una idea"; }
+const srcName = () => cfg.model === "combo" ? "el combinado" : "el modelo " + modelOf(cfg.model).name;
+function range(arr, d=2, u="m"){ const v = arr.filter(x => x != null); return v.length ? `${fmt(Math.min(...v),d)} a ${fmt(Math.max(...v),d)} ${u}` : "sin dato"; }
+function strip(hrs){
+  return `<div class="strip" style="grid-template-columns:repeat(${hrs.length},minmax(0,1fr))" role="img" aria-label="Estado de cada hora">${hrs.map(h => `<span style="background:${STRIPCOL[h.c.k] || "var(--line)"}" title="${hh(h.h)} h · ${stLabel(h.c)}"></span>`).join("")}</div>`;
+}
+const STRIP_LEGEND = `<div class="legend"><span><i style="background:var(--ok)"></i>Se navega</span><span><i style="background:var(--warn)"></i>Al límite</span><span><i style="background:var(--bad)"></i>No conviene</span><span><i style="background:var(--flojo)"></i>A motor</span><span><i style="background:var(--line)"></i>Noche</span></div>`;
+
 /* ---------- gráfico de un día ---------- */
-const COL = {ok:"var(--ok)", limite:"var(--lim)", no:"var(--no)", flojo:"var(--flojo)", noche:"var(--flojo)"};
+const COL = {ok:"var(--ok)", limite:"var(--warn)", no:"var(--bad)", flojo:"var(--flojo)", noche:"var(--flojo)"};
 function chartSVG(hours, B, isToday){
   const bw = 32, padL = 44, padR = 56, top = 30, hb = 170, n = hours.length;
   const W = padL + n*bw + padR, x0 = padL, x1 = padL + n*bw;
@@ -556,317 +556,398 @@ function chartSVG(hours, B, isToday){
   const y = v => top + hb - (v / maxK) * hb;
   const cx = i => padL + i*bw + bw/2;
   let s = `<svg width="${W}" height="${H}" role="img" aria-label="Viento, ráfagas, dirección y nivel del agua hora por hora">`;
-  // noche
   hours.forEach((h,i) => { if(!h.day) s += `<rect x="${padL + i*bw}" y="${top}" width="${bw}" height="${H - top - 8}" fill="var(--night)"/>`; });
-  // tu rango
   s += `<rect x="${x0}" y="${y(cfg.wMax)}" width="${x1-x0}" height="${y(cfg.wMin) - y(cfg.wMax)}" fill="var(--ok)" opacity=".08"/>`;
-  // escala de nudos cada 5
-  for(let v = 0; v <= maxK; v += 5){
-    s += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>`;
-    s += `<text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
-  }
-  s += `<text x="${x0-8}" y="${top-14}" text-anchor="end" font-weight="600">nudos</text>`;
+  for(let v = 0; v <= maxK; v += 5){ s += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`; }
+  s += `<text x="${x0-8}" y="${top-14}" text-anchor="end" font-weight="700">kt</text>`;
   [[cfg.wMin,"tu mínimo"],[cfg.wMax,"tu máximo"]].forEach(([v,l]) => {
     s += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--ok)" stroke-dasharray="5 4" stroke-width="1.4"/>`;
     s += `<text x="${x1+6}" y="${y(v)-2}" style="fill:var(--ok)">${l}</text><text x="${x1+6}" y="${y(v)+11}" style="fill:var(--ok)">${v} kt</text>`;
   });
-  // barras
   hours.forEach((h,i) => {
     const x = padL + i*bw + 5, w = bw - 10, c = COL[h.c.k] || "var(--flojo)", op = h.c.k === "noche" ? .5 : 1;
     s += `<rect x="${x}" y="${y(h.ws)}" width="${w}" height="${Math.max(1, top+hb-y(h.ws))}" rx="3" fill="${c}" opacity="${op}"/>`;
     if(h.wg != null){
-      s += `<line x1="${x-2}" x2="${x+w+2}" y1="${y(h.wg)}" y2="${y(h.wg)}" stroke="var(--ink)" stroke-width="2.4" opacity="${.7*op}"/>`;
-      s += `<line x1="${cx(i)}" x2="${cx(i)}" y1="${y(h.wg)}" y2="${y(h.ws)}" stroke="var(--ink)" stroke-width="1" opacity="${.35*op}"/>`;
+      s += `<line x1="${x-2}" x2="${x+w+2}" y1="${y(h.wg)}" y2="${y(h.wg)}" stroke="var(--text)" stroke-width="2.4" opacity="${.75*op}"/>`;
+      s += `<line x1="${cx(i)}" x2="${cx(i)}" y1="${y(h.wg)}" y2="${y(h.ws)}" stroke="var(--text)" stroke-width="1" opacity="${.35*op}"/>`;
     }
-    s += `<text x="${cx(i)}" y="${y(h.wg ?? h.ws) - 6}" text-anchor="middle" style="fill:var(--ink)" font-weight="600">${fmt(h.ws,0)}</text>`;
-    s += `<text x="${cx(i)}" y="${hrsY}" text-anchor="middle"${h.t === B.nowStr && isToday ? ' style="fill:var(--red)" font-weight="700"' : ""}>${hh(h.h)}</text>`;
-    s += `<g transform="translate(${cx(i) - 8} ${dirY}) scale(.66)">${arrowPath(h.wd, "var(--muted)")}</g>`;
+    s += `<text x="${cx(i)}" y="${y(h.wg ?? h.ws) - 6}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(h.ws,0)}</text>`;
+    s += `<text x="${cx(i)}" y="${hrsY}" text-anchor="middle"${h.t === B.nowStr && isToday ? ' style="fill:var(--wind)" font-weight="700"' : ""}>${hh(h.h)}</text>`;
+    s += `<g transform="translate(${cx(i) - 8} ${dirY}) scale(.66)">${arrowPath(h.wd, "var(--text2)")}</g>`;
     if(h.h % 2 === 0) s += `<text x="${cx(i)}" y="${cardY}" text-anchor="middle">${card(h.wd)}</text>`;
-    if(isToday && h.t === B.nowStr) s += `<rect x="${padL + i*bw + 1}" y="${top-4}" width="${bw-2}" height="${hb+26}" fill="none" stroke="var(--red)" stroke-width="2" rx="4"/><text x="${cx(i)}" y="${top-8}" text-anchor="middle" style="fill:var(--red)" font-weight="700">ahora</text>`;
+    if(isToday && h.t === B.nowStr) s += `<rect x="${padL + i*bw + 1}" y="${top-4}" width="${bw-2}" height="${hb+26}" fill="none" stroke="var(--wind)" stroke-width="2" rx="4"/><text x="${cx(i)}" y="${top-8}" text-anchor="middle" style="fill:var(--wind)" font-weight="700">ahora</text>`;
   });
-  s += `<text x="${x0-8}" y="${hrsY}" text-anchor="end" font-weight="600">hora</text>`;
-  s += `<text x="${x0-8}" y="${cardY}" text-anchor="end" font-weight="600">viene</text>`;
-  // nivel del agua con su propia escala
+  s += `<text x="${x0-8}" y="${hrsY}" text-anchor="end" font-weight="700">hora</text><text x="${x0-8}" y="${cardY}" text-anchor="end" font-weight="700">viene</text>`;
   if(lv.length){
     let lo = Math.min(...lv, B.need ?? Infinity), hi = Math.max(...lv, B.need ?? -Infinity);
     lo = Math.floor(lo * 5) / 5 - .2; hi = Math.ceil(hi * 5) / 5 + .2;
-    const step = (hi - lo) > 2 ? .5 : .2;
-    const ly = v => lvlTop + lvlH - (v - lo) / (hi - lo) * lvlH;
-    s += `<text x="${x0-8}" y="${lvlTop-14}" text-anchor="end" font-weight="600">m</text><text x="${x0}" y="${lvlTop-14}" font-weight="600" style="fill:var(--level)">altura del agua</text>`;
-    for(let v = Math.ceil(lo/step)*step; v <= hi + 1e-9; v += step){
-      s += `<line x1="${x0}" x2="${x1}" y1="${ly(v)}" y2="${ly(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${ly(v)+4}" text-anchor="end">${fmt(v,1)}</text>`;
-    }
-    if(B.need != null){
-      s += `<line x1="${x0}" x2="${x1}" y1="${ly(B.need)}" y2="${ly(B.need)}" stroke="var(--no)" stroke-dasharray="5 4" stroke-width="1.6"/>`;
-      s += `<text x="${x1+6}" y="${ly(B.need)-2}" style="fill:var(--no)">mínimo</text><text x="${x1+6}" y="${ly(B.need)+11}" style="fill:var(--no)">${fmt(B.need,2)} m</text>`;
-    }
+    const step = (hi - lo) > 2 ? .5 : .2, ly = v => lvlTop + lvlH - (v - lo) / (hi - lo) * lvlH;
+    s += `<text x="${x0-8}" y="${lvlTop-14}" text-anchor="end" font-weight="700">m</text><text x="${x0}" y="${lvlTop-14}" font-weight="700" style="fill:var(--wave)">altura del río (${hours.some(h => h.lvlSrc === "shn") ? "SHN" : "modelo"})</text>`;
+    for(let v = Math.ceil(lo/step)*step; v <= hi + 1e-9; v += step) s += `<line x1="${x0}" x2="${x1}" y1="${ly(v)}" y2="${ly(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${ly(v)+4}" text-anchor="end">${fmt(v,1)}</text>`;
+    if(B.need != null) s += `<line x1="${x0}" x2="${x1}" y1="${ly(B.need)}" y2="${ly(B.need)}" stroke="var(--bad)" stroke-dasharray="5 4" stroke-width="1.6"/><text x="${x1+6}" y="${ly(B.need)-2}" style="fill:var(--bad)">mínimo</text><text x="${x1+6}" y="${ly(B.need)+11}" style="fill:var(--bad)">${fmt(B.need,2)} m</text>`;
     let d = ""; hours.forEach((h,i) => { if(h.lvl != null) d += (d ? "L" : "M") + cx(i) + " " + ly(h.lvl).toFixed(1); });
-    s += `<path d="${d}" fill="none" stroke="var(--level)" stroke-width="2.6" stroke-linejoin="round"/>`;
-    hours.forEach((h,i) => { if(h.lvl != null && h.h % 3 === 0) s += `<circle cx="${cx(i)}" cy="${ly(h.lvl)}" r="3" fill="var(--level)"/><text x="${cx(i)}" y="${ly(h.lvl)-7}" text-anchor="middle" style="fill:var(--level)">${fmt(h.lvl,2)}</text>`; });
+    s += `<path d="${d}" fill="none" stroke="var(--wave)" stroke-width="2.6" stroke-linejoin="round"/>`;
+    hours.forEach((h,i) => { if(h.lvl != null && h.h % 3 === 0) s += `<circle cx="${cx(i)}" cy="${ly(h.lvl)}" r="3" fill="var(--wave)"/><text x="${cx(i)}" y="${ly(h.lvl)-7}" text-anchor="middle" style="fill:var(--wave)">${fmt(h.lvl,2)}</text>`; });
   }
   return s + `</svg>`;
 }
 
-/* ---------- tabla hora por hora ---------- */
+/* ---------- tablas hora por hora ---------- */
 const SKY = c => c == null ? "—" : c === 0 ? "Despejado" : c <= 2 ? "Algo nublado" : c === 3 ? "Nublado" : c <= 48 ? "Niebla" : c <= 57 ? "Llovizna" : c <= 67 ? "Lluvia" : c <= 77 ? "Nieve" : c <= 82 ? "Chaparrones" : c <= 86 ? "Nieve" : "Tormenta";
-function modelTable(hrs, B, mid){
-  const need = B.need;
-  const rows = hrs.map(h => {
-    const p = h.per.find(x => x.id === mid);
-    if(!p) return `<tr class="${h.day ? "" : "night"}"><td class="h">${hh(h.h)}</td><td colspan="7" class="muted">Este modelo no tiene dato para esta hora</td></tr>`;
-    const c = classify({day:h.day, ws:p.ws, wg:p.wg, wc:p.wc, vis:p.vis, wave:h.wave, lvl:h.lvl}, need);
-    return `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
-      <td class="h">${hh(h.h)}</td>
-      <td><b>${fmt(p.ws,0)}</b> / ${fmt(p.wg,0)}${B.corr ? `<div class="sub">sin corregir ${fmt(p.raw,0)}</div>` : ""}</td>
-      <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(p.wd, "var(--muted)")}</svg>${card(p.wd)}</span></td>
-      <td>${fmt(p.pr,1)}</td><td>${fmt(p.temp,0)}°</td><td>${fmt(p.p,0)}</td>
-      <td style="font-family:var(--f-body)">${SKY(p.wc)}</td>
-      <td><span class="st st-${c.k}">${stLabel(c)}</span></td></tr>`;
-  }).join("");
-  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga (kt)</th><th>Viene del</th><th>Lluvia (mm)</th><th>Temp.</th><th>Presión (hPa)</th><th>Cielo</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-}
-function tabsFor(date){
-  return `<div class="mtabs" role="group" aria-label="Elegí el modelo">` +
-    `<button type="button" class="mtab" data-date="${date}" data-m="combo" aria-pressed="true">${cfg.model === "combo" ? "Combinado" : "El que usás"}</button>` +
-    MODELS.map(m => `<button type="button" class="mtab" data-date="${date}" data-m="${m.id}" aria-pressed="false"><i style="background:${m.col}"></i>${m.name}</button>`).join("") + `</div>`;
-}
 function hourTable(hrs, B){
   const rows = hrs.map(h => `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}">
     <td class="h">${hh(h.h)}</td>
     <td><b>${fmt(h.ws,0)}</b> / ${fmt(h.wg,0)} <span class="sub">F${bft(h.ws).f}</span>${h.lo != null ? `<div class="sub">modelos ${fmt(h.lo,0)}–${fmt(h.hi,0)}</div>` : ""}</td>
-    <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wd, "var(--muted)")}</svg>${card(h.wd)}</span></td>
-    ${B.hasWave ? `<td>${fmt(h.wave)}</td>` : ""}
+    <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wd, "var(--text2)")}</svg>${card(h.wd)}</span></td>
+    ${B.hasWave ? `<td>${fmt(h.wave)}${h.wper ? `<div class="sub">${fmt(h.wper,0)} s</div>` : ""}</td>` : ""}
     ${B.hasLevel ? `<td>${fmt(h.lvl,2)}</td>` : ""}
     <td><span class="st st-${h.c.k}">${stLabel(h.c)}</span></td></tr>`).join("");
-  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga (kt)</th><th>Viene del</th>${B.hasWave ? "<th>Ola (m)</th>" : ""}${B.hasLevel ? "<th>Río (m)</th>" : ""}<th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga</th><th>Viene del</th>${B.hasWave ? "<th>Ola (m)</th>" : ""}${B.hasLevel ? "<th>Río (m)</th>" : ""}<th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function modelTable(hrs, B, mid){
+  const rows = hrs.map(h => {
+    const p = h.per.find(x => x.id === mid);
+    if(!p) return `<tr class="${h.day ? "" : "night"}"><td class="h">${hh(h.h)}</td><td colspan="7" class="sub">Sin dato de este modelo</td></tr>`;
+    const c = classify({day:h.day, ws:p.ws, wg:p.wg, wc:p.wc, vis:p.vis, wave:h.wave, lvl:h.lvl}, B.need);
+    return `<tr class="${h.day ? "" : "night"}${h.t === B.nowStr ? " nowrow" : ""}"><td class="h">${hh(h.h)}</td>
+      <td><b>${fmt(p.ws,0)}</b> / ${fmt(p.wg,0)}${B.corr ? `<div class="sub">sin corregir ${fmt(p.raw,0)}</div>` : ""}</td>
+      <td><span class="d"><svg viewBox="0 0 24 24" aria-hidden="true">${arrowPath(p.wd, "var(--text2)")}</svg>${card(p.wd)}</span></td>
+      <td>${fmt(p.pr,1)}</td><td>${fmt(p.temp,0)}°</td><td>${fmt(p.p,0)}</td><td style="font-family:var(--f-body)">${SKY(p.wc)}</td>
+      <td><span class="st st-${c.k}">${stLabel(c)}</span></td></tr>`;
+  }).join("");
+  return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga</th><th>Viene del</th><th>Lluvia mm</th><th>Temp.</th><th>hPa</th><th>Cielo</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function tabsFor(date){
+  return `<div class="mtabs" role="group" aria-label="Elegí el modelo"><button type="button" class="mtab" data-date="${date}" data-m="sel" aria-pressed="true">${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</button>${MODELS.map(m => `<button type="button" class="mtab" data-date="${date}" data-m="${m.id}" aria-pressed="false"><i style="background:${m.col}"></i>${m.name}</button>`).join("")}</div>`;
+}
+function detailBlock(date, hrs, B, isToday){
+  return `<div class="chart">${chartSVG(hrs, B, isToday)}</div><details><summary>Tabla hora por hora, modelo por modelo</summary>${tabsFor(date)}<div class="htbox" data-date="${date}">${hourTable(hrs, B)}</div><p class="note">Tocá un modelo para ver todo lo que pronostica él solo: lluvia, temperatura, presión y cielo.</p></details>`;
 }
 
-/* ---------- veredicto en palabras ---------- */
-function verdict(hrs){
-  const n = hrs.filter(h => sailable(h.c.k)).length;
-  return n >= 3 ? ["si","Sí"] : n >= 1 ? ["poco","Poco"] : ["no","No"];
-}
-function mainDir(hrs){
-  const d = hrs.filter(h => h.day); const src = d.length ? d : hrs;
-  let x = 0, y = 0; src.forEach(h => { x += Math.cos(h.wd*Math.PI/180)*Math.max(h.ws,.5); y += Math.sin(h.wd*Math.PI/180)*Math.max(h.ws,.5); });
-  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-}
-function reasonText(hrs, ws){
-  if(ws.length){
-    const best = ws.reduce((a,b) => (b.to-b.from) > (a.to-a.from) ? b : a);
-    const sub = hrs.filter(h => h.h >= best.from && h.h <= best.to);
-    return `Mejor ventana de ${hh(best.from)} a ${hh(best.to+1)} h, con ${fmt(best.lo,0)} a ${fmt(best.peak,0)} kt del ${card(mainDir(sub))}.${best.lim ? " Algunas horas quedan al límite de lo que pusiste." : ""}`;
-  }
-  const cnt = {}; hrs.filter(h => h.day).forEach(h => { if(h.c.why) cnt[h.c.why] = (cnt[h.c.why] || 0) + 1; });
-  const top = Object.entries(cnt).sort((a,b) => b[1]-a[1])[0];
-  if(!top) return "Ya no quedan horas de luz para navegar.";
-  const map = {"mucho viento":"hay más viento del que pusiste como máximo", "poco viento":"hay poco viento: se puede salir a motor, pero no a vela", "mucha ola":"hay más ola de la que pusiste como máximo", "tormenta":"hay tormenta eléctrica", "niebla":"hay niebla", "poca agua":"el río no tiene agua suficiente para el calado"};
-  return `La mayor parte del día ${map[top[0]] || top[0]}.`;
-}
-function winText(ws){
-  if(!ws.length) return `<div class="muted">Sin horas navegables con tus límites.</div>`;
-  return ws.map(w => `<div class="win${w.lim ? " lim" : ""}">${w.from === w.to ? `${hh(w.from)} h` : `${hh(w.from)} a ${hh(w.to + 1)} h`} <span class="muted">· pico ${fmt(w.peak)} kt${w.lim ? " · al límite" : ""}</span></div>`).join("");
-}
-function range(arr, d=2){ const v = arr.filter(x => x != null); return v.length ? `${fmt(Math.min(...v),d)} a ${fmt(Math.max(...v),d)} m` : "sin dato"; }
-function dateLbl(d){ const dt = new Date(d + "T12:00:00"); return {dow:DOW[dt.getDay()], txt:`${dt.getDate()} de ${MON[dt.getMonth()]}`}; }
-function reliab(idx){ return idx <= 1 ? "Confiabilidad alta." : idx <= 3 ? "Confiabilidad media." : "Confiabilidad baja: sirve para hacerse una idea, no para decidir."; }
-const srcName = () => cfg.model === "combo" ? "el pronóstico combinado" : "el modelo " + modelOf(cfg.model).name;
-
-function dayCard(date, hrs, B, opts){
-  const s = spot(), sd = B.sun[date], ws = windows(hrs), [vc, vt] = verdict(hrs), al = dayAlerts(hrs, B.need);
-  const L = dateLbl(date), md = mainDir(hrs);
-  const name = opts.today ? "Hoy" : opts.idx === 1 ? "Mañana" : L.dow;
-  let top = "";
-  if(opts.today){
-    const h = hrs.find(x => x.t === B.nowStr) || hrs[hrs.length-1];
-    top = `<div class="verdict v-${vc}"><div class="word">${vt === "Sí" ? "Sí, salimos" : vt === "Poco" ? "Poco tiempo" : "Hoy no"}</div><p>${reasonText(hrs, ws)}</p>${vt !== "No" ? `<p class="note">Antes de zarpar, confirmá que Prefectura no haya suspendido la navegación deportiva por mal tiempo.</p>` : ""}</div>
-    <div><div class="eyebrow">Pronóstico para las ${hh(h.h)} h</div><p class="note">Es lo que calcula ${srcName()} para esta hora, no una medición de una estación.</p></div>
-    <div class="now">
-      <div><div class="big">${fmt(h.ws)}<small>nudos</small></div><div class="muted">ráfagas de ${fmt(h.wg)} kt</div><div class="muted">Fuerza ${bft(h.ws).f} Beaufort · ${bft(h.ws).name}</div></div>
-      <div class="dir">${arrow(h.wd, "var(--red)")}<div class="kv"><b>${card(h.wd)} ${Math.round(h.wd)}°</b><span>viene del ${card(h.wd)}</span></div></div>
-      ${B.hasWave ? `<div class="kv"><b>${fmt(h.wave)} m</b><span>ola significativa${h.wper ? ` · período ${fmt(h.wper,0)} s` : ""}</span></div>` : ""}
-      ${B.hasLevel ? `<div class="kv"><b>${fmt(h.lvl,2)} m</b><span>${s.cero != null ? "altura del río" : "nivel vs. medio"}</span></div>` : ""}
-    </div>
-    <div class="live" id="live" aria-live="polite"><div class="eyebrow" style="color:var(--level)">Medición real, ahora</div><p class="note">Buscando la estación más cercana…</p></div>
-    ${h.lo != null ? `<p class="note">Los cuatro modelos dan entre ${fmt(h.lo)} y ${fmt(h.hi)} kt para esta hora${B.corr ? ", ya corregidos por su sesgo" : ""}.</p>` : ""}`;
-  }
-  return `<article class="card${opts.today ? " today" : ""}">
-    <div class="dayhead"><div><div class="dayname">${name}</div><div class="date">${opts.today ? L.dow + " " : ""}${L.txt}</div></div>${opts.today ? "" : `<span class="pill p-${vc}">${vt}</span>`}</div>
-    ${top}
-    <div><div class="eyebrow" style="margin-bottom:4px">Se navega</div><div class="windows">${winText(ws)}</div></div>
-    <dl class="facts">
-      <dt>Sol</dt><dd>${sd ? sd.rise.slice(11) + " a " + sd.set.slice(11) : "—"}</dd>
-      <dt>Viento</dt><dd>del ${card(md)} · ${fmt(Math.min(...hrs.map(h=>h.ws)),0)} a ${fmt(Math.max(...hrs.map(h=>h.ws)),0)} kt</dd>
-      ${B.hasWave ? `<dt>Olas</dt><dd>${range(hrs.map(h => h.wave),1)}</dd>` : ""}
-      ${B.hasLevel ? `<dt>Río</dt><dd>${range(hrs.map(h => h.lvl))}${s.cero != null ? "" : " (vs. medio)"}</dd>` : ""}
-    </dl>
-    ${al.length ? `<div class="alerts">${al.map(([k,t]) => `<div class="alert ${k}">${t}</div>`).join("")}</div>` : ""}
-    <div class="chart">${chartSVG(hrs, B, opts.today)}</div>
-    <details${opts.today ? " open" : ""}><summary>Hora por hora</summary>${tabsFor(date)}<div class="htbox" data-date="${date}">${hourTable(hrs, B)}</div><p class="note" style="margin-top:8px">Tocá un modelo para ver todo lo que pronostica él solo: viento, lluvia, temperatura, presión y cielo.</p></details>
-    <p class="note">${reliab(opts.idx)}</p>
-  </article>`;
+/* ---------- arriba: veredicto y alertas ---------- */
+function renderVerdict(B){
+  const today = B.nowStr.slice(0,10), hrs = B.days[today] || [];
+  const rest = hrs.filter(h => h.t >= B.nowStr);
+  const ws = windows(hrs), [vc, vt] = verdict(rest.length ? rest : hrs);
+  const al = dayAlerts(rest.length ? rest : hrs, B.need).sort((a,b) => ({no:0,lim:1,info:2})[a[0]] - ({no:0,lim:1,info:2})[b[0]]);
+  const icon = vc === "si" ? ICON.ok : ICON.no;
+  $("#verdictBox").innerHTML = `<div class="verdict v-${vc}" role="status" style="color:var(--${vc === "si" ? "ok" : vc === "poco" ? "warn" : "bad"})">${icon}<div style="min-width:0"><div class="word">${vt}</div><p style="color:var(--text)">${reasonText(rest.length ? rest : hrs, windows(rest.length ? rest : hrs))}</p>${vc !== "no" ? `<p class="note" style="margin-top:6px">Antes de zarpar, confirmá que Prefectura no haya suspendido la navegación deportiva.</p>` : ""}</div></div>` +
+    (al.length ? `<div class="alist">${al.slice(0, 3).map(([k,t]) => `<div class="al ${k}">${ICON[k === "info" ? "info" : "no"]}<div>${t}</div></div>`).join("")}</div>` : "");
 }
 
-const LEGEND = `<details><summary>Cómo leer el gráfico y la tabla</summary><div class="legend">
-  <span><i style="background:var(--ok)"></i>se navega</span><span><i style="background:var(--lim)"></i>al límite</span>
-  <span><i style="background:var(--flojo)"></i>poco viento: a motor</span><span><i style="background:var(--no)"></i>no conviene</span>
-  <span><i style="background:var(--night);outline:1px solid var(--line)"></i>noche</span><span><i style="background:var(--ink);height:3px"></i>ráfaga</span>
-  <span><i style="background:var(--level);height:3px"></i>nivel del agua</span><span>las líneas punteadas son tu mínimo y tu máximo</span><span>la flecha apunta hacia donde va el viento</span><span>"modelos 7–12" es lo menos y lo más que da alguno de los cuatro</span></div></details>`;
+/* ---------- tarjetas de ahora ---------- */
+function renderNow(B){
+  const s = spot(), h = B.hours.find(x => x.t === B.nowStr) || B.hours[0];
+  const b = bft(h.ws), bc = h.c.k === "no" ? "c-bad" : h.c.k === "limite" ? "c-warn" : h.c.k === "ok" ? "c-ok" : "c-n";
+  const wind = `<section class="card tall" aria-label="Viento">
+    <div class="hrow"><span class="lbl">Viento</span><span class="chip ${bc}">F${b.f}</span></div>
+    <svg class="compass" width="132" height="116" viewBox="0 0 140 120" role="img" aria-label="Viento del ${card(h.wd)}, sopla hacia el ${card(h.wd + 180)}">
+      <circle cx="70" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="70" cy="60" r="36" fill="none" stroke="var(--line)" stroke-dasharray="2 5"/>
+      <text x="70" y="18" text-anchor="middle" fill="var(--text2)" font-family="IBM Plex Mono, monospace" font-size="11">N</text>
+      <g class="kin"><g transform="rotate(${h.wd + 180} 70 60)"><path d="M70 22L84 60H74V98H66V60H56Z" fill="var(--wind)"/></g></g>
+    </svg>
+    <div><span class="num xl">${fmt(h.ws,0)}</span><span class="unit">kt</span></div>
+    <div class="sub">Ráfagas <b>${fmt(h.wg,0)} kt</b><br>Del ${card(h.wd)} · ${Math.round(h.wd)}°<br>${b.name}</div>
+  </section>`;
+  const wave = `<section class="card" aria-label="Olas">
+    <div class="hrow"><span class="lbl">Olas</span>${h.wdir != null ? `<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wdir, "var(--wave)")}</svg>` : ""}</div>
+    <div><span class="num">${fmt(h.wave)}</span><span class="unit">m</span></div>
+    <div class="sub">${h.wave == null ? "Sin dato acá" : `${h.wdir != null ? `Del ${card(h.wdir)} · ` : ""}período <b>${fmt(h.wper,0)} s</b>`}</div>
+  </section>`;
+  const cur = `<section class="card" aria-label="Corriente">
+    <div class="hrow"><span class="lbl">Corriente</span>${h.curDir != null ? `<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(${h.curDir} 12 12)"><path d="M12 3 L18 19 L12 15 L6 19 Z" fill="var(--current)"/></g></svg>` : ""}</div>
+    <div><span class="num">${fmt(h.cur)}</span><span class="unit">kt</span></div>
+    <div class="sub">${h.cur == null ? "Sin dato acá" : `Hacia el ${card(h.curDir)}`}</div>
+  </section>`;
+  const live = `<section class="card span2 live" id="live" aria-live="polite"><div class="hrow"><span class="lbl">Medición real, ahora</span></div><p class="note">Buscando la estación más cercana…</p></section>`;
+  const today = B.nowStr.slice(0,10), hrs = B.days[today] || [], ws = windows(hrs), best = bestWin(ws);
+  const win = `<section class="card span2" aria-label="Ventana de hoy">
+    <div class="hrow"><span class="lbl">Ventana de hoy</span><span style="font:700 16px var(--f-num);color:var(--${best ? "ok" : "bad"})">${best ? "Mejor " + winLabel(best) : "Sin ventana"}</span></div>
+    ${strip(hrs)}
+    <div class="ticks"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+    ${STRIP_LEGEND}
+    <p class="note">Pronóstico de ${srcName()} para las ${hh(h.h)} h${h.lo != null ? `; los cuatro modelos dan entre ${fmt(h.lo,0)} y ${fmt(h.hi,0)} kt` : ""}${B.corr ? ", corregidos por su sesgo" : ""}. No es una medición.</p>
+  </section>`;
+  $("#nowGrid").innerHTML = wind + wave + cur + live + win;
+}
+
+/* ---------- hoy ---------- */
+function renderToday(B){
+  const today = B.nowStr.slice(0,10), hrs = B.days[today] || [], L = dateLbl(today);
+  $("#todayDate").textContent = `${L.dow} ${L.txt}`;
+  const sd = B.sun[today];
+  $("#todayCard").innerHTML = `<div class="sub">Sol ${sd ? `<b>${sd.rise.slice(11)}</b> a <b>${sd.set.slice(11)}</b>` : "—"} · viento ${range(hrs.map(h => h.ws),0,"kt")}${B.hasWave ? ` · olas ${range(hrs.map(h => h.wave),1)}` : ""}</div>
+    ${detailBlock(today, hrs, B, true)}
+    <details><summary>Cómo leer el gráfico</summary><p class="note">Cada barra es una hora: su altura y el número de arriba son los nudos; la rayita es la ráfaga. Verde se navega, amarillo al límite, rojo no conviene, gris a motor o de noche. La franja verde clara es tu rango. Abajo, la línea azul es la altura del agua y la roja punteada, el mínimo para salir.</p></details>`;
+}
 
 /* ---------- modelos ---------- */
-function modelsBlock(B){
-  const s = spot();
-  const i0 = Math.max(0, B.hours.findIndex(h => h.t === B.nowStr)), seg = B.hours.slice(i0, i0 + 36);
-  let chart = "", agree = "";
-  if(seg.length){
-    const bw = 22, padL = 44, padR = 16, top = 26, hb = 170, N = seg.length, W = padL + N*bw + padR, H = top + hb + 44;
-    const all = seg.flatMap(h => h.per.map(p => p.ws)).concat(seg.map(h => h.ws));
-    const maxK = Math.max(10, Math.ceil((Math.max(cfg.wMax, ...all) + 2) / 5) * 5), y = v => top + hb - v / maxK * hb;
-    const x0 = padL, x1 = padL + N*bw;
-    let s2 = `<svg width="${W}" height="${H}" role="img" aria-label="Viento según cada modelo, próximas 36 horas">`;
-    seg.forEach((h,k) => { if(!h.day) s2 += `<rect x="${padL + k*bw}" y="${top}" width="${bw}" height="${hb}" fill="var(--night)"/>`; });
-    s2 += `<rect x="${x0}" y="${y(cfg.wMax)}" width="${x1-x0}" height="${y(cfg.wMin) - y(cfg.wMax)}" fill="var(--ok)" opacity=".08"/>`;
-    for(let v = 0; v <= maxK; v += 5) s2 += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
-    s2 += `<text x="${x0-8}" y="${top-12}" text-anchor="end" font-weight="600">nudos</text>`;
-    seg.forEach((h,k) => {
-      const xc = padL + k*bw + bw/2;
-      if(h.h % 3 === 0) s2 += `<text x="${xc}" y="${top+hb+16}" text-anchor="middle">${hh(h.h)}</text>`;
-      if(h.h === 0 || k === 0){ const L = dateLbl(h.date); s2 += `<line x1="${padL + k*bw}" x2="${padL + k*bw}" y1="${top}" y2="${top+hb+22}" stroke="var(--muted)" opacity=".5"/><text x="${padL + k*bw + 4}" y="${top+hb+34}" font-weight="600">${k === 0 ? "ahora" : L.dow.slice(0,3) + " " + L.txt.split(" ")[0]}</text>`; }
-    });
-    const line = (vals, col, w) => { let d = ""; vals.forEach((v,k) => { if(v != null) d += (d ? "L" : "M") + (padL + k*bw + bw/2) + " " + y(v).toFixed(1); }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`; };
-    MODELS.forEach(m => { s2 += line(seg.map(h => { const p = h.per.find(x => x.id === m.id); return p ? p.ws : null; }), m.col, 1.8); });
-    s2 += line(seg.map(h => h.ws), "var(--ink)", 3.4);
-    seg.forEach((h,k) => { if(k % 3 === 0) s2 += `<text x="${padL + k*bw + bw/2}" y="${y(h.ws) - 8}" text-anchor="middle" style="fill:var(--ink)" font-weight="600">${fmt(h.ws,0)}</text>`; });
-    chart = `<div class="chart">${s2}</svg></div><p class="note">La franja verde es tu rango de viento. Las zonas sombreadas son de noche. Los números son el pronóstico que decide, cada 3 horas.</p>`;
-    const sp = seg.slice(0, 12).filter(h => h.hi != null).map(h => h.hi - h.lo);
-    const avg = sp.length ? sp.reduce((a,b) => a+b, 0) / sp.length : null;
-    if(avg != null) agree = avg <= 3 ? `<div class="alert info"><b>Los modelos coinciden</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. El pronóstico es confiable.</div>`
-      : avg <= 6 ? `<div class="alert lim"><b>Los modelos difieren un poco</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. Mirá el rango de cada hora en la tabla.</div>`
-      : `<div class="alert no"><b>Los modelos no se ponen de acuerdo</b> en las próximas 12 h: se separan ${fmt(avg)} kt en promedio. Hay incertidumbre: salí con margen y mirá el cielo.</div>`;
-  }
-  const useLbl = cfg.model === "combo" ? "combinado" : modelOf(cfg.model).name;
-  const legend = `<div class="legend"><span><i style="background:var(--ink);height:4px"></i><b>${useLbl}</b> (el que decide)</span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div>`;
+function renderModels(B){
+  const s = spot(), h = B.hours.find(x => x.t === B.nowStr) || B.hours[0];
+  const opts = [{id:"combo", name:"Comb.", kt:h.ws}].concat(MODELS.map(m => { const p = h.per.find(x => x.id === m.id); return {id:m.id, name:m.name, kt:p ? p.ws : null}; }));
+  const seg = `<div class="seg" role="group" aria-label="Modelo que decide">${opts.map(o => `<button type="button" data-model="${o.id}" aria-pressed="${cfg.model === o.id}"><b>${o.name}</b><span>${fmt(o.kt,0)} kt</span></button>`).join("")}</div>`;
+  const i0 = Math.max(0, B.hours.findIndex(x => x.t === B.nowStr)), seg36 = B.hours.slice(i0, i0 + 36);
+  const sp = seg36.slice(0, 12).filter(x => x.hi != null).map(x => x.hi - x.lo);
+  const avg = sp.length ? sp.reduce((a,b) => a+b, 0) / sp.length : null;
+  const agree = avg == null ? "" : avg <= 3 ? `<span class="chip c-ok">Coinciden</span>` : avg <= 6 ? `<span class="chip c-warn">Difieren un poco</span>` : `<span class="chip c-bad">No coinciden</span>`;
+  const bw = 22, padL = 40, padR = 14, top = 22, hb = 160, N = seg36.length, W = padL + N*bw + padR, H = top + hb + 42;
+  const all = seg36.flatMap(x => x.per.map(p => p.ws)).concat(seg36.map(x => x.ws));
+  const maxK = Math.max(10, Math.ceil((Math.max(cfg.wMax, ...all) + 2) / 5) * 5), y = v => top + hb - v / maxK * hb, x0 = padL, x1 = padL + N*bw;
+  let g = `<svg width="${W}" height="${H}" role="img" aria-label="Viento según cada modelo, próximas 36 horas">`;
+  seg36.forEach((x,k) => { if(!x.day) g += `<rect x="${padL + k*bw}" y="${top}" width="${bw}" height="${hb}" fill="var(--night)"/>`; });
+  g += `<rect x="${x0}" y="${y(cfg.wMax)}" width="${x1-x0}" height="${y(cfg.wMin) - y(cfg.wMax)}" fill="var(--ok)" opacity=".08"/>`;
+  for(let v = 0; v <= maxK; v += 5) g += `<line x1="${x0}" x2="${x1}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${x0-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+  g += `<text x="${x0-8}" y="${top-10}" text-anchor="end" font-weight="700">kt</text>`;
+  seg36.forEach((x,k) => {
+    if(x.h % 3 === 0) g += `<text x="${padL + k*bw + bw/2}" y="${top+hb+16}" text-anchor="middle">${hh(x.h)}</text>`;
+    if(x.h === 0 || k === 0){ const L = dateLbl(x.date); g += `<line x1="${padL + k*bw}" x2="${padL + k*bw}" y1="${top}" y2="${top+hb+22}" stroke="var(--text2)" opacity=".5"/><text x="${padL + k*bw + 4}" y="${top+hb+34}" font-weight="700">${k === 0 ? "ahora" : L.dow.slice(0,3) + " " + L.txt.split(" ")[0]}</text>`; }
+  });
+  const line = (vals, col, w) => { let d = ""; vals.forEach((v,k) => { if(v != null) d += (d ? "L" : "M") + (padL + k*bw + bw/2) + " " + y(v).toFixed(1); }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"/>`; };
+  MODELS.forEach(m => { g += line(seg36.map(x => { const p = x.per.find(q => q.id === m.id); return p ? p.ws : null; }), m.col, 1.8); });
+  g += line(seg36.map(x => x.ws), "var(--text)", 3.4);
+  seg36.forEach((x,k) => { if(k % 3 === 0) g += `<text x="${padL + k*bw + bw/2}" y="${y(x.ws) - 8}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(x.ws,0)}</text>`; });
+  g += `</svg>`;
   const tot = MODELS.reduce((a,m) => a + REF[m.id].acc, 0);
-  const rows = MODELS.map(m => { const r = REF[m.id], use = cfg.model === m.id;
-    return `<tr class="${use ? "use" : ""}"><td><span class="swatch" style="background:${m.col}"></span>${m.name}</td><td><span class="bar"><i style="width:${Math.min(100, r.acc*2)}%"></i></span>${fmt(r.acc)}%</td><td>${fmt(r.mae)} kt</td><td>${r.bias > 0 ? "+" : ""}${fmt(r.bias)} kt</td><td>${r.bias < 0 ? "sumar " + fmt(-r.bias) : "restar " + fmt(r.bias)} kt</td><td>${fmt(r.acc / tot * 100, 0)}%</td></tr>`; }).join("");
-  return `<article class="card">
-      <h3>Viento en las próximas 36 horas${B.corr ? ", ya corregido" : ""}</h3>
-      ${legend}${chart}${agree}
-      <p class="note">${cfg.model === "combo" ? (s.rdp ? "La línea gruesa es el combinado: cada modelo corregido por su sesgo y con más peso cuanto mejor le pega." : "La línea gruesa es el combinado: el promedio de los cuatro. Acá no hay estación para saber cuál le pega mejor, así que pesan igual.") : `La línea gruesa es el modelo que elegiste en Mi barco. Podés cambiarlo por el combinado.`}</p>
-    </article>
-    <article class="card">
-      <h3>¿Cuál le pega mejor en el Río de la Plata?</h3>
-      <p class="note">Cada modelo comparado contra lo que midió la estación Pilote Norden (CARP), a unos 20 km de Berisso, durante 1218 horas entre el 1 de septiembre y el 31 de octubre de 2026. Medición de OlvidataSoft.</p>
-      <div class="tablewrap"><table class="mtable"><thead><tr><th>Modelo</th><th>Acierto</th><th>Error medio</th><th>Sesgo</th><th>Corrección</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
-      <details><summary>Qué quiere decir cada columna</summary>
-        <p class="note"><b>Acierto:</b> en qué porcentaje de las horas el modelo quedó a menos de 2 kt de lo que midió la estación.<br><br>
-        <b>Error medio:</b> cuánto se equivocó en promedio, para arriba o para abajo.<br><br>
-        <b>Sesgo:</b> para qué lado se equivoca. Negativo quiere decir que marca menos viento del que hay. Los cuatro se quedan cortos, así que hay que sumar.<br><br>
-        <b>Corrección:</b> lo que la página le suma a cada modelo cuando está activado "Corregir con el sesgo" en Mi barco.<br><br>
-        <b>Peso:</b> cuánto cuenta cada modelo en el pronóstico combinado. El ECMWF casi no cuenta porque en el río es el que peor le pega.<br><br>
-        Estos números valen para el Río de la Plata. En otras zonas los modelos se equivocan distinto.</p>
-      </details>
-    </article>`;
+  const rows = MODELS.map(m => { const r = REF[m.id]; return `<tr><td><span class="swatch" style="background:${m.col}"></span>${m.name}</td><td><span class="bar"><i style="width:${Math.min(100, r.acc*2)}%"></i></span>${fmt(r.acc)}%</td><td>${fmt(r.mae)} kt</td><td>${fmt(r.bias)} kt</td><td>sumar ${fmt(-r.bias)}</td><td>${fmt(r.acc / tot * 100, 0)}%</td></tr>`; }).join("");
+  $("#modelsCard").innerHTML = `<div class="hrow"><span class="lbl">Viento ahora según cada uno</span>${agree}</div>${seg}
+    <p class="note">${cfg.model === "combo" ? (s.rdp ? "Combinado: cada modelo corregido por su sesgo y con más peso cuanto mejor le pega en el río." : "Combinado: promedio de los cuatro; acá no hay medición para saber cuál le pega mejor.") : `Decide ${modelOf(cfg.model).name} solo. Tocá Comb. para volver al combinado.`}</p>
+    <details><summary>Ver las próximas 36 horas</summary><div class="legend"><span><i style="background:var(--text);height:4px"></i><b>${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</b></span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div><div class="chart">${g}</div><p class="note">La franja verde es tu rango de viento; lo sombreado es de noche.</p></details>
+    <details><summary>¿Cuál le pega mejor en el Río de la Plata?</summary><p class="note">Cada modelo contra lo que midió Pilote Norden (CARP), 1218 horas entre el 1 de septiembre y el 31 de octubre de 2026. Medición de OlvidataSoft.</p>
+      <div class="tablewrap"><table class="mtable"><thead><tr><th>Modelo</th><th>Acierto</th><th>Error</th><th>Sesgo</th><th>Corrección</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <p class="note">Acierto: horas a menos de 2 kt de lo medido. Sesgo negativo: marca menos viento del que hay. Peso: cuánto cuenta en el combinado. Solo vale para el Río de la Plata.</p></details>`;
 }
 
-/* ---------- calado ---------- */
-function levelBlock(B){
-  const s = spot(), T = tideOf(s), sond = sondOf(s), need = lvlNeeded(s), agua = T.water === "mar" ? "el mar" : T.water === "río" ? "el río" : "el agua";
-  const now = B.hours.find(h => h.t === B.nowStr);
-  const today = B.days[B.nowStr.slice(0,10)] || [];
-  let calc;
-  if(sond == null){
-    calc = `<div class="calc"><div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div><div class="row"><span>+ resguardo bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div><div class="row tot"><span>Agua que necesitás</span><span>${fmt(cfg.draft + cfg.ukc,2)} m</span></div></div>
-    <div class="alert lim"><b>Falta un dato de ${esc(s.name)}.</b> Para saber si hay agua, cargá en <b>Mi barco</b> la profundidad del lugar menos hondo de la entrada o salida, según la carta de este puerto. Cada puerto tiene la suya.</div>`;
-  } else {
-    calc = `<div class="calc">
-      <div class="row"><span>Calado del barco</span><span>${fmt(cfg.draft,2)} m</span></div>
-      <div class="row"><span>+ resguardo bajo la quilla</span><span>${fmt(cfg.ukc,2)} m</span></div>
-      <div class="row"><span>− profundidad en la carta</span><span>${fmt(sond,2)} m</span></div>
-      <div class="row tot"><span>Altura mínima de ${agua}</span><span>${fmt(need,2)} m</span></div></div>
-      <p class="note">En ${esc(s.name)}, si ${agua} está por encima de ${fmt(need,2)} m según la tabla, hay agua para pasar con ${fmt(cfg.ukc,2)} m de margen.${need <= 0 ? " Con esa profundidad pasás casi siempre, salvo una bajante muy fuerte." : ""}</p>`;
+/* ---------- marea: lo que dice el SHN ---------- */
+const toMin = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(String(t || "").trim()); return m ? +m[1] * 60 + +m[2] : null; };
+const hm = m => `${hh(Math.floor(m / 60) % 24)}:${hh(Math.round(m % 60))}`;
+function todayStr(){ return lastB ? lastB.nowStr.slice(0,10) : new Date().toISOString().slice(0,10); }
+function shnLoad(s){
+  const d = load("salimos.shn2." + s.id, null);
+  const blank = {date:"", sign:"0", cm:"", rows:[{t:"baja",time:"",h:""},{t:"plea",time:"",h:""},{t:"baja",time:"",h:""},{t:"plea",time:"",h:""}]};
+  return d && Array.isArray(d.rows) ? d : blank;
+}
+/* devuelve f(minutos del día) → altura según el SHN, o null fuera de los datos cargados */
+function shnSeries(d){
+  const off = (+d.sign || 0) * Math.abs(num(d.cm) ?? 0) / 100;
+  const pts = d.rows.map(r => ({m: toMin(r.time), h: num(r.h)})).filter(p => p.m != null && p.h != null).sort((a,b) => a.m - b.m);
+  if(pts.length < 2) return null;
+  const f = m => {
+    for(let i = 0; i < pts.length - 1; i++){
+      const A = pts[i], Bp = pts[i+1];
+      if(m >= A.m && m <= Bp.m && Bp.m > A.m) return A.h + (Bp.h - A.h) * (1 - Math.cos(Math.PI * (m - A.m) / (Bp.m - A.m))) / 2 + off;
+    }
+    return null;
+  };
+  f.from = pts[0].m; f.to = pts[pts.length-1].m; f.pts = pts.map(p => ({m:p.m, h:p.h + off})); f.off = off;
+  return f;
+}
+function waterWindows(f, need){
+  const ok = [], bad = []; let cur = null;
+  for(let m = f.from; m <= f.to; m += 5){
+    const v = f(m); if(v == null) continue;
+    const k = v >= need ? "ok" : "bad";
+    if(!cur || cur.k !== k){ cur = {k, a:m, b:m}; (k === "ok" ? ok : bad).push(cur); } else cur.b = m;
   }
-  let status = "";
-  if(s.cero != null && B.hasLevel && need != null){
-    const low = today.filter(h => h.day && h.lvl != null && h.lvl < need);
-    const ok = now && now.lvl != null && now.lvl >= need;
-    status = `<div class="alert ${low.length || !ok ? "no" : "info"}">Según el modelo, ${now && now.lvl != null ? `ahora ${agua} está en <b>${fmt(now.lvl,2)} m</b>: ${ok ? "hay agua para salir." : "<b>no alcanza para salir.</b>"} ` : ""}${low.length ? `Hoy queda por debajo durante ${low.length} h de luz.` : "En las horas de luz que quedan no baja de lo que necesitás."}</div>`;
-  } else if(s.cero == null){
-    status = `<div class="alert info">Acá el modelo de nivel no está llevado al cero de la carta del puerto, así que la página no puede decirte la altura sola. Usá la calculadora de abajo con la tabla de marea de ${esc(T.port)}.</div>`;
+  return {ok, bad};
+}
+function tideSVG(f, need){
+  const W = 340, H = 160, pl = 34, pr = 8, pt = 22, ph = 108, a = f.from, b = f.to;
+  const vals = []; for(let m = a; m <= b; m += 10) vals.push([m, f(m)]);
+  let lo = Math.min(...vals.map(v => v[1]), need ?? Infinity), hi = Math.max(...vals.map(v => v[1]), need ?? -Infinity);
+  lo = Math.floor(lo * 5) / 5 - .1; hi = Math.ceil(hi * 5) / 5 + .1;
+  const X = m => pl + (m - a) / (b - a) * (W - pl - pr), Y = x => pt + ph - (x - lo) / (hi - lo) * ph;
+  let s = `<svg class="tide" width="100%" viewBox="0 0 ${W} ${H}" role="img" aria-label="Altura del río según el SHN">`;
+  const step = (hi - lo) > 2 ? .5 : .2;
+  for(let x = Math.ceil(lo/step)*step; x <= hi + 1e-9; x += step) s += `<line x1="${pl}" x2="${W-pr}" y1="${Y(x)}" y2="${Y(x)}" stroke="var(--line)"/><text x="${pl-6}" y="${Y(x)+4}" text-anchor="end">${fmt(x,1)}</text>`;
+  if(need != null){
+    s += `<rect x="${pl}" y="${Y(Math.min(need, hi))}" width="${W-pl-pr}" height="${Math.max(0, pt + ph - Y(Math.min(need, hi)))}" fill="var(--badbg)"/>`;
+    s += `<line x1="${pl}" x2="${W-pr}" y1="${Y(need)}" y2="${Y(need)}" stroke="var(--bad)" stroke-dasharray="5 4" stroke-width="1.4"/><text x="${W-pr}" y="${Y(need)+14}" text-anchor="end" style="fill:var(--bad)">mínimo ${fmt(need,2)}</text>`;
   }
-  const saved = load("salimos.shn." + s.id, {tabla:"", aviso:"", sign:"0"});
-  const isShn = /SHN/.test(T.who);
-  const calcCard = `<article class="card">
-    <h3>Calculá con la tabla de marea</h3>
-    <p class="note">Buscá en la tabla de mareas de <b>${esc(T.who)}</b> la altura de <b>${esc(T.port)}</b> para la hora en que querés entrar o salir. ${isShn ? "Si el SHN emitió un aviso de crecida o bajante, poné cuántos centímetros dice" : "Si hay un aviso de que el viento sube o baja el agua, poné cuántos centímetros"} y elegí si dice por encima o por debajo de la tabla.</p>
-    <div class="shn-in">
-      <label for="shnTabla">Altura según la tabla (m)<input id="shnTabla" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej.: 0,85" value="${esc(saved.tabla)}"></label>
-      <label for="shnSign">Aviso por viento<select id="shnSign"><option value="0"${saved.sign === "0" || !saved.sign ? " selected" : ""}>No hay aviso</option><option value="1"${saved.sign === "1" ? " selected" : ""}>Por encima de la tabla</option><option value="-1"${saved.sign === "-1" ? " selected" : ""}>Por debajo de la tabla</option></select></label>
-      <label for="shnAviso">Cuántos centímetros<input id="shnAviso" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${esc(saved.aviso)}"></label>
-    </div>
-    <div id="shnRes"></div>
-    <p class="note">La profundidad de la carta y la tabla de marea de un mismo país se miden desde el mismo cero, así que se pueden sumar. No mezcles la tabla de un país con la carta de otro.</p>
-    ${T.url ? `<a class="btn" href="${T.url}" target="_blank" rel="noopener">Ver las tablas de ${esc(T.who.split(" (")[0])} ↗</a>` : ""}
-  </article>`;
-  const fromCard = s.cero != null ? `<article class="card">
-    <h3>De dónde sale la altura del río</h3>
-    <p class="note">La página usa un modelo de nivel del agua llevado al cero del mareógrafo de La Plata. Es orientativo: en el Río de la Plata el viento mueve mucho el agua y el modelo puede no verlo bien.</p>
-    <p class="note">El dato oficial es del <b>SHN</b>. Sus tablas dan la marea astronómica, la de la Luna y el Sol. Cuando el viento la corre, el SHN emite un aviso que dice cuánto va a estar el río por encima o por debajo de las tablas en el Puerto de La Plata, que es el que sirve para Berisso. La altura real es la tabla más el aviso.</p>
-  </article>` : `<article class="card">
-    <h3>De dónde sale la altura del agua acá</h3>
-    <p class="note">La altura oficial de ${esc(s.name)} sale de las tablas de marea de ${esc(T.who)}. Las tablas dan la marea astronómica; el viento y la presión pueden sumarle o restarle. Los gráficos de la página muestran un modelo de nivel respecto del nivel medio del mar, que sirve para ver cuándo sube y cuándo baja, pero no para calcular el calado.</p>
-  </article>`;
-  return `<article class="card">${calc}${status}</article>${calcCard}${fromCard}`;
+  s += `<path d="${vals.map((v,i) => (i ? "L" : "M") + X(v[0]).toFixed(1) + " " + Y(v[1]).toFixed(1)).join("")}" fill="none" stroke="var(--wave)" stroke-width="2.6" stroke-linejoin="round"/>`;
+  f.pts.forEach(p => { const top = p.h >= (f.pts.reduce((x,y) => x + y.h, 0) / f.pts.length); s += `<circle cx="${X(p.m)}" cy="${Y(p.h)}" r="4" fill="var(--wave)"/><text x="${Math.min(W - pr - 44, Math.max(pl + 44, X(p.m)))}" y="${top ? Y(p.h) - 8 : Y(p.h) + 16}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(p.h,2)} · ${hm(p.m)}</text>`; });
+  const nowM = lastB ? +lastB.nowStr.slice(11,13) * 60 + new Date().getMinutes() : null;
+  if(nowM != null && nowM >= a && nowM <= b && shnLoad(spot()).date === todayStr()) s += `<line x1="${X(nowM)}" x2="${X(nowM)}" y1="${pt}" y2="${pt+ph}" stroke="var(--text)" stroke-width="1.5"/><text x="${X(nowM)}" y="${pt-8}" text-anchor="middle" style="fill:var(--text)" font-weight="700">ahora</text>`;
+  for(let m = Math.ceil(a/180)*180; m <= b; m += 180) s += `<text x="${X(m)}" y="${H-6}" text-anchor="middle">${hm(m)}</text>`;
+  return s + `</svg>`;
+}
+function tideResultHTML(s){
+  const need = lvlNeeded(s), d = shnLoad(s), f = shnSeries(d);
+  if(need == null) return `<div class="res wait"><p>Falta tu <b>altura mínima para salir</b> de ${esc(s.name)}. Cargala en <b>Mi barco</b>: es el número del SHN a partir del cual tu barco sale.</p></div>`;
+  if(!f) return `<div class="res wait"><p>Tu mínimo es <b>${fmt(need,2)} m</b>. Cargá abajo la bajamar y la pleamar del SHN y te digo de qué hora a qué hora hay agua.</p></div>`;
+  const w = waterWindows(f, need), old = d.date && d.date !== todayStr();
+  const okTxt = w.ok.map(x => `${hm(x.a)} a ${hm(x.b)}`).join(" y ");
+  const badTxt = w.bad.map(x => `${hm(x.a)} a ${hm(x.b)}`).join(" y ");
+  const cls = w.ok.length ? "ok" : "no";
+  return `<div class="res ${cls}"><div class="word">${w.ok.length ? (w.bad.length ? "Hay agua por horas" : "Hay agua todo el rato") : "No hay agua"}</div>
+    ${w.ok.length ? `<p>El río está en <b>${fmt(need,2)} m o más</b> de <b>${okTxt}</b>.</p>` : ""}
+    ${w.bad.length ? `<p>Queda por debajo de ${fmt(need,2)} m de <b>${badTxt}</b>: a esa hora no salgas ni vuelvas.</p>` : ""}
+    ${old ? `<p class="note">Ojo: estos datos son del ${esc(d.date.split("-").reverse().join("/"))}. Cargá los de hoy.</p>` : ""}</div>`;
+}
+function renderTide(B){
+  const s = spot(), T = tideOf(s), need = lvlNeeded(s), d = shnLoad(s);
+  $("#tidePort").textContent = T.port;
+  const rowHTML = (r, i) => `<div class="tr">
+      <select class="f" id="tT${i}" aria-label="Tipo, fila ${i+1}"><option value="baja"${r.t === "baja" ? " selected" : ""}>Bajamar</option><option value="plea"${r.t === "plea" ? " selected" : ""}>Pleamar</option></select>
+      <input id="tH${i}" type="time" aria-label="Hora, fila ${i+1}" value="${esc(r.time)}">
+      <input id="tA${i}" type="text" inputmode="decimal" autocomplete="off" aria-label="Altura en metros, fila ${i+1}" placeholder="m" value="${esc(r.h)}">
+    </div>`;
+  $("#tideGrid").innerHTML = `
+  <section class="card span2" aria-label="¿Hay agua para salir?">
+    <div class="hrow"><span class="lbl">¿Hay agua para salir?</span>${need != null ? `<span class="chip c-n">mínimo ${fmt(need,2)} m</span>` : ""}</div>
+    <div id="tideRes" aria-live="polite">${tideResultHTML(s)}</div>
+    <div id="tideCurve">${shnSeries(d) ? tideSVG(shnSeries(d), need) : ""}</div>
+  </section>
+  <section class="card span2" aria-label="Lo que dice el SHN">
+    <div class="hrow"><span class="lbl">Lo que dice el ${esc(T.who.split(" (")[0])}</span>${T.url ? `<a class="btn small" href="${T.url}" target="_blank" rel="noopener">Abrir ↗</a>` : ""}</div>
+    <p class="note">Copiá de la tabla de <b>${esc(T.port)}</b> las horas y alturas de bajamar y pleamar del día. Con dos alcanza; con cuatro cubrís el día entero.</p>
+    <div class="trhead"><span>Tipo</span><span>Hora</span><span>Altura (m)</span></div>
+    ${d.rows.map(rowHTML).join("")}
+    <label for="tSign">¿La tabla dice "valores corregidos"?
+      <select class="f" id="tSign"><option value="0"${d.sign === "0" ? " selected" : ""}>Sí, son valores corregidos (o no hay aviso)</option><option value="1"${d.sign === "1" ? " selected" : ""}>No, y hay aviso: el río va a estar POR ENCIMA</option><option value="-1"${d.sign === "-1" ? " selected" : ""}>No, y hay aviso: el río va a estar POR DEBAJO</option></select>
+    </label>
+    <label for="tCm"${d.sign === "0" ? " hidden" : ""} id="tCmL">¿Cuántos centímetros dice el aviso?<input id="tCm" type="text" inputmode="numeric" autocomplete="off" placeholder="20" value="${esc(d.cm)}"></label>
+    <div class="drow" style="justify-content:flex-start"><button class="btn small" type="button" id="tClear">Borrar</button></div>
+  </section>
+  <details class="card span2"><summary>¿Cómo se lee la tabla del SHN?</summary>
+    <p class="note"><b>Bajamar</b> es el momento de menos agua; <b>pleamar</b>, el de más agua. Se repiten más o menos cada 12 horas y media; entre una y otra el agua sube o baja de a poco.</p>
+    <p class="note">La <b>altura</b> es cuánto está el río sobre el cero del puerto, no la profundidad. Por eso se compara con tu <b>mínimo para salir</b>, que ya tiene en cuenta el fondo y el calado.</p>
+    <p class="note">Si la tabla dice <b>"valores corregidos"</b>, ya trae sumado el efecto del viento: se usa tal cual. La tabla común del año no lo trae; si ese día hay aviso de crecida o bajante, hay que sumarlo o restarlo.</p>
+  </details>`;
+}
+function tideRead(){
+  const s = spot(), d = shnLoad(s);
+  d.rows = d.rows.map((r, i) => ({t: $("#tT" + i).value, time: $("#tH" + i).value, h: $("#tA" + i).value}));
+  d.sign = $("#tSign").value; d.cm = $("#tCm").value; d.date = todayStr();
+  save("salimos.shn2." + s.id, d);
+  $("#tCmL").hidden = d.sign === "0";
+  const f = shnSeries(d);
+  $("#tideRes").innerHTML = tideResultHTML(s);
+  $("#tideCurve").innerHTML = f ? tideSVG(f, lvlNeeded(s)) : "";
+}
+
+/* ---------- semana ---------- */
+function renderWeek(B){
+  const today = B.nowStr.slice(0,10), dates = Object.keys(B.days).sort().filter(d => d > today);
+  $("#rangeTxt").textContent = `${cfg.wMin}–${cfg.wMax} kt`;
+  $("#week").innerHTML = dates.map((d, i) => {
+    const hrs = B.days[d], ws = windows(hrs), [vc, vt] = verdict(hrs), L = dateLbl(d), best = bestWin(ws), al = dayAlerts(hrs, B.need);
+    const pc = vc === "si" ? "c-ok" : vc === "poco" ? "c-warn" : "c-bad";
+    return `<article class="card span2 day">
+      <div class="hrow"><div><div class="dname">${i === 0 ? "Mañana" : L.dow}</div><div class="sub">${L.txt} · ${reliab(i + 1)}</div></div><span class="chip ${pc}" style="font-size:14px;padding:4px 10px">${vc === "si" ? "Sí" : vc === "poco" ? "Poco" : "No"}</span></div>
+      ${strip(hrs)}
+      <div class="ticks"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+      <div class="dwin">${best ? `Se navega <b>${ws.map(winLabel).join(" y ")}</b> · pico ${fmt(Math.max(...ws.map(w => w.peak)),0)} kt` : `<span class="sub">${reasonText(hrs, ws)}</span>`}</div>
+      <div class="sub">Viento del ${card(mainDir(hrs))} · ${range(hrs.map(h => h.ws),0,"kt")}${B.hasWave ? ` · olas ${range(hrs.map(h => h.wave),1)}` : ""}</div>
+      ${al.length ? `<div class="alist" style="margin-top:0">${al.map(([k,t]) => `<div class="al ${k}">${ICON[k === "info" ? "info" : "no"]}<div>${t}</div></div>`).join("")}</div>` : ""}
+      <details><summary>Ver el gráfico del día</summary>${detailBlock(d, hrs, B, false)}</details>
+    </article>`;
+  }).join("");
+}
+
+/* ---------- estaciones y medición en vivo ---------- */
+function renderStations(s){
+  const near = STATIONS.map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 350).sort((a,b) => a.km - b.km).slice(0, 6);
+  $("#stations").innerHTML = (near.map(({st, km}) => `<div class="sta">
+      <div class="sta-top"><span class="sta-name">${esc(st.name)}</span><span class="sta-km">${km < 1 ? "acá" : fmt(km,0) + " km · " + fmt(nm(km),0) + " mn"}</span></div>
+      <div class="sta-meta"><span class="chip c-n">${esc(st.who)}</span><span class="chip ${st.water ? "c-ok" : "c-n"}">${st.water ? "En el agua" : "En tierra"}</span><span class="chip c-n">${esc(st.what)}</span></div>
+      <p class="note">${esc(st.how)}</p><a href="${st.url}" target="_blank" rel="noopener">Ver la medición ↗</a></div>`).join("") || `<p class="note">No conozco estaciones a menos de 350 km.</p>`) +
+    `<p class="note">Los aeropuertos publican cada hora (METAR); el link la muestra en inglés. En tierra suele haber algo menos de viento que sobre el agua.</p>`;
+}
+async function loadLive(s, B){
+  const box = () => document.getElementById("live"); if(!box()) return;
+  const head = `<div class="hrow"><span class="lbl">Medición real, ahora</span></div>`;
+  const carp = s.rdp ? `<p class="note">Pilote Norden mide sobre el agua, pero todavía no se puede leer desde la página: <a href="${CARP_URL}" target="_blank" rel="noopener">verlo en la CARP ↗</a></p>` : "";
+  const cands = STATIONS.filter(st => st.icao).map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 250).sort((a,b) => a.km - b.km).slice(0, 3);
+  if(!cands.length){ box().innerHTML = head + `<p class="note">No hay estaciones en vivo a menos de 250 km.</p>` + carp; return; }
+  try{
+    const data = await getJSON(`/api/metar?ids=${cands.map(c => c.st.icao).join(",")}`);
+    if(spot().id !== s.id || !box()) return;
+    const pick = cands.map(c => ({...c, o: data.find(d => d.icaoId === c.st.icao)})).find(c => c.o && c.o.wspd != null);
+    if(!pick) throw new Error("sin datos");
+    const o = pick.o, ago = Math.max(0, Math.round((Date.now()/1000 - o.obsTime) / 60)), dirOk = typeof o.wdir === "number";
+    const h = B.hours.find(x => x.t === B.nowStr);
+    let cmp = "";
+    if(h){ const d = o.wspd - h.ws; cmp = Math.abs(d) < 2 ? `<span class="chip c-ok">Coincide con el pronóstico</span>` : d > 0 ? `<span class="chip c-warn">${fmt(d)} kt más que el pronóstico</span>` : `<span class="chip c-n">${fmt(-d)} kt menos que el pronóstico</span>`; }
+    box().innerHTML = head + `<div class="row1"><span class="num">${fmt(o.wspd,0)}</span><span class="unit">kt</span><span class="sub">${o.wgst ? `ráfagas <b>${fmt(o.wgst,0)}</b> · ` : ""}${dirOk ? `del ${card(o.wdir)} (${o.wdir}°)` : "dirección variable"}</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">${cmp}</div>
+      <p class="note"><b style="color:var(--text)">${esc(pick.st.name)}</b> · ${fmt(pick.km,0)} km (${fmt(nm(pick.km),0)} mn) · hace ${ago < 60 ? ago + " min" : Math.round(ago/60) + " h"}${o.altim ? ` · ${fmt(o.altim,0)} hPa` : ""}. En tierra: sobre el agua suele haber algo más.</p>` + carp;
+  }catch(e){ if(box()) box().innerHTML = head + `<p class="note">No se pudo traer la medición en vivo en este momento.</p>` + carp; }
+}
+
+/* ---------- mapa ---------- */
+const LAYERS = [["wind","Viento"],["gust","Ráfagas"],["waves","Olas"],["currents","Corrientes"],["iso","Isobaras"]];
+function renderLayers(){
+  $("#layers").innerHTML = LAYERS.map(([id, l]) => `<button type="button" class="lchip" data-layer="${id}" aria-pressed="${id === "iso" ? mapIso : mapLayer === id}">${l}</button>`).join("");
+}
+function setWindy(s){
+  const m = cfg.model === "combo" ? null : modelOf(cfg.model);
+  const product = m ? m.windy : "ecmwf";
+  $("#mapModel").textContent = product === "icon" ? "ICON" : product.toUpperCase();
+  $("#windy").src = `https://embed.windy.com/embed2.html?lat=${s.lat}&lon=${s.lon}&detailLat=${s.lat}&detailLon=${s.lon}&zoom=8&level=surface&overlay=${mapLayer}&product=${product}&menu=&message=true&marker=true&calendar=now&pressure=${mapIso ? "true" : ""}&type=map&location=coordinates&detail=&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`;
+  $("#windyLink").href = `https://www.windy.com/?${mapLayer},${s.lat},${s.lon},9`;
 }
 
 /* ---------- armado ---------- */
-let lastB = null;
 function render(B){
   lastB = B;
-  const dates = Object.keys(B.days).sort(), today = B.nowStr.slice(0,10);
-  const todayHrs = B.days[today] || [];
-  $("#todaySec").innerHTML = (todayHrs.length ? dayCard(today, todayHrs, B, {today:true, idx:0}) : "") + `<div style="margin-top:12px">${LEGEND}</div>`;
-  $("#week").innerHTML = dates.filter(d => d > today).map((d,i) => dayCard(d, B.days[d], B, {idx:i+1})).join("");
-  $("#rangeTxt").textContent = `Horas navegables con viento entre ${cfg.wMin} y ${cfg.wMax} kt, ráfagas de hasta ${cfg.gMax} kt${B.hasWave ? ` y olas de hasta ${fmt(cfg.waveMax)} m` : ""}. Lo cambiás en Mi barco.`;
-  $("#models").innerHTML = modelsBlock(B);
-  $("#level").innerHTML = levelBlock(B);
-  shnCalc();
+  renderVerdict(B); renderNow(B); renderToday(B); renderModels(B); renderTide(B); renderWeek(B);
+  ["#hoy","#modelos","#marea","#semana"].forEach(id => $(id).hidden = false);
   loadLive(spot(), B);
-  ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = false);
 }
-
-function setWindy(s){
-  $("#windy").src = `https://embed.windy.com/embed2.html?lat=${s.lat}&lon=${s.lon}&detailLat=${s.lat}&detailLon=${s.lon}&zoom=8&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`;
-  $("#windyLink").href = `https://www.windy.com/?${s.lat},${s.lon},9`;
-}
-
+function rebuild(){ if(lastData) render(build(lastData, spot())); }
 async function refresh(){
   const s = spot();
-  $("#todaySec").innerHTML = `<div class="status">Cargando pronóstico para ${esc(s.name)}…</div>`;
-  ["#weekSec","#modelSec","#levelSec"].forEach(id => $(id).hidden = true);
-  setWindy(s); renderStations(s);
-  try{ render(build(await fetchData(s), s)); }
-  catch(e){ console.error(e); $("#todaySec").innerHTML = `<div class="status err">No se pudo cargar el pronóstico. Revisá la conexión y tocá <button class="btn" type="button" onclick="refresh()">Reintentar</button></div>`; }
+  $("#coords").textContent = `${fmt(Math.abs(s.lat),2)}°${s.lat < 0 ? "S" : "N"} ${fmt(Math.abs(s.lon),2)}°${s.lon < 0 ? "O" : "E"} · pronóstico`;
+  $("#verdictBox").innerHTML = `<div class="status">Cargando pronóstico para ${esc(s.name)}…</div>`;
+  $("#nowGrid").innerHTML = "";
+  ["#hoy","#modelos","#marea","#semana"].forEach(id => $(id).hidden = true);
+  renderLayers(); setWindy(s); renderStations(s);
+  try{ lastData = await fetchData(s); render(build(lastData, s)); }
+  catch(e){ console.error(e); $("#verdictBox").innerHTML = `<div class="status err">No se pudo cargar el pronóstico. Revisá la conexión. <button class="btn small" type="button" id="retry">Reintentar</button></div>`; }
 }
+function applyGuardia(){ document.documentElement.dataset.guardia = guardia ? "1" : "0"; $("#btnGuardia").setAttribute("aria-pressed", String(guardia)); document.querySelector('meta[name="theme-color"]').content = guardia ? "#000000" : "#04070C"; }
 
 /* ---------- controles ---------- */
 function fillSpots(){ $("#spotSel").innerHTML = allSpots().map(s => `<option value="${esc(s.id)}"${s.id === spotId ? " selected" : ""}>${esc(s.name)}</option>`).join(""); }
 $("#spotSel").addEventListener("change", e => { spotId = e.target.value; save("salimos.spot", spotId); refresh(); });
+$("#btnGuardia").addEventListener("click", () => { guardia = !guardia; save("salimos.guardia", guardia); applyGuardia(); });
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  if(t.closest("#retry")) return refresh();
+  const lay = t.closest("[data-layer]");
+  if(lay){ const id = lay.dataset.layer; if(id === "iso"){ mapIso = !mapIso; save("salimos.iso", mapIso); } else { mapLayer = id; save("salimos.layer", mapLayer); } renderLayers(); setWindy(spot()); return; }
+  const mb = t.closest("[data-model]");
+  if(mb){ cfg.model = mb.dataset.model; save("salimos.cfg3", cfg); setWindy(spot()); rebuild(); return; }
+  const tb = t.closest(".mtab");
+  if(tb && lastB){
+    const date = tb.dataset.date, mid = tb.dataset.m, hrs = lastB.days[date]; if(!hrs) return;
+    document.querySelectorAll(`.mtab[data-date="${date}"]`).forEach(x => x.setAttribute("aria-pressed", x === tb ? "true" : "false"));
+    const box = document.querySelector(`.htbox[data-date="${date}"]`);
+    if(box) box.innerHTML = mid === "sel" ? hourTable(hrs, lastB) : modelTable(hrs, lastB, mid);
+  }
+});
+const isTide = el => /^(tT|tH|tA)\d$|^tSign$|^tCm$/.test(el.id || "");
+document.addEventListener("input", e => { if(isTide(e.target)) tideRead(); });
+document.addEventListener("change", e => { if(isTide(e.target)){ tideRead(); const y = scrollY; rebuild(); scrollTo(0, y); } });
+document.addEventListener("click", e => { if(e.target.closest("#tClear")){ save("salimos.shn2." + spot().id, null); const y = scrollY; rebuild(); scrollTo(0, y); } });
 
 $("#btnCfg").addEventListener("click", () => {
   ["wMin","wMax","gMax"].forEach(k => $("#" + k).value = cfg[k]);
-  ["waveMax","draft","ukc"].forEach(k => $("#" + k).value = String(cfg[k]).replace(".", ","));
-  $("#sond").value = sondOf(spot()) == null ? "" : String(sondOf(spot())).replace(".", ","); $("#sondLbl").textContent = `Sondaje del punto menos profundo de la salida en ${spot().name}, según la carta (m)`; $("#model").value = cfg.model; $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
+  $("#waveMax").value = String(cfg.waveMax).replace(".", ",");
+  const s = spot(), mn = lvlNeeded(s); $("#minAlt").value = mn == null ? "" : String(mn).replace(".", ",");
+  $("#minLbl").textContent = `Altura mínima del SHN para salir de ${s.name} (m)`;
+  $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
   if($("#dlgCfg").returnValue !== "ok") return;
-  const num = (id, d) => { const v = parseFloat(String($(id).value).replace(",", ".")); return isNaN(v) ? d : v; };
-  cfg.wMin = num("#wMin", DEF.wMin); cfg.wMax = Math.max(cfg.wMin + 1, num("#wMax", DEF.wMax));
-  cfg.gMax = num("#gMax", DEF.gMax); cfg.waveMax = num("#waveMax", DEF.waveMax);
-  cfg.draft = num("#draft", DEF.draft); cfg.ukc = num("#ukc", DEF.ukc); cfg.sondBy = Object.assign({}, cfg.sondBy); { const v = num("#sond", null); if(v == null) delete cfg.sondBy[spot().id]; else cfg.sondBy[spot().id] = v; }
-  cfg.model = $("#model").value; cfg.corr = $("#corr").checked; cfg.night = $("#night").checked;
-  save("salimos.cfg3", cfg); refresh();
+  const n = (id, d) => num($(id).value) ?? d;
+  cfg.wMin = n("#wMin", DEF.wMin); cfg.wMax = Math.max(cfg.wMin + 1, n("#wMax", DEF.wMax));
+  cfg.gMax = n("#gMax", DEF.gMax); cfg.waveMax = n("#waveMax", DEF.waveMax);
+  cfg.minBy = Object.assign({}, cfg.minBy); { const v = num($("#minAlt").value); if(v == null) delete cfg.minBy[spot().id]; else cfg.minBy[spot().id] = v; }
+  cfg.corr = $("#corr").checked; cfg.night = $("#night").checked;
+  save("salimos.cfg3", cfg); rebuild();
 });
 
 $("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
@@ -883,44 +964,21 @@ $("#addSave").addEventListener("click", e => {
   if(!name){ e.preventDefault(); showAddErr("Poné un nombre para el lugar."); return; }
   if(!m){ e.preventDefault(); showAddErr("Escribí las coordenadas así: -47.75, -65.90"); return; }
   const lat = parseFloat(m[1].replace(",", ".")), lon = parseFloat(m[2].replace(",", "."));
-  if(Math.abs(lat) > 90 || Math.abs(lon) > 180){ e.preventDefault(); showAddErr("Esas coordenadas no existen. Revisá latitud y longitud."); return; }
+  if(Math.abs(lat) > 90 || Math.abs(lon) > 180){ e.preventDefault(); showAddErr("Esas coordenadas no existen."); return; }
   const sp = {id:"c" + Date.now(), name, lat, lon, cero:null};
   custom.push(sp); save("salimos.spots", custom); spotId = sp.id; save("salimos.spot", spotId); fillSpots(); refresh();
 });
 
-document.addEventListener("click", e => {
-  const b = e.target.closest(".mtab"); if(!b || !lastB) return;
-  const date = b.dataset.date, mid = b.dataset.m, hrs = lastB.days[date]; if(!hrs) return;
-  document.querySelectorAll(`.mtab[data-date="${date}"]`).forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
-  const box = document.querySelector(`.htbox[data-date="${date}"]`);
-  if(box) box.innerHTML = mid === "combo" ? hourTable(hrs, lastB) : modelTable(hrs, lastB, mid);
-});
-function shnCalc(){
-  const res = document.getElementById("shnRes"); if(!res) return;
-  const num = id => { const v = parseFloat(String(document.getElementById(id).value).replace(",", ".")); return isNaN(v) ? null : v; };
-  const sign = +document.getElementById("shnSign").value;
-  const tabla = num("shnTabla"), aviso = sign === 0 ? 0 : Math.abs(num("shnAviso") ?? 0) * sign;
-  save("salimos.shn." + spot().id, {tabla: document.getElementById("shnTabla").value, aviso: document.getElementById("shnAviso").value, sign: document.getElementById("shnSign").value});
-  if(tabla == null){ res.innerHTML = `<div class="shn-res wait"><p class="note">Cargá la altura de la tabla para ver el resultado.</p></div>`; return; }
-  const alt = tabla + aviso/100;
-  const lines = `<div class="calc"><div class="row"><span>Tabla de marea</span><span>${fmt(tabla,2)} m</span></div><div class="row"><span>${aviso >= 0 ? "+" : "−"} aviso</span><span>${fmt(Math.abs(aviso)/100,2)} m</span></div><div class="row tot"><span>Altura corregida</span><span>${fmt(alt,2)} m</span></div>${sondOf(spot()) != null ? `<div class="row"><span>+ profundidad en la carta</span><span>${fmt(sondOf(spot()),2)} m</span></div><div class="row tot"><span>Agua total</span><span>${fmt(alt + sondOf(spot()),2)} m</span></div>` : ""}</div>`;
-  if(sondOf(spot()) == null){
-    res.innerHTML = lines + `<div class="shn-res wait"><p class="note">El agua va a estar en <b>${fmt(alt,2)} m</b>. Para saber si alcanza, falta cargar en <b>Mi barco</b> la profundidad de la carta en el lugar menos hondo de la entrada de este puerto.</p></div>`;
-    return;
-  }
-  const water = alt + sondOf(spot()), needW = cfg.draft + cfg.ukc, extra = water - cfg.draft;
-  res.innerHTML = lines + (water >= needW
-    ? `<div class="shn-res ok"><div class="word">Hay agua</div><p style="margin:0">Quedan ${fmt(extra,2)} m entre la quilla y el fondo (pediste al menos ${fmt(cfg.ukc,2)} m).</p></div>`
-    : extra > 0
-      ? `<div class="shn-res no"><div class="word">Muy justo</div><p style="margin:0">Pasa, pero con solo ${fmt(extra,2)} m bajo la quilla, menos del margen de ${fmt(cfg.ukc,2)} m que pusiste.</p></div>`
-      : `<div class="shn-res no"><div class="word">No hay agua</div><p style="margin:0">Faltan ${fmt(-extra,2)} m: el barco tocaría fondo.</p></div>`);
-}
-const shnIds = ["shnTabla","shnAviso","shnSign"];
-document.addEventListener("input", e => { if(shnIds.includes(e.target.id)) shnCalc(); });
-document.addEventListener("change", e => { if(shnIds.includes(e.target.id)) shnCalc(); });
+/* pestaña activa según dónde estás */
+const tabs = [...document.querySelectorAll(".tab[href]")];
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => {
+  es.forEach(en => { if(en.isIntersecting){ tabs.forEach(t => t.setAttribute("aria-current", t.getAttribute("href") === "#" + en.target.dataset.tab ? "true" : "false")); } });
+}, {rootMargin:"-45% 0px -50% 0px"}) : null;
+if(io) [["verdictBox","panel"],["hoy","hoy"],["marea","marea"],["semana","semana"]].forEach(([el, id]) => { const n = document.getElementById(el); if(n){ n.dataset.tab = id; io.observe(n); } });
+
 let last = Date.now();
 document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - last > 15*60*1000){ last = Date.now(); refresh(); } });
-fillSpots(); refresh();
+applyGuardia(); fillSpots(); refresh();
 </script>
 </body>
 </html>
