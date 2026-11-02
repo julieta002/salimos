@@ -243,7 +243,7 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
     <div class="bento">
       <details class="card span2 src"><summary>¿De dónde salen los datos?</summary>
         <p><b>Viento, lluvia, presión y tormentas:</b> cuatro modelos (GDPS de Canadá, GFS de Estados Unidos, ICON de Alemania y ECMWF europeo) que calculan el tiempo para todo el planeta en cuadraditos de 11 a 25 km. La página pide el del lugar elegido, por eso funciona en la Antártida o en Brasil. Es un cálculo, no una medición: cerca de montañas o canales angostos el viento real puede ser distinto.</p>
-        <p><b>Combinado:</b> en el Río de la Plata, cada modelo se corrige por su sesgo medido contra Pilote Norden (medición de OlvidataSoft, sep–oct 2026) y pesa según cuánto acierta. En otros lugares es el promedio de los cuatro.</p>
+        <p><b>Combinado:</b> junta los cuatro modelos, con más peso el que mejor le pega en Pilote Norden y, si está activado en Mi barco, cada uno corregido por su sesgo. La comparación contra Pilote Norden es una medición de OlvidataSoft (septiembre y octubre de 2026).</p>
         <p><b>Olas, período y corrientes:</b> modelos oceánicos de Open-Meteo Marine. <b>Nivel del agua:</b> modelo orientativo; el dato oficial es el del SHN. <b>Mediciones reales:</b> aeropuertos (METAR) y estaciones de la CARP.</p>
       </details>
       <details class="card span2 gloss"><summary>Qué significa cada cosa</summary>
@@ -258,7 +258,8 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
           <div><dt>Calado</dt><dd>Lo que el barco se hunde bajo el agua. Tupá cala 1,90 m.</dd></div>
           <div><dt>Altura mínima para salir</dt><dd>El número de la tabla del SHN a partir del cual tu barco sale sin tocar fondo. Lo da la experiencia del club; para Tupá en Berisso es 0,70 m.</dd></div>
           <div><dt>Tabla y aviso del SHN</dt><dd>La tabla da la marea de la Luna y el Sol. El aviso dice cuánto el viento la sube o la baja. Los "valores corregidos" ya traen el aviso sumado.</dd></div>
-          <div><dt>Modelo y sesgo</dt><dd>Modelo: programa que calcula el tiempo. Sesgo: si se equivoca siempre para el mismo lado; −2 kt quiere decir que marca 2 menos de lo que hay.</dd></div>
+          <div><dt>Modelo</dt><dd>Programa que calcula el tiempo. Cada servicio meteorológico tiene el suyo y no siempre coinciden.</dd></div>
+          <div><dt>Sesgo</dt><dd>Si un modelo se equivoca siempre para el mismo lado. Se calcula comparando lo que pronosticó con lo que midió una estación real (acá, Pilote Norden): −2 kt quiere decir que marca 2 menos de lo que hubo, así que hay que sumárselos.</dd></div>
           <div><dt>Milla náutica (mn)</dt><dd>1,852 km. Un nudo es una milla por hora.</dd></div>
         </dl>
       </details>
@@ -266,7 +267,7 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
   </section>
 
   <footer class="foot">
-    <p>Pronóstico: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>. Marea oficial: <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. Mapa: Windy.</p>
+    <p>Pronóstico: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>. Marea oficial: <a href="https://www.hidro.gob.ar/" target="_blank" rel="noopener">Servicio de Hidrografía Naval</a>. Mapa: Windy. Acierto de los modelos en Pilote Norden: medición de <a href="https://club.olvidata.com.ar/" target="_blank" rel="noopener">OlvidataSoft</a>.</p>
     <p>Con alerta meteorológica, Prefectura Naval puede suspender la navegación deportiva: consultá antes de zarpar. El pronóstico es orientativo; la decisión de salir es del patrón.</p>
   </footer>
 </div>
@@ -292,13 +293,13 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
   </fieldset>
   <fieldset><legend>Para salir del puerto</legend>
     <label for="minAlt"><span id="minLbl">Altura mínima del SHN para salir (m)</span><input id="minAlt" type="text" inputmode="decimal" autocomplete="off" placeholder="Ej.: 0,70"></label>
-    <p class="hint">Es el número de la tabla del SHN a partir del cual tu barco sale y vuelve sin tocar fondo. Ya tiene en cuenta el calado y el fondo de la salida. Para Tupá en el Náutico Berisso es <b>0,70 m</b>, según el capitán.</p>
+    <p class="hint">Es el número de la tabla de mareas de ese puerto a partir del cual tu barco sale y vuelve sin tocar fondo. Cada puerto tiene el suyo. Ya tiene en cuenta el calado y el fondo de la salida. Para Tupá en el Náutico Berisso es <b>0,70 m</b>, según el capitán.</p>
     <details><summary>No lo sé: ¿cómo lo consigo?</summary>
       <p class="hint">Preguntá en el club: "¿con qué altura del SHN sale un barco que cala tanto?". Los socios y los marineros lo saben de experiencia. También podés anotar en cada salida qué decía el SHN y si pasaste bien o justo: en pocas salidas tenés tu número. Mientras tanto, salí y volvé cerca de la pleamar.</p>
     </details>
   </fieldset>
   <fieldset><legend>Pronóstico</legend>
-    <label class="check" for="corr"><input id="corr" type="checkbox"> Corregir el viento con el sesgo medido (solo Río de la Plata)</label>
+    <label class="check" for="corr2"><input id="corr2" type="checkbox"> Corregir el viento con el sesgo medido en Pilote Norden (Río de la Plata)</label>
     <label class="check" for="night"><input id="night" type="checkbox"> Contar las horas de noche como navegables</label>
   </fieldset>
   <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" value="ok" type="submit">Guardar</button></div>
@@ -309,6 +310,16 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
   <label for="addName">Nombre<input id="addName" type="text" placeholder="Ej.: Puerto Deseado" autocomplete="off"></label>
   <label for="addCoords">Coordenadas (latitud, longitud)<input id="addCoords" type="text" placeholder="-47.75, -65.90" autocomplete="off"></label>
   <p class="hint">Copialas de Google Maps manteniendo apretado sobre el agua, justo afuera del puerto.</p>
+  <label for="addCountry">Tabla de mareas de
+    <select class="f" id="addCountry">
+      <option value="ar">Argentina · SHN</option>
+      <option value="uy">Uruguay · SOHMA</option>
+      <option value="br">Brasil · Marinha do Brasil</option>
+      <option value="cl">Chile · SHOA</option>
+      <option value="otro">Otro país</option>
+    </select>
+  </label>
+  <p class="hint">Se elige solo según las coordenadas; cambialo si no es el país correcto.</p>
   <button class="btn" id="btnGeo" type="button">Usar mi ubicación</button>
   <p class="hint err" id="addErr" hidden></p>
   <div class="drow"><button class="btn" value="cancel" type="submit" formnovalidate>Cancelar</button><button class="btn pri" id="addSave" value="ok" type="submit">Agregar</button></div>
@@ -318,15 +329,22 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
 "use strict";
 /* ---------- datos fijos ---------- */
 const SHN = {who:"SHN (Servicio de Hidrografía Naval)", url:"https://www.hidro.gob.ar/"};
+const TIDE_SRC = {
+  ar:{who:"SHN (Servicio de Hidrografía Naval, Argentina)", url:"https://www.hidro.gob.ar/"},
+  uy:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/"},
+  br:{who:"Marinha do Brasil (Tábuas de Maré)", url:"https://www.marinha.mil.br/chm/tabuas-de-mare"},
+  cl:{who:"SHOA (Armada de Chile)", url:"https://www.shoa.cl/"},
+  otro:{who:"el servicio de mareas del país", url:""}
+};
+function guessCountry(lat, lon){
+  if(lat > -33.75 && lon > -53.5) return "br";
+  if(lat < -30 && lat > -35.2 && lon < -53 && ((lat > -34.6 && lon > -58.0) || (lat > -34.35 && lon > -58.5) || (lon > -57.0))) return "uy";
+  if(lon < -71.5 && lat > -56) return "cl";
+  return "ar";
+}
 const PRESETS = [
   {id:"berisso", name:"Náutico Berisso", lat:-34.84, lon:-57.83, cero:0.91, rdp:true, tide:{...SHN, port:"Puerto La Plata", water:"río"}},
-  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}},
-  {id:"bsas", name:"Buenos Aires", lat:-34.58, lon:-58.35, cero:null, rdp:true, tide:{...SHN, port:"Puerto de Buenos Aires", water:"río"}},
-  {id:"mdp", name:"Mar del Plata", lat:-38.05, lon:-57.52, cero:null, tide:{...SHN, port:"Puerto de Mar del Plata", water:"mar"}},
-  {id:"madryn", name:"Puerto Madryn", lat:-42.78, lon:-64.98, cero:null, tide:{...SHN, port:"Puerto Madryn", water:"mar"}},
-  {id:"ushuaia", name:"Ushuaia", lat:-54.83, lon:-68.27, cero:null, tide:{...SHN, port:"Puerto de Ushuaia", water:"mar"}},
-  {id:"carlini", name:"Base Carlini (Antártida)", lat:-62.24, lon:-58.68, cero:null, tide:{who:"SHN (publica tablas de algunos puntos antárticos)", url:"https://www.hidro.gob.ar/", port:"el punto más cercano a Caleta Potter", water:"mar"}},
-  {id:"floripa", name:"Florianópolis (Brasil)", lat:-27.60, lon:-48.45, cero:null, tide:{who:"Marinha do Brasil (DHN)", url:"https://www.marinha.mil.br/chm/tabuas-de-mare", port:"Florianópolis", water:"mar"}}
+  {id:"colonia", name:"Colonia (Uruguay)", lat:-34.48, lon:-57.86, cero:null, rdp:true, tide:{who:"SOHMA (Armada de Uruguay)", url:"https://www.sohma.armada.mil.uy/", port:"Colonia", water:"río"}}
 ];
 const MODELS = [
   {id:"gem_global", name:"GDPS", from:"Canadá", col:"var(--m1)", windy:"gfs"},
@@ -334,10 +352,12 @@ const MODELS = [
   {id:"icon_seamless", name:"ICON", from:"Alemania", col:"var(--m3)", windy:"icon"},
   {id:"ecmwf_ifs025", name:"ECMWF", from:"Europa", col:"var(--m4)", windy:"ecmwf"}
 ];
-/* Acierto medido en Pilote Norden (CARP) por OlvidataSoft, 1/9 al 31/10/2026, 1218 h, margen ±2 kt */
-const REF = {gem_global:{acc:38.9, mae:3.7, bias:-2.1}, gfs_seamless:{acc:37.9, mae:3.5, bias:-1.8}, icon_seamless:{acc:35.3, mae:3.8, bias:-2.0}, ecmwf_ifs025:{acc:10.8, mae:6.1, bias:-5.8}};
 const OTHER_ORDER = ["ecmwf_ifs025","gfs_seamless","icon_seamless","gem_global"];
-const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, minBy:{berisso:0.70}, night:false, model:"combo", corr:true};
+const DEF = {wMin:6, wMax:20, gMax:25, waveMax:1.5, minBy:{berisso:0.70}, night:false, model:"combo", corr2:true};
+/* Por ahora: acierto medido en Pilote Norden (CARP) por OlvidataSoft, 1/9 al 31/10/2026, 1218 h, margen ±2 kt.
+   Cuando la página pueda leer Pilote Norden, OWN_VERIF pasa a true y calcula su propia comparación. */
+const REF = {gem_global:{acc:38.9, mae:3.7, bias:-2.1}, gfs_seamless:{acc:37.9, mae:3.5, bias:-1.8}, icon_seamless:{acc:35.3, mae:3.8, bias:-2.0}, ecmwf_ifs025:{acc:10.8, mae:6.1, bias:-5.8}};
+const OWN_VERIF = false;
 
 function load(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } }
 function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
@@ -380,9 +400,9 @@ const $ = s => document.querySelector(s);
 const allSpots = () => PRESETS.concat(custom);
 const spot = () => allSpots().find(s => s.id === spotId) || PRESETS[0];
 const modelOf = id => MODELS.find(m => m.id === id);
-const corrOn = s => !!(s.rdp && cfg.corr);
+const corrOn = (s, S) => !!(cfg.corr2 && S && S.ok);
 const lvlNeeded = s => cfg.minBy[s.id] ?? null;
-const tideOf = s => s.tide || {who:"el servicio hidrográfico del país", url:"", port:s.name, water:"agua"};
+const tideOf = s => s.tide || Object.assign({}, TIDE_SRC[s.country || guessCountry(s.lat, s.lon)] || TIDE_SRC.otro, {port:s.name, water:"agua"});
 const CARD = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSO","SO","OSO","O","ONO","NO","NNO"];
 const card = d => CARD[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
 const fmt = (n, d=1) => n == null || isNaN(n) ? "—" : n.toLocaleString("es-AR", {minimumFractionDigits:d, maximumFractionDigits:d});
@@ -461,9 +481,75 @@ async function fetchData(s){
   const fc = `https://api.open-meteo.com/v1/forecast?${q}&hourly=${VARS.join(",")}&wind_speed_unit=kn&models=${MODELS.map(m => m.id).join(",")}`;
   const sun = `https://api.open-meteo.com/v1/forecast?${q}&daily=sunrise,sunset`;
   const marine = `https://marine-api.open-meteo.com/v1/marine?${q}&hourly=wave_height,wave_period,wave_direction,sea_level_height_msl,ocean_current_velocity,ocean_current_direction`;
-  const [f, d, mar] = await Promise.allSettled([getJSON(fc), getJSON(sun), getJSON(marine)]);
+  const [f, d, mar, ver] = await Promise.allSettled([getJSON(fc), getJSON(sun), getJSON(marine), OWN_VERIF ? fetchVerif(s) : Promise.resolve(null)]);
   if(f.status !== "fulfilled") throw new Error("forecast");
-  return {f:f.value, d: d.status === "fulfilled" ? d.value : null, m: mar.status === "fulfilled" ? mar.value : null};
+  return {f:f.value, d: d.status === "fulfilled" ? d.value : null, m: mar.status === "fulfilled" ? mar.value : null, v: ver.status === "fulfilled" ? ver.value : null};
+}
+/* ---------- verificación propia: pronóstico del día anterior contra la estación real más cercana ---------- */
+function verifStation(s){
+  const c = STATIONS.filter(st => st.icao).map(st => ({st, km:distKm(s, st)})).filter(x => x.km <= 80).sort((a,b) => a.km - b.km)[0];
+  return c || null;
+}
+async function fetchVerif(s){
+  const vs = verifStation(s); if(!vs) return null;
+  const q = `latitude=${vs.st.lat}&longitude=${vs.st.lon}&timezone=GMT&wind_speed_unit=kn&past_days=7&forecast_days=1&models=${MODELS.map(m => m.id).join(",")}`;
+  const obsP = getJSON(`/api/metar?ids=${vs.st.icao}&hours=168`);
+  let model = null, kind = "previous";
+  try{ model = await getJSON(`https://previous-runs-api.open-meteo.com/v1/forecast?${q}&hourly=wind_speed_10m_previous_day1`); }catch(e){ model = null; }
+  if(!model || !model.hourly || !Object.keys(model.hourly).some(k => k.includes("previous_day1"))){
+    kind = "corto";
+    try{ model = await getJSON(`https://api.open-meteo.com/v1/forecast?${q}&hourly=wind_speed_10m`); }catch(e){ model = null; }
+  }
+  let obs = null; try{ obs = await obsP; }catch(e){ obs = null; }
+  if(!model || !model.hourly || !Array.isArray(obs) || !obs.length) return {vs, err:true};
+  return {vs, kind, model:model.hourly, obs};
+}
+function refStats(s){
+  const inRdp = s.rdp || (s.lat > -35.5 && s.lat < -33.8 && s.lon > -58.7 && s.lon < -54.9);
+  if(!inRdp) return null;
+  const st = STATIONS.find(x => x.name === "Pilote Norden");
+  const per = {}; MODELS.forEach(m => per[m.id] = Object.assign({n:1218}, REF[m.id]));
+  return {vs:{st, km:distKm(s, st)}, kind:"olvidata", per, n:1218, ok:true};
+}
+function verifStats(v){
+  if(!v || v.err) return v ? {vs:v.vs, err:true} : null;
+  const H = v.model, idx = {}; H.time.forEach((t,i) => idx[t] = i);
+  const keyOf = id => { const ks = Object.keys(H).filter(k => k.startsWith("wind_speed_10m") && k.endsWith(id)); return ks.find(k => k.includes("previous_day1")) || ks[0]; };
+  const seen = {}, pairs = [];
+  const nowMs = Date.now();
+  v.obs.forEach(o => {
+    if(o.wspd == null || typeof o.obsTime !== "number" || o.obsTime * 1000 > nowMs) return;
+    const t = new Date(Math.round(o.obsTime / 3600) * 3600 * 1000).toISOString().slice(0,13) + ":00";
+    if(seen[t] || idx[t] == null) return; seen[t] = 1; pairs.push({i:idx[t], ob:o.wspd});
+  });
+  const per = {};
+  MODELS.forEach(m => {
+    const k = keyOf(m.id); if(!k) return;
+    const d = pairs.map(p => H[k][p.i] == null ? null : H[k][p.i] - p.ob).filter(x => x != null);
+    if(!d.length) return;
+    per[m.id] = {n:d.length, bias:d.reduce((a,b) => a+b, 0) / d.length, mae:d.reduce((a,b) => a + Math.abs(b), 0) / d.length, acc:100 * d.filter(x => Math.abs(x) <= 2).length / d.length};
+  });
+  const n = Math.max(0, ...Object.values(per).map(p => p.n));
+  return {vs:v.vs, kind:v.kind, per, n, ok:n >= 24};
+}
+function verifBlock(B){
+  const S = B.stats, s = spot();
+  if(!S) return `<details><summary>¿Cuál le pega mejor acá?</summary><p class="note">La comparación de modelos existe solo para el Río de la Plata, contra Pilote Norden.</p></details>`;
+  if(S.err) return `<details><summary>¿Cuál le pega mejor acá?</summary><p class="note">No se pudieron traer las mediciones de ${esc(S.vs.st.name)} para comparar. Probá más tarde.</p></details>`;
+  if(!S.ok) return `<details><summary>¿Cuál le pega mejor acá?</summary><p class="note">Hay pocas mediciones de ${esc(S.vs.st.name)} (${S.n} h) para sacar conclusiones. Hacen falta al menos 24.</p></details>`;
+  const ids = MODELS.filter(m => S.per[m.id]).sort((a,b) => S.per[b.id].acc - S.per[a.id].acc);
+  const best = ids[0];
+  const tot = ids.reduce((a,m) => a + Math.max(S.per[m.id].acc, 1), 0);
+  const todo = b => Math.abs(b) < 0.5 ? "nada" : b < 0 ? `sumar ${fmt(-b)}` : `restar ${fmt(b)}`;
+  const rows = ids.map(m => { const r = S.per[m.id]; return `<tr><td><span class="swatch" style="background:${m.col}"></span>${m.name}${m === best ? ' <span class="chip c-ok">mejor</span>' : ""}</td><td><span class="bar"><i style="width:${Math.min(100, r.acc)}%"></i></span>${fmt(r.acc,0)}%</td><td>${fmt(r.mae)} kt</td><td>${r.bias > 0 ? "+" : ""}${fmt(r.bias)} kt</td><td>${todo(r.bias)}</td><td>${fmt(Math.max(r.acc,1) / tot * 100, 0)}%</td></tr>`; }).join("");
+  const allLow = ids.every(m => S.per[m.id].bias < -0.5), allHigh = ids.every(m => S.per[m.id].bias > 0.5);
+  return `<details><summary>¿Cuál le pega mejor acá?</summary>
+    <p class="note">${S.kind === "olvidata" ? `Cada modelo contra lo que midió <b style="color:var(--text)">Pilote Norden</b> (CARP), a ${fmt(S.vs.km,0)} km, durante 1218 horas entre el 1 de septiembre y el 31 de octubre de 2026. <b style="color:var(--text)">Medición de OlvidataSoft.</b>` : `Lo que cada modelo ${S.kind === "previous" ? "pronosticó el día anterior" : "pronosticó a corto plazo"} contra lo que midió <b style="color:var(--text)">${esc(S.vs.st.name)}</b> (${fmt(S.vs.km,0)} km), en las últimas ${S.n} horas con medición.`}</p>
+    <div class="tablewrap"><table class="mtable"><thead><tr><th>Modelo</th><th>Acierto</th><th>Error medio</th><th>Sesgo</th><th>Qué hacer</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${allLow ? `<p class="note"><b style="color:var(--text)">Los cuatro se quedan cortos:</b> marcan menos viento del que hubo.</p>` : allHigh ? `<p class="note"><b style="color:var(--text)">Los cuatro se pasan:</b> marcan más viento del que hubo.</p>` : ""}
+    <p class="note"><b style="color:var(--text)">Acierto:</b> horas en que el modelo quedó a menos de 2 kt de lo medido. <b style="color:var(--text)">Error medio:</b> cuánto se equivocó en promedio. <b style="color:var(--text)">Sesgo:</b> para qué lado; negativo es que marca menos viento del que hay. <b style="color:var(--text)">Peso:</b> cuánto cuenta en el combinado.</p>
+    <p class="note">${S.kind === "olvidata" ? "Pilote Norden está sobre el agua, así que estos números sirven bien para el río. Vale para el Río de la Plata; en otras zonas los modelos se equivocan distinto." : (S.vs.st.water ? "" : "La estación está en tierra, y sobre el agua suele haber algo más de viento. ") + "Es una muestra de pocos días: tomala como orientación."}</p>
+  </details>`;
 }
 function blend(per){
   if(!per.length) return null;
@@ -482,13 +568,13 @@ function build(data, s){
   const mv = (v, j) => M && j != null && M[v] ? M[v][j] : null;
   const mi = {}; if(M) M.time.forEach((t,i) => mi[t] = i);
   const sun = {}; if(data.d) data.d.daily.time.forEach((d,i) => sun[d] = {rise:data.d.daily.sunrise[i], set:data.d.daily.sunset[i]});
-  const need = lvlNeeded(s), corr = corrOn(s);
+  const stats = OWN_VERIF ? verifStats(data.v) : refStats(s), need = lvlNeeded(s), corr = corrOn(s, stats);
   const shnD = shnLoad(s), shnF = shnSeries(shnD), shnDate = shnD.date;
   const hours = H.time.map((t,i) => {
     const per = MODELS.map(m => {
       const raw = g("wind_speed_10m", m.id, i); if(raw == null) return null;
-      const off = corr ? -REF[m.id].bias : 0, gr = g("wind_gusts_10m", m.id, i);
-      return {id:m.id, raw, ws:raw + off, wg: gr == null ? null : gr + off, wd:g("wind_direction_10m", m.id, i), w: s.rdp ? REF[m.id].acc : 1,
+      const st = stats && stats.ok ? stats.per[m.id] : null, off = corr && st ? -st.bias : 0, gr = g("wind_gusts_10m", m.id, i);
+      return {id:m.id, raw, ws:raw + off, wg: gr == null ? null : gr + off, wd:g("wind_direction_10m", m.id, i), w: st ? Math.max(st.acc, 1) : 1,
         pr:g("precipitation", m.id, i), wc:g("weather_code", m.id, i), vis:g("visibility", m.id, i), p:g("pressure_msl", m.id, i), temp:g("temperature_2m", m.id, i)};
     }).filter(Boolean);
     const pick = cfg.model === "combo" ? blend(per) : (per.find(p => p.id === cfg.model) || blend(per));
@@ -510,7 +596,7 @@ function build(data, s){
   const days = {}; hours.forEach(h => (days[h.date] = days[h.date] || []).push(h));
   const tz = data.f.utc_offset_seconds || 0;
   const nowStr = new Date(Date.now() + tz*1000).toISOString().slice(0,13) + ":00";
-  return {hours, days, sun, nowStr, need, corr, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null), hasCur: hours.some(h => h.cur != null)};
+  return {hours, days, sun, nowStr, need, corr, stats, hasLevel: hours.some(h => h.lvl != null), hasWave: hours.some(h => h.wave != null), hasCur: hours.some(h => h.cur != null)};
 }
 
 /* ---------- textos de decisión ---------- */
@@ -707,14 +793,9 @@ function renderModels(B){
   g += line(seg36.map(x => x.ws), "var(--text)", 3.4);
   seg36.forEach((x,k) => { if(k % 3 === 0) g += `<text x="${padL + k*bw + bw/2}" y="${y(x.ws) - 8}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(x.ws,0)}</text>`; });
   g += `</svg>`;
-  const tot = MODELS.reduce((a,m) => a + REF[m.id].acc, 0);
-  const rows = MODELS.map(m => { const r = REF[m.id]; return `<tr><td><span class="swatch" style="background:${m.col}"></span>${m.name}</td><td><span class="bar"><i style="width:${Math.min(100, r.acc*2)}%"></i></span>${fmt(r.acc)}%</td><td>${fmt(r.mae)} kt</td><td>${fmt(r.bias)} kt</td><td>sumar ${fmt(-r.bias)}</td><td>${fmt(r.acc / tot * 100, 0)}%</td></tr>`; }).join("");
   $("#modelsCard").innerHTML = `<div class="hrow"><span class="lbl">Viento ahora según cada uno</span>${agree}</div>${seg}
-    <p class="note">${cfg.model === "combo" ? (s.rdp ? "Combinado: cada modelo corregido por su sesgo y con más peso cuanto mejor le pega en el río." : "Combinado: promedio de los cuatro; acá no hay medición para saber cuál le pega mejor.") : `Decide ${modelOf(cfg.model).name} solo. Tocá Comb. para volver al combinado.`}</p>
-    <details><summary>Ver las próximas 36 horas</summary><div class="legend"><span><i style="background:var(--text);height:4px"></i><b>${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</b></span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div><div class="chart">${g}</div><p class="note">La franja verde es tu rango de viento; lo sombreado es de noche.</p></details>
-    <details><summary>¿Cuál le pega mejor en el Río de la Plata?</summary><p class="note">Cada modelo contra lo que midió Pilote Norden (CARP), 1218 horas entre el 1 de septiembre y el 31 de octubre de 2026. Medición de OlvidataSoft.</p>
-      <div class="tablewrap"><table class="mtable"><thead><tr><th>Modelo</th><th>Acierto</th><th>Error</th><th>Sesgo</th><th>Corrección</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
-      <p class="note">Acierto: horas a menos de 2 kt de lo medido. Sesgo negativo: marca menos viento del que hay. Peso: cuánto cuenta en el combinado. Solo vale para el Río de la Plata.</p></details>`;
+    <p class="note">${cfg.model === "combo" ? (B.stats && B.stats.ok ? `Combinado: los cuatro modelos, con más peso el que mejor le pegó a ${esc(B.stats.vs.st.name)}${B.stats.kind === "olvidata" ? " en septiembre y octubre" : " estos días"}${B.corr ? ", y cada uno corregido por su sesgo" : ""}.` : "Combinado: el promedio de los cuatro modelos.") : `Decide ${modelOf(cfg.model).name} solo. Tocá Comb. para volver al combinado.`}</p>
+    <details><summary>Ver las próximas 36 horas</summary><div class="legend"><span><i style="background:var(--text);height:4px"></i><b>${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</b></span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div><div class="chart">${g}</div><p class="note">La franja verde es tu rango de viento; lo sombreado es de noche.</p></details>${verifBlock(B)}`;
 }
 
 /* ---------- marea: lo que dice el SHN ---------- */
@@ -772,7 +853,7 @@ function tideSVG(f, need){
 }
 function tideResultHTML(s){
   const need = lvlNeeded(s), d = shnLoad(s), f = shnSeries(d);
-  if(need == null) return `<div class="res wait"><p>Falta tu <b>altura mínima para salir</b> de ${esc(s.name)}. Cargala en <b>Mi barco</b>: es el número del SHN a partir del cual tu barco sale.</p></div>`;
+  if(need == null) return `<div class="res wait"><p>Falta tu <b>altura mínima para salir</b> de ${esc(s.name)}. Cada puerto tiene la suya: es el número de su tabla de mareas a partir del cual tu barco entra o sale. Preguntala en la marina o el club del lugar y cargala en <b>Mi barco</b>.</p></div>`;
   if(!f) return `<div class="res wait"><p>Tu mínimo es <b>${fmt(need,2)} m</b>. Cargá abajo la bajamar y la pleamar del SHN y te digo de qué hora a qué hora hay agua.</p></div>`;
   const w = waterWindows(f, need), old = d.date && d.date !== todayStr();
   const okTxt = w.ok.map(x => `${hm(x.a)} a ${hm(x.b)}`).join(" y ");
@@ -802,7 +883,7 @@ function renderTide(B){
     <p class="note">Copiá de la tabla de <b>${esc(T.port)}</b> las horas y alturas de bajamar y pleamar del día. Con dos alcanza; con cuatro cubrís el día entero.</p>
     <div class="trhead"><span>Tipo</span><span>Hora</span><span>Altura (m)</span></div>
     ${d.rows.map(rowHTML).join("")}
-    <label for="tSign">¿La tabla dice "valores corregidos"?
+    <label for="tSign"${s.rdp && /SHN/.test(T.who) ? "" : " hidden"}>¿La tabla dice "valores corregidos"?
       <select class="f" id="tSign"><option value="0"${d.sign === "0" ? " selected" : ""}>Sí, son valores corregidos (o no hay aviso)</option><option value="1"${d.sign === "1" ? " selected" : ""}>No, y hay aviso: el río va a estar POR ENCIMA</option><option value="-1"${d.sign === "-1" ? " selected" : ""}>No, y hay aviso: el río va a estar POR DEBAJO</option></select>
     </label>
     <label for="tCm"${d.sign === "0" ? " hidden" : ""} id="tCmL">¿Cuántos centímetros dice el aviso?<input id="tCm" type="text" inputmode="numeric" autocomplete="off" placeholder="20" value="${esc(d.cm)}"></label>
@@ -862,7 +943,8 @@ async function loadLive(s, B){
   try{
     const data = await getJSON(`/api/metar?ids=${cands.map(c => c.st.icao).join(",")}`);
     if(spot().id !== s.id || !box()) return;
-    const pick = cands.map(c => ({...c, o: data.find(d => d.icaoId === c.st.icao)})).find(c => c.o && c.o.wspd != null);
+    const newest = id => data.filter(d => d.icaoId === id && d.wspd != null).sort((a,b) => b.obsTime - a.obsTime)[0];
+    const pick = cands.map(c => ({...c, o: newest(c.st.icao)})).find(c => c.o);
     if(!pick) throw new Error("sin datos");
     const o = pick.o, ago = Math.max(0, Math.round((Date.now()/1000 - o.obsTime) / 60)), dirOk = typeof o.wdir === "number";
     const h = B.hours.find(x => x.t === B.nowStr);
@@ -937,7 +1019,7 @@ $("#btnCfg").addEventListener("click", () => {
   $("#waveMax").value = String(cfg.waveMax).replace(".", ",");
   const s = spot(), mn = lvlNeeded(s); $("#minAlt").value = mn == null ? "" : String(mn).replace(".", ",");
   $("#minLbl").textContent = `Altura mínima del SHN para salir de ${s.name} (m)`;
-  $("#corr").checked = cfg.corr; $("#night").checked = cfg.night;
+  $("#night").checked = cfg.night; $("#corr2").checked = !!cfg.corr2;
   $("#dlgCfg").returnValue = ""; $("#dlgCfg").showModal();
 });
 $("#dlgCfg").addEventListener("close", () => {
@@ -946,16 +1028,17 @@ $("#dlgCfg").addEventListener("close", () => {
   cfg.wMin = n("#wMin", DEF.wMin); cfg.wMax = Math.max(cfg.wMin + 1, n("#wMax", DEF.wMax));
   cfg.gMax = n("#gMax", DEF.gMax); cfg.waveMax = n("#waveMax", DEF.waveMax);
   cfg.minBy = Object.assign({}, cfg.minBy); { const v = num($("#minAlt").value); if(v == null) delete cfg.minBy[spot().id]; else cfg.minBy[spot().id] = v; }
-  cfg.corr = $("#corr").checked; cfg.night = $("#night").checked;
+  cfg.night = $("#night").checked; cfg.corr2 = $("#corr2").checked;
   save("salimos.cfg3", cfg); rebuild();
 });
 
-$("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
+$("#btnAdd").addEventListener("click", () => { $("#addName").value = ""; $("#addCoords").value = ""; $("#addCountry").value = "ar"; $("#addErr").hidden = true; $("#dlgAdd").showModal(); });
+$("#addCoords").addEventListener("input", () => { const m = $("#addCoords").value.trim().match(/^(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)$/); if(m) $("#addCountry").value = guessCountry(parseFloat(m[1].replace(",", ".")), parseFloat(m[2].replace(",", "."))); });
 function showAddErr(t){ $("#addErr").textContent = t; $("#addErr").hidden = false; }
 $("#btnGeo").addEventListener("click", () => {
   if(!navigator.geolocation){ showAddErr("Este navegador no da la ubicación."); return; }
   navigator.geolocation.getCurrentPosition(
-    p => { $("#addCoords").value = `${p.coords.latitude.toFixed(4)}, ${p.coords.longitude.toFixed(4)}`; if(!$("#addName").value) $("#addName").value = "Donde estoy"; },
+    p => { $("#addCoords").value = `${p.coords.latitude.toFixed(4)}, ${p.coords.longitude.toFixed(4)}`; $("#addCountry").value = guessCountry(p.coords.latitude, p.coords.longitude); if(!$("#addName").value) $("#addName").value = "Donde estoy"; },
     () => showAddErr("No se pudo obtener la ubicación. Revisá el permiso de ubicación del navegador."), {timeout:10000});
 });
 $("#addSave").addEventListener("click", e => {
@@ -965,7 +1048,7 @@ $("#addSave").addEventListener("click", e => {
   if(!m){ e.preventDefault(); showAddErr("Escribí las coordenadas así: -47.75, -65.90"); return; }
   const lat = parseFloat(m[1].replace(",", ".")), lon = parseFloat(m[2].replace(",", "."));
   if(Math.abs(lat) > 90 || Math.abs(lon) > 180){ e.preventDefault(); showAddErr("Esas coordenadas no existen."); return; }
-  const sp = {id:"c" + Date.now(), name, lat, lon, cero:null};
+  const sp = {id:"c" + Date.now(), name, lat, lon, cero:null, country:$("#addCountry").value};
   custom.push(sp); save("salimos.spots", custom); spotId = sp.id; save("salimos.spot", spotId); fillSpots(); refresh();
 });
 
