@@ -84,6 +84,7 @@ section.block{padding-top:18px}
 .layers::-webkit-scrollbar{display:none}
 .lchip{height:36px;padding:0 13px;border-radius:18px;white-space:nowrap;font:700 13px var(--f-body);border:1px solid var(--line);background:var(--card);color:var(--text)}
 .lchip[aria-pressed="true"]{background:var(--sel);color:var(--seltext);border-color:var(--sel)}
+.mapflag{position:absolute;left:10px;right:10px;bottom:10px;z-index:2;background:var(--warnbg);color:var(--text);border:1px solid var(--warn);border-radius:12px;padding:8px 10px;font-size:13px}
 .mapnote{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:12px;color:var(--text2)}
 .mapnote a{color:var(--wind)}
 /* viento */
@@ -201,12 +202,17 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
 
   <div id="verdictBox"><div class="status">Cargando pronóstico…</div></div>
 
+  <section class="block" aria-label="Modelo">
+    <div class="card" id="modelPick"><div class="hrow"><span class="lbl">Modelo</span></div><p class="note">Cargando modelos…</p></div>
+  </section>
+
   <section class="block" aria-label="Mapa">
     <div class="map">
+      <div class="mapflag" id="mapFlag" hidden></div>
       <div class="layers" id="layers" role="group" aria-label="Capas del mapa"></div>
       <iframe id="windy" title="Mapa de Windy"></iframe>
     </div>
-    <div class="mapnote"><span>Mapa de Windy · modelo <span id="mapModel">ECMWF</span></span><a id="windyLink" href="https://www.windy.com" target="_blank" rel="noopener">Abrir en Windy ↗</a></div>
+    <div class="mapnote"><span>Mapa de Windy · <span id="mapModel">ECMWF</span></span><a id="windyLink" href="https://www.windy.com" target="_blank" rel="noopener">Abrir en Windy ↗</a></div>
   </section>
 
   <section class="block" aria-label="Ahora">
@@ -219,7 +225,7 @@ label.check input{width:22px;height:22px;min-height:0;margin-top:1px;accent-colo
   </section>
 
   <section class="block" id="modelos" hidden>
-    <h2 class="h2">Modelos <small>cuál decide</small></h2>
+    <h2 class="h2">Modelos <small>comparación</small></h2>
     <div class="card" id="modelsCard"></div>
   </section>
 
@@ -801,8 +807,9 @@ function renderModels(B){
   g += line(seg36.map(x => x.ws), "var(--text)", 3.4);
   seg36.forEach((x,k) => { if(k % 3 === 0) g += `<text x="${padL + k*bw + bw/2}" y="${y(x.ws) - 8}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(x.ws,0)}</text>`; });
   g += `</svg>`;
-  $("#modelsCard").innerHTML = `<div class="hrow"><span class="lbl">Viento ahora según cada uno</span>${agree}</div>${seg}
-    <p class="note">${cfg.model === "combo" ? (B.stats && B.stats.ok ? `Combinado: los cuatro modelos, con más peso el que mejor le pegó a ${esc(B.stats.vs.st.name)}${B.stats.kind === "olvidata" ? " en septiembre y octubre" : " estos días"}${B.corr ? ", y cada uno corregido por su sesgo" : ""}.` : "Combinado: el promedio de los cuatro modelos.") : `Decide ${modelOf(cfg.model).name} solo. Tocá Comb. para volver al combinado.`}</p>
+  $("#modelPick").innerHTML = `<div class="hrow"><span class="lbl">Modelo que usa la página</span>${agree}</div>${seg}
+    <p class="note">Cambia el mapa y todas las tarjetas de abajo. ${cfg.model === "combo" ? (B.stats && B.stats.ok ? `Combinado: los cuatro modelos, con más peso el que mejor le pegó a ${esc(B.stats.vs.st.name)}${B.stats.kind === "olvidata" ? " en septiembre y octubre" : " estos días"}${B.corr ? ", y cada uno corregido por su sesgo" : ""}.` : "Combinado: el promedio de los cuatro modelos.") : `Decide ${modelOf(cfg.model).name} solo. Tocá Comb. para volver al combinado.`}</p>`;
+  $("#modelsCard").innerHTML = `<p class="note">Qué dice cada modelo y cuál le pega mejor. El modelo se elige arriba, antes del mapa.</p>
     <details><summary>Ver las próximas 36 horas</summary><div class="legend"><span><i style="background:var(--text);height:4px"></i><b>${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</b></span>${MODELS.map(m => `<span><i style="background:${m.col};border-radius:50%"></i>${m.name} · ${m.from}</span>`).join("")}</div><div class="chart">${g}</div><p class="note">La franja verde es tu rango de viento; lo sombreado es de noche.</p></details>${verifBlock(B)}`;
 }
 
@@ -972,7 +979,10 @@ function renderLayers(){
 function setWindy(s){
   const m = cfg.model === "combo" ? null : modelOf(cfg.model);
   const product = m ? m.windy : "ecmwf";
-  $("#mapModel").textContent = (product === "icon" ? "ICON" : product.toUpperCase()) + (cfg.model === "combo" ? " (Windy no muestra el combinado)" : cfg.model === "gem_global" ? " (Windy no tiene el canadiense)" : "") + ", sin corregir";
+  const pname = product === "icon" ? "ICON" : product.toUpperCase();
+  $("#mapModel").textContent = cfg.model === "combo" ? `${pname} (el combinado no se puede dibujar)` : pname;
+  $("#mapFlag").hidden = cfg.model !== "gem_global";
+  $("#mapFlag").textContent = "Windy no tiene el modelo canadiense (GDPS): el mapa muestra el GFS. Las tarjetas sí usan el GDPS.";
   $("#windy").src = `https://embed.windy.com/embed2.html?lat=${s.lat}&lon=${s.lon}&detailLat=${s.lat}&detailLon=${s.lon}&zoom=8&level=surface&overlay=${mapLayer}&product=${product}&menu=&message=true&marker=true&calendar=now&pressure=${mapIso ? "true" : ""}&type=map&location=coordinates&detail=&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`;
   $("#windyLink").href = `https://www.windy.com/?${mapLayer},${s.lat},${s.lon},9`;
 }
