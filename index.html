@@ -706,10 +706,10 @@ function modelTable(hrs, B, mid){
   return `<div class="tablewrap"><table class="ht"><thead><tr><th>Hora</th><th>Viento / ráfaga</th><th>Viene del</th><th>Lluvia mm</th><th>Temp.</th><th>hPa</th><th>Cielo</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function tabsFor(date){
-  return `<div class="mtabs" role="group" aria-label="Elegí el modelo"><button type="button" class="mtab" data-date="${date}" data-m="sel" aria-pressed="true">${cfg.model === "combo" ? "Combinado" : modelOf(cfg.model).name}</button>${MODELS.map(m => `<button type="button" class="mtab" data-date="${date}" data-m="${m.id}" aria-pressed="false"><i style="background:${m.col}"></i>${m.name}</button>`).join("")}</div>`;
+  return `<div class="mtabs" role="group" aria-label="Elegí el modelo"><button type="button" class="mtab" data-date="${date}" data-m="sel" aria-pressed="true">Resumen</button>${MODELS.map(m => `<button type="button" class="mtab" data-date="${date}" data-m="${m.id}" aria-pressed="false"><i style="background:${m.col}"></i>${m.name}</button>`).join("")}</div>`;
 }
 function detailBlock(date, hrs, B, isToday){
-  return `<div class="chart">${chartSVG(hrs, B, isToday)}</div><details><summary>Tabla hora por hora, modelo por modelo</summary>${tabsFor(date)}<div class="htbox" data-date="${date}">${hourTable(hrs, B)}</div><p class="note">Tocá un modelo para ver todo lo que pronostica él solo: lluvia, temperatura, presión y cielo.</p></details>`;
+  return `<div class="chart">${chartSVG(hrs, B, isToday)}</div><details><summary>Tabla hora por hora, modelo por modelo</summary>${tabsFor(date)}<div class="htbox" data-date="${date}">${hourTable(hrs, B)}</div><p class="note"><b>Resumen:</b> lo que decide la página (${cfg.model === "combo" ? "el combinado" : modelOf(cfg.model).name}), con el rango de los cuatro modelos. Tocá un modelo para ver todo lo que pronostica él solo: lluvia, temperatura, presión y cielo.</p></details>`;
 }
 
 /* ---------- arriba: veredicto y alertas ---------- */
@@ -736,6 +736,12 @@ function renderNow(B){
     </svg>
     <div><span class="num xl">${fmt(h.ws,0)}</span><span class="unit">kt</span></div>
     <div class="sub">Ráfagas <b>${fmt(h.wg,0)} kt</b><br>Del ${card(h.wd)} · ${Math.round(h.wd)}°<br>${b.name}</div>
+    <div class="note" style="border-top:1px solid var(--line);padding-top:8px">${(() => {
+      const src = cfg.model === "combo" ? "Combinado de 4 modelos" : modelOf(cfg.model).name + " solo";
+      const rawPer = cfg.model === "combo" ? h.per : h.per.filter(p => p.id === cfg.model);
+      const sw = rawPer.reduce((a,p) => a + p.w, 0), raw = sw ? rawPer.reduce((a,p) => a + p.w * p.raw, 0) / sw : null;
+      return B.corr && raw != null ? `${src}, <b style="color:var(--text)">corregido</b>. Sin corregir: ${fmt(raw,0)} kt.` : `${src}, sin corregir.`;
+    })()}</div>
   </section>`;
   const wave = `<section class="card" aria-label="Olas">
     <div class="hrow"><span class="lbl">Olas</span>${h.wdir != null ? `<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">${arrowPath(h.wdir, "var(--wave)")}</svg>` : ""}</div>
@@ -966,7 +972,7 @@ function renderLayers(){
 function setWindy(s){
   const m = cfg.model === "combo" ? null : modelOf(cfg.model);
   const product = m ? m.windy : "ecmwf";
-  $("#mapModel").textContent = product === "icon" ? "ICON" : product.toUpperCase();
+  $("#mapModel").textContent = (product === "icon" ? "ICON" : product.toUpperCase()) + (cfg.model === "combo" ? " (Windy no muestra el combinado)" : cfg.model === "gem_global" ? " (Windy no tiene el canadiense)" : "") + ", sin corregir";
   $("#windy").src = `https://embed.windy.com/embed2.html?lat=${s.lat}&lon=${s.lon}&detailLat=${s.lat}&detailLon=${s.lon}&zoom=8&level=surface&overlay=${mapLayer}&product=${product}&menu=&message=true&marker=true&calendar=now&pressure=${mapIso ? "true" : ""}&type=map&location=coordinates&detail=&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1`;
   $("#windyLink").href = `https://www.windy.com/?${mapLayer},${s.lat},${s.lon},9`;
 }
