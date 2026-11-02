@@ -673,7 +673,7 @@ function chartSVG(hours, B, isToday){
   const bw = 32, padL = 44, padR = 56, top = 30, hb = 170, n = hours.length;
   const W = padL + n*bw + padR, x0 = padL, x1 = padL + n*bw;
   const lv = hours.map(h => h.lvl).filter(v => v != null);
-  const hrsY = top + hb + 16, dirY = hrsY + 10, cardY = dirY + 30;
+  const hrsY = top + hb + 16, dirY = hrsY + 6, cardY = dirY + 46;
   const lvlTop = cardY + 44, lvlH = 90;
   const H = lv.length ? lvlTop + lvlH + 22 : cardY + 14;
   const maxK = Math.max(10, Math.ceil(Math.max(cfg.wMax + 4, ...hours.map(h => h.wg ?? h.ws)) / 5) * 5);
@@ -697,7 +697,7 @@ function chartSVG(hours, B, isToday){
     }
     s += `<text x="${cx(i)}" y="${y(h.wg ?? h.ws) - 6}" text-anchor="middle" style="fill:var(--text)" font-weight="700">${fmt(h.ws,0)}</text>`;
     s += `<text x="${cx(i)}" y="${hrsY}" text-anchor="middle"${h.t === B.nowStr && isToday ? ' style="fill:var(--wind)" font-weight="700"' : ""}>${hh(h.h)}</text>`;
-    s += `<g transform="translate(${cx(i)} ${dirY + 13})" style="color:var(--text)">${barb(h.ws, h.wd, 13)}</g>`;
+    s += `<g transform="translate(${cx(i)} ${dirY + 18})" style="color:var(--text)">${barb(h.ws, h.wd, 13)}</g>`;
     if(h.h % 2 === 0) s += `<text x="${cx(i)}" y="${cardY}" text-anchor="middle">${card(h.wd)}</text>`;
     if(isToday && h.t === B.nowStr) s += `<rect x="${padL + i*bw + 1}" y="${top-4}" width="${bw-2}" height="${hb+26}" fill="none" stroke="var(--wind)" stroke-width="2" rx="4"/><text x="${cx(i)}" y="${top-8}" text-anchor="middle" style="fill:var(--wind)" font-weight="700">ahora</text>`;
   });
